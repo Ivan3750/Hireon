@@ -24,8 +24,8 @@ export default function Header() {
             <FaGear size={30}></FaGear>
             </button>
           <section className="flex flex-col gap-[10px]">
-            <button className="login-signin">Log in</button>
-            <button className="login-signin">Sign in</button>
+            <a href="/login" className="login-signin">Log in</a>
+            <a href="/login" className="login-signin">Sign in</a>
           </section>
         </div>
       </nav>
