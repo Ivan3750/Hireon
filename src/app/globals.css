@@ -29,3 +29,27 @@ html {
 .footer hr {
   border-color: #023047;
 }
+
+.login-signin {
+  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full h-[40px] w-[160px] flex justify-center items-center text-[16px];
+}
+.circle-btn {
+  @apply bg-[#F8F8FF] rounded-full w-[40px] h-[40px] flex items-center justify-center
+}
+.switch {
+  @apply outline-1 outline-[#F8F8FF] outline rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF]
+}
+.social-networks {
+  @apply bg-[#219EBC] border-[#11181C] border-2 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-[#11181C] hover:text-[#219EBC] transition-all cursor-pointer
+}
+.footer-item {
+  @apply text-[20px] font-light
+}
+.footer ul {
+  @apply flex-1 list-none text-center
+}
+
+*{
+  outline: 1px solid #f0f;
+}
+
