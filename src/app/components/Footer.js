@@ -1,33 +1,38 @@
 import Image from "next/image";
 import icon from '@/app/favicon.ico'
 import Link from "next/link";
-import { FaFacebook, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa6";
 export default function Footer() {
   return (
-    <footer className="flex flex-col footer w-full bg-[#219EBC] p-[25px] h-[375px]">
-        <div className="flex items-center justify-center relative h-[45px]">
-          <h2 className="text-[30px] absolute left-0">Hireon</h2>
-          <h2 className="font-medium">Copyright &copy; 2025, Hireon</h2>
-        </div>
-        <section className="flex flex-row w-full mb-10 footer">
+    <footer className="flex flex-col footer w-full absolute bottom-0">
+        <hr></hr>
+        <div className="flex flex-row gap-2 p-5 items-center justify-center"><Image alt='logo' src={icon} width={30} height={30}></Image><h2>&copy; 2024, hireon</h2></div>
+        <section className="flex flex-row justify-evenly w-full mb-10">
         <ul>
-            <li className="font-medium text-[24px]">Contact us</li>
-            <li className="footer-item">hireonjob@gmail.com</li>
-            <li className="footer-item">+1234567890</li>
+            <li>Tools</li>
+            <hr></hr>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
         </ul>
         <ul>
-            <li className="font-medium text-[24px]">Useful links</li>
-            <li className="footer-item">FAQs</li>
-            <li className="footer-item">Support</li>
+            <li>Useful links</li>
+            <hr></hr>
+            <li>Help</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
         </ul>
         <ul>
-            <li className="font-medium text-[24px]">You can find us in</li>
-            <section className="flex flex-row gap-[10px] justify-center">
-              <li className="social-networks"><FaFacebook size={30}></FaFacebook></li>
-              <li className="social-networks"><FaTwitter size={30}></FaTwitter></li>
-              <li className="social-networks"><FaLinkedinIn size={30}></FaLinkedinIn></li>
-              <li className="social-networks"><FaYoutube size={30}></FaYoutube></li>
-            </section>
+            <li>Contact us</li>
+            <hr></hr>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
         </ul>
         </section>
     </footer>

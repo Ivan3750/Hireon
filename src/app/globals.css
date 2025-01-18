@@ -7,16 +7,34 @@
   box-sizing: border-box;
 }
 body {
-  color: #11181C;
+  color: #023047;
   background: #8ecae6;
-  width: 100vw;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 75vw;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
+html {
+  display: flex;
+  justify-content: center;
+  background: #219ebc;
+}
+.footer ul{
+  list-style: none;
+  text-align: center;
+}
+.footer hr {
+  border-color: #023047;
+}
+
 .login-signin {
-  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full h-[40px] w-[120px] flex justify-center items-center text-[20px];
+  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full h-[40px] w-[160px] flex justify-center items-center text-[16px];
 }
 .circle-btn {
-  @apply bg-[#F8F8FF] rounded-full w-[50px] h-[50px] flex items-center justify-center
+  @apply bg-[#F8F8FF] rounded-full w-[40px] h-[40px] flex items-center justify-center
 }
 .switch {
   @apply outline-1 outline-[#F8F8FF] outline rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF]
@@ -30,3 +48,8 @@ body {
 .footer ul {
   @apply flex-1 list-none text-center
 }
+
+*{
+  outline: 1px solid #f0f;
+}
+
