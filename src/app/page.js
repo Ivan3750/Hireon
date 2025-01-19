@@ -1,4 +1,3 @@
-'use client'
 import { FaMagnifyingGlass, FaGlobe, FaMoneyBill, FaHouse } from "react-icons/fa6"
 import Image from "next/image"
 import bg from './bg.jpg'

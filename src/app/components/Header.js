@@ -4,7 +4,7 @@ import icon from '@/app/favicon.ico'
 import {FaGear, FaEnvelope} from 'react-icons/fa6'
 export default function Header() {
   return (
-    <header className="flex flex-row items-center w-full p-[25px] justify-between text-[#11181C]">
+    <header className="flex items-center justify-between w-full p-6 text-[#11181C]">
       <div className="flex flex-row gap-[10px] self-start">
         <h1 className="text-[30px]">Hireon</h1>
         <button className="circle-btn !bg-[#FFB703] text-[#F8F8FF]">
@@ -18,14 +18,13 @@ export default function Header() {
       <nav className="flex flex-row items-center">
         <div className="flex flex-row gap-[10px] items-center">
           <button className="circle-btn">
-            <FaEnvelope size={30}></FaEnvelope>
+            <FaEnvelope size={25}></FaEnvelope>
           </button>
           <button className="circle-btn">
-            <FaGear size={30}></FaGear>
+            <FaGear size={25}></FaGear>
             </button>
           <section className="flex flex-col gap-[10px]">
-            <a href="/login" className="login-signin">Log in</a>
-            <a href="/login" className="login-signin">Sign in</a>
+            <Link href="/login" className="login-signin">Get started</Link>
           </section>
         </div>
       </nav>
