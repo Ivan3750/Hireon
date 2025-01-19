@@ -5,21 +5,22 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 body {
   color: #11181C;
   background: #8ecae6;
-  width: 100vw;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .login-signin {
-  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full h-[40px] w-[120px] flex justify-center items-center text-[20px];
+  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full h-[40px] w-[120px] flex justify-center items-center text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer
 }
 .circle-btn {
-  @apply bg-[#F8F8FF] rounded-full w-[50px] h-[50px] flex items-center justify-center
+  @apply bg-[#F8F8FF] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#11181C] hover:text-[#F8F8FF] transition-all cursor-pointer
 }
 .switch {
-  @apply outline-1 outline-[#F8F8FF] outline rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF]
+  @apply border border-[#F8F8FF] rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF] transition-all cursor-pointer hover:bg-[#F8F8FF] hover:text-[#11181C]
 }
 .social-networks {
   @apply bg-[#219EBC] border-[#11181C] border-2 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-[#11181C] hover:text-[#219EBC] transition-all cursor-pointer
@@ -30,3 +31,18 @@ body {
 .footer ul {
   @apply flex-1 list-none text-center
 }
+.sun-btn {
+  @apply bg-[#11181C] text-[#FFB703] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#F8F8FF] hover:text-[#FFB703] transition-all cursor-pointer
+}
+/* ::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-track {
+  background: #219EBC;
+}
+::-webkit-scrollbar-thumb {
+  background: #023047;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #035177;
+} */
