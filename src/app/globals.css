@@ -11,11 +11,9 @@ body {
   background: #8ecae6;
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 }
 html {
   display: flex;
@@ -40,16 +38,24 @@ html {
   @apply outline-1 outline-[#F8F8FF] outline rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF]
 }
 .social-networks {
-  @apply bg-[#219EBC] border-[#11181C] border-2 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-[#11181C] hover:text-[#219EBC] transition-all cursor-pointer
+  @apply bg-[#219EBC] border-[#11181C] border-2 w-[40px] h-[40px] rounded-full flex items-center justify-center hover:bg-[#11181C] hover:text-[#219EBC] transition-all cursor-pointer
 }
 .footer-item {
-  @apply text-[20px] font-light
+  @apply text-[15px] font-light
+}
+
+.footer-item:hover{
+  cursor: pointer;
 }
 .footer ul {
-  @apply flex-1 list-none text-center
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style-type: none;
+  text-align: left;
 }
 
-*{
+/* *{
   outline: 1px solid #f0f;
 }
-
+ */
