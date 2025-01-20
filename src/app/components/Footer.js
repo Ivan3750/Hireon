@@ -19,6 +19,10 @@ export default function Footer() {
             <li className="font-medium text-[24px]">Useful links</li>
             <li className="footer-item">FAQs</li>
             <li className="footer-item">Support</li>
+            <li className="font-medium text-[16px]">Navigation</li>
+            <li className="footer-item">About Us</li>
+            <li className="footer-item">Terms of Use</li>
+            <li className="footer-item">Privacy Policy</li>
         </ul>
         <ul>
             <li className="font-medium text-[24px]">You can find us in</li>
@@ -27,6 +31,13 @@ export default function Footer() {
               <li className="social-networks"><FaTwitter size={30}></FaTwitter></li>
               <li className="social-networks"><FaLinkedinIn size={30}></FaLinkedinIn></li>
               <li className="social-networks"><FaYoutube size={30}></FaYoutube></li>
+            </section>
+            <li className="font-medium text-[16px]">Follow Us</li>
+            <section className="flex flex-row gap-[5px] justify-center">
+              <li className="social-networks"><FaFacebook size={20}></FaFacebook></li>
+              <li className="social-networks"><FaTwitter size={20}></FaTwitter></li>
+              <li className="social-networks"><FaLinkedinIn size={20}></FaLinkedinIn></li>
+              <li className="social-networks"><FaYoutube size={20}></FaYoutube></li>
             </section>
         </ul>
         </section>

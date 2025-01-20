@@ -10,8 +10,11 @@
 body {
   color: #023047;
   background: #8ecae6;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 html {
   display: flex;
