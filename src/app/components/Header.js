@@ -1,10 +1,12 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import icon from '@/app/favicon.ico'
 import {FaGear, FaEnvelope} from 'react-icons/fa6'
+import { usePathname, useRouter} from "next/navigation";
 export default function Header() {
   return (
-    <header className="flex items-center justify-between w-full p-6 text-[#11181C]">
+    <header className="flex items-center justify-between w-full p-6 text-[#11181C] absolute top-0">
       <div className="flex flex-row gap-[10px] self-start">
         <h1 className="text-[30px]">Hireon</h1>
         <button className="circle-btn !bg-[#FFB703] text-[#F8F8FF]">
@@ -22,10 +24,8 @@ export default function Header() {
           </button>
           <button className="circle-btn">
             <FaGear size={25}></FaGear>
-            </button>
-          <section className="flex flex-col gap-[10px]">
-            <Link href="/login" className="login-signin">Get started</Link>
-          </section>
+          </button>
+          <Link href="/login" className="login-signin">Get started</Link>
         </div>
       </nav>
     </header>

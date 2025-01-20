@@ -25,9 +25,8 @@ html {
 .footer hr {
   border-color: #023047;
 }
-
 .login-signin {
-  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full h-[40px] w-[120px] flex justify-center items-center text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer
+  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full p-[10px] flex justify-center items-center text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer
 }
 .circle-btn {
   @apply bg-[#F8F8FF] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#11181C] hover:text-[#F8F8FF] transition-all cursor-pointer
