@@ -1,21 +1,19 @@
 import React from "react";
-import RootLayout from "@/app/RootLayout";
 import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import JobCard from "../components/JobCard";
 const JobSearchPage = () => {
-
   return (
-    <RootLayout maincolor={"#ff0"}>
+    <>
       <div className="w-full flex justify-center gap-5">
-        <div className="w-[900px] bg-[#F0F8FF]  rounded-2xl h-10 flex items-center p-3">
+        <div className="w-[900px] bg-[#F0F8FF]  rounded-2xl h-10 flex items-center p-3 overflow-hidden">
           <CiSearch size={40} />
           <input
             type="text"
             className="w-full ml-4 pl-2 focus:outline-none bg-transparent"
             placeholder="Enter job"
           />
-          <div className="flex ml-4 ">
+          <div className="flex ml-4 border-s-2 border-[#11181C]">
             <FaMapMarkerAlt size={25} color={"#FFB703"} />
             <input type="text" placeholder="City"  className="ml-4 pl-2 focus:outline-none bg-transparent" />
           </div>
@@ -34,7 +32,7 @@ const JobSearchPage = () => {
         <JobCard title={"Junior Front End  Developer"} company={"SharksCode.ua"} city="Cherkassy" country={"UA"} info={"Full-time. Work experience more than 2 years. The company is looking for a WordPress Full-stack (backend-frontend) website developer with 2 years of experience. Required knowledge of php. Work is remote. It will be necessary to copy"} />
         <JobCard title={"Junior Front End  Developer"} company={"SharksCode.ua"} city="Cherkassy" country={"UA"} info={"Full-time. Work experience more than 2 years. The company is looking for a WordPress Full-stack (backend-frontend) website developer with 2 years of experience. Required knowledge of php. Work is remote. It will be necessary to copy"} />
       </div>
-    </RootLayout>
+    </>
   );
 };
 

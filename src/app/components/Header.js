@@ -6,7 +6,7 @@ import {FaGear, FaEnvelope} from 'react-icons/fa6'
 import { usePathname, useRouter} from "next/navigation";
 export default function Header() {
   return (
-    <header className="flex items-center justify-between w-full p-6 text-[#11181C] absolute top-0">
+    <header className="flex items-center justify-between w-full p-6 text-[#11181C]">
       <div className="flex flex-row gap-[10px] self-start">
         <h1 className="text-[30px]">Hireon</h1>
         <button className="circle-btn !bg-[#FFB703] text-[#F8F8FF]">

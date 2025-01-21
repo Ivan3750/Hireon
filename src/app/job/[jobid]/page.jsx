@@ -1,33 +1,19 @@
 import React from "react";
-/* import RootLayout from "@/app/RootLayout";
- */import { FaMapLocationDot } from "react-icons/fa6";
+import { FaMapLocationDot, FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
-import RootLayout from "@/app/RootLayout";
-
 export async function generateMetadata({ params }) {
-  const { jobid } = params;
+  const { jobid } = await params;
   return {
     title: `Job Details - ${jobid}`,
   };
 }
-
-const JobDetailsPage = ({ params }) => {
-  const jobId = params.jobid;
-
-  if (!jobId) {
-    return (
-      <RootLayout>
-        <p>Завантаження...</p>
-      </RootLayout>
-    );
-  }
-
+const JobDetailsPage = async () => {
   return (
-    <RootLayout bodycolor={"#E3E3ED"}>
+    <>
       <div className="bg-[#F8F8FF] w-[850px] h-max p-4 rounded-2xl my-5 m-auto">
         <div className="flex justify-between my-2 items-center">
-            <Link href="/job">Back</Link>
-            <button className="bg-[#FFB703] text-[#11181C] font-light text-[14px] h-[50px] w-[200px] rounded-2xl">Apply now</button>
+            <Link href="/job" className="flex flex-row gap-[5px] items-center"><FaArrowLeft></FaArrowLeft>Back</Link>
+            <button className="bg-[#FFB703] text-[#11181C] text-[16px] h-[50px] w-[200px] rounded-2xl hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Apply now</button>
         </div>
         <h2 className="font-semibold text-[25px] text-[#11181C]">Junior Front End Developer</h2>
         <div className="flex text-[14px] text-[#5D5D5D] font-normal gap-4 my-2">
@@ -35,11 +21,11 @@ const JobDetailsPage = ({ params }) => {
             <p>Country City Street, 10</p>
             <FaMapLocationDot size={18} color="#FB8500"/>
         </div>
-        <div className="my-5">
-            <span className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1">Full Time</span>
-            <span className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1">Full Time</span>
-            <span className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1">Full Time</span>
-            <span className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1">Full Time</span>
+        <div className="flex flex-row">
+            <div className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1 w-fit">Full Time</div>
+            <div className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1 w-fit">Full Time</div>
+            <div className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1 w-fit">Full Time</div>
+            <div className="bg-[#FFB703] font-light text-[#11181C] text-[12px] rounded-2xl p-2 my-4 mx-1 w-fit">Full Time</div>
         </div>
         <div>
             <p className="text-[12px] font-light text-wrap w-full">
@@ -85,7 +71,7 @@ const JobDetailsPage = ({ params }) => {
             </p>
         </div>
       </div>
-    </RootLayout>
+    </>
   );
 };
 
