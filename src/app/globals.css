@@ -5,57 +5,46 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 body {
-  color: #023047;
+  color: #11181C;
   background: #8ecae6;
   font-family: Arial, Helvetica, sans-serif;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-html {
-  display: flex;
-  justify-content: center;
-  background: #219ebc;
 }
 .footer ul{
   list-style: none;
   text-align: center;
 }
-.footer hr {
-  border-color: #023047;
-}
-
 .login-signin {
-  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full h-[40px] w-[160px] flex justify-center items-center text-[16px];
+  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full p-[10px] flex justify-center items-center text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer
 }
 .circle-btn {
-  @apply bg-[#F8F8FF] rounded-full w-[40px] h-[40px] flex items-center justify-center
+  @apply bg-[#F8F8FF] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#11181C] hover:text-[#F8F8FF] transition-all cursor-pointer
 }
 .switch {
-  @apply outline-1 outline-[#F8F8FF] outline rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF]
+  @apply border border-[#F8F8FF] rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF] transition-all cursor-pointer hover:bg-[#F8F8FF] hover:text-[#11181C]
 }
 .social-networks {
-  @apply bg-[#219EBC] border-[#11181C] border-2 w-[40px] h-[40px] rounded-full flex items-center justify-center hover:bg-[#11181C] hover:text-[#219EBC] transition-all cursor-pointer
+  @apply bg-[#219EBC] border-[#11181C] border-2 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-[#11181C] hover:text-[#219EBC] transition-all cursor-pointer
 }
 .footer-item {
-  @apply text-[15px] font-light
-}
-
-.footer-item:hover{
-  cursor: pointer;
+  @apply text-[20px] font-light
 }
 .footer ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  list-style-type: none;
-  text-align: left;
+  @apply flex-1 list-none text-center
 }
-
-/* *{
-  outline: 1px solid #f0f;
+.sun-btn {
+  @apply bg-[#11181C] text-[#FFB703] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#F8F8FF] hover:text-[#FFB703] transition-all cursor-pointer
 }
- */
+::-webkit-scrollbar {
+  display: none;
+}
+.country {
+  @apply bg-[url('./countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
+}

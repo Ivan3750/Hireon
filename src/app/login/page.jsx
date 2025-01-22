@@ -1,8 +1,9 @@
+/*  */
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
-import LoginLayout from "@/app/LoginLayout";
+import LoginLayout from "@/app/login/layout";
 
 export default function Auth() {
   const [isSignup, setIsSignup] = useState(true);
