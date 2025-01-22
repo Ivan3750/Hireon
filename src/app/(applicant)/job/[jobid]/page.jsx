@@ -1,7 +1,6 @@
 import React from "react";
 import { FaMapLocationDot, FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
-import { FaMapLocationDot } from "react-icons/fa6";
 import RootLayout from "@/app/RootLayout"
 export async function generateMetadata({ params }) {
   const { jobid } = await params;
@@ -11,6 +10,8 @@ export async function generateMetadata({ params }) {
 }
 const JobDetailsPage = async () => {
   return (
+    <RootLayout>
+
     <>
       <div className="bg-[#F8F8FF] w-[850px] h-max p-4 rounded-2xl my-5 m-auto">
         <div className="flex justify-between my-2 items-center">
@@ -74,6 +75,8 @@ const JobDetailsPage = async () => {
         </div>
       </div>
     </>
+    </RootLayout>
+
   );
 };
 

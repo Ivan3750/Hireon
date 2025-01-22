@@ -2,7 +2,7 @@ import React from "react";
 import RootLayout from "@/app/RootLayout";
 import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
-import WorkerCard from "../components/WorkerCard";
+import WorkerCard from "@/app/components/WorkerCard";
 const JobSearchPage = () => {
 
   return (
