@@ -1,6 +1,8 @@
 import React from "react";
 import { FaMapLocationDot, FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
+import { FaMapLocationDot } from "react-icons/fa6";
+import RootLayout from "@/app/RootLayout"
 export async function generateMetadata({ params }) {
   const { jobid } = await params;
   return {

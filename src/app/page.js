@@ -3,9 +3,11 @@ import { FaMagnifyingGlass, FaGlobe, FaMoneyBill, FaHouse } from "react-icons/fa
 import Image from "next/image"
 import bg from './bg.jpg'
 import person from './person.jpg'
+import RootLayout from "./RootLayout"
 // import video from './conversation_example.mp4'
 export default function Home() {
   return (
+    <RootLayout>
     <>
       <div className="h-full w-full absolute bg-[rgba(142,202,230,0.6)] -z-40 top-0"></div>
       <Image src={bg} alt="bg.jpg image" layout="fill" className="absolute -z-50 top-0"></Image>
@@ -162,5 +164,7 @@ export default function Home() {
         </div>
       </div>
     </>
+    </RootLayout>
+
   )
 }

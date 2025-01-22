@@ -184,7 +184,7 @@ export default function Auth() {
 
 import { useState } from "react";
 import { useRouter } from "next/router";
-import LoginLayout from "@/app/login/layout";
+import LoginLayout from "@/app/LoginLayout";
 
 export default function Auth() {
   const [isSignup, setIsSignup] = useState(true);
