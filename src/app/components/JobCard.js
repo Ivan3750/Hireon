@@ -1,7 +1,6 @@
 import Link from "next/link";
-
 const JobCard = ({id,title, company, country, city, info}) => {
-    return ( 
+return ( 
     <Link href={`/job/${id}`}>
         <div className="bg-[#F8F8FF] w-[950px] h-[200px] rounded-2xl p-4 box-border hover:scale-[0.995] transition">
             <div className="flex">
@@ -16,7 +15,5 @@ const JobCard = ({id,title, company, country, city, info}) => {
             </div>
         </div> 
     </Link>
-    );
-}
- 
+)}
 export default JobCard;

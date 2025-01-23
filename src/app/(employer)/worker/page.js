@@ -1,12 +1,10 @@
 import React from "react";
-import RootLayout from "@/app/RootLayout";
 import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import WorkerCard from "@/app/components/WorkerCard";
 const JobSearchPage = () => {
-
   return (
-    <RootLayout maincolor={"#ff0"}>
+    <>
       <div className="w-full flex justify-center gap-5">
         <div className="w-[900px] bg-[#F0F8FF]  rounded-2xl h-10 flex items-center p-3">
           <CiSearch size={40} />
@@ -50,7 +48,7 @@ const JobSearchPage = () => {
         id={132}
         ></WorkerCard>
       </div>
-    </RootLayout>
+    </>
   );
 };
 

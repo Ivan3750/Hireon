@@ -1,8 +1,6 @@
-"use client"
-import { useState } from "react";
+'use client'
 import { useRouter } from "next/router";
-import LoginLayout from "@/app/LoginLayout";
-
+import { useState } from "react";
 export default function Auth() {
   const [isSignup, setIsSignup] = useState(true);
   const [email, setEmail] = useState("");
@@ -51,7 +49,6 @@ export default function Auth() {
   };
 
   return (
-    <LoginLayout>
       <div className="flex justify-center items-center h-screen">
         <div className="w-full max-w-sm p-6 w-520 h-639 bg-[#8ECAE6] border-rad rounded-2xl">
           {isSignup ? (
@@ -112,7 +109,7 @@ export default function Auth() {
                 {errorMessage && (
                   <p className="text-red-500 text-sm mt-2">{errorMessage}</p>
                 )}
-                <p className="text-[10px] font-normal text-center" >By clicking "Get started", you agree to Terms of Use and  Privacy Policy</p>
+                <p className="text-[10px] font-normal text-center" >By clicking &quot;Get started&quot;, you agree to Terms of Use and  Privacy Policy</p>
                 <p className="mt-2 text-center font-normal text-[14px]">
                   Already have an account?{" "}
                   <button
@@ -175,6 +172,5 @@ export default function Auth() {
           )}
         </div>
       </div>
-    </LoginLayout>
   );
 }

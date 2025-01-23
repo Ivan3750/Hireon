@@ -2,9 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import icon from '@/app/favicon.ico'
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import {FaGear, FaEnvelope} from 'react-icons/fa6'
-import { usePathname, useRouter} from "next/navigation";
+import noRender from '../noRender.json'
 export default function Header() {
+  if (noRender.includes(usePathname())) return null;
   return (
     <header className="flex items-center justify-between w-full p-6 text-[#11181C]">
       <div className="flex flex-row gap-[10px] self-start">
@@ -22,9 +25,11 @@ export default function Header() {
           <button className="circle-btn">
             <FaEnvelope size={25}></FaEnvelope>
           </button>
-          <button className="circle-btn">
-            <FaGear size={25}></FaGear>
-          </button>
+          <Link href='/settings'>
+            <button className="circle-btn">
+              <FaGear size={25}></FaGear>
+            </button>
+          </Link>
           <Link href="/login" className="login-signin">Get started</Link>
         </div>
       </nav>
