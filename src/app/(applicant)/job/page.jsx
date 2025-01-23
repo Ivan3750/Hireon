@@ -2,12 +2,9 @@ import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import JobCard from "@/app/components/JobCard";
-import RootLayout from "@/app/RootLayout";
 
 const JobSearchPage = () => {
   return (
-    <RootLayout>
-
     <>
       <div className="w-full flex justify-center gap-5">
               <div className="w-[900px] bg-[#F0F8FF]  rounded-2xl h-10 flex items-center p-3">
@@ -37,7 +34,6 @@ const JobSearchPage = () => {
         <JobCard title={"Junior Front End  Developer"} company={"SharksCode.ua"} city="Cherkassy" country={"UA"} info={"Full-time. Work experience more than 2 years. The company is looking for a WordPress Full-stack (backend-frontend) website developer with 2 years of experience. Required knowledge of php. Work is remote. It will be necessary to copy"} />
       </div>
     </>
-    </RootLayout>
 
   );
 };

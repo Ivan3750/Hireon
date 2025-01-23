@@ -1,12 +1,8 @@
 import React from "react";
-/* import RootLayout from "@/app/RootLayout";
- */import { FaMapLocationDot } from "react-icons/fa6";
+import { FaMapLocationDot } from "react-icons/fa6";
 import Link from "next/link";
-import RootLayout from "@/app/RootLayout";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
-
-
 export async function generateMetadata({ params }) {
   const { workerId } = params;
   return {
@@ -17,16 +13,8 @@ export async function generateMetadata({ params }) {
 const JobDetailsPage = ({ params }) => {
   const workerId = params.workerId;
 
-  if (!workerId) {
-    return (
-      <RootLayout>
-        <p>Завантаження...</p>
-      </RootLayout>
-    );
-  }
-
   return (
-    <RootLayout bodycolor={"#E3E3ED"}>
+    <>
       <div className="bg-[#F8F8FF] w-[850px] h-max p-4 rounded-2xl my-5 m-auto">
         <div className="flex justify-between my-2 items-center">
             <Link href="/worker">Back</Link>
@@ -91,7 +79,7 @@ const JobDetailsPage = ({ params }) => {
             </p>
         </div>
       </div>
-    </RootLayout>
+    </>
   );
 };
 

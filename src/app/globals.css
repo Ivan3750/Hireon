@@ -46,5 +46,5 @@ body {
   display: none;
 }
 .country {
-  @apply bg-[url('./countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
+  @apply bg-[url('/countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
 }
