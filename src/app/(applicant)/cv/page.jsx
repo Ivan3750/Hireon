@@ -1,7 +1,33 @@
-import RootLayout  from "@/app/RootLayout"
+"use client"
 
+import { useState } from "react";
+import { FaTrash } from "react-icons/fa";
+import Modal from "@/app/components/Modal";
+import EducationContent from "@/app/components/EducationContent";
+import WorkContent from "@/app/components/WorkContent";
+import LanguageManager from "@/app/components/LanguageManager"
+import SkillsContent from "@/app/components/SkillsContent"
 const cvPage = () => {
-    return ( <RootLayout>
+    const [skills, setSkills] = useState(["HTML"])
+
+    const addSkill = (newSkill) => {
+        if (!skills.includes(newSkill)) {
+          setSkills((prevSkills) => [...prevSkills, newSkill])
+        }
+      }
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState("");
+  
+    const handleOpenModal = (content) => {
+      setModalContent(content);
+      setIsModalOpen(true);
+    };
+  
+    const handleCloseModal = () => {
+      setIsModalOpen(false);
+      setModalContent("");
+    };
+    return ( <>
         <div className="flex  bg-[#E3E3ED] w-full p-14 justify-between gap-[70px]">
             <div className="flex flex-col gap-2 w-full p-4">
                 <label className="label">Job</label>
@@ -19,30 +45,19 @@ const cvPage = () => {
             </div>
             <div className="flex flex-col gap-2 w-full p-4">
                 <h3>Education</h3>
-                <div className="bg-[#F8F8FF] p-5 rounded-3xl">
+                <div className="bg-[#F8F8FF] p-5 rounded-3xl flex justify-between">
                     <div>
                     <h4 className="text-[#141313] text-[16px]" >High Name </h4>
                     <p className="text-[10px]">2020 - 2025</p>
                     </div>
                     <div>
-                        <div></div>
-                    </div>
+                    <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer"><FaTrash className="" color="#F94861" size={20}></FaTrash></div>                    </div>
                 </div>
-                <button className="button">
+                <button className="button"   onClick={() => handleOpenModal(<SkillsContent onAddSkill={addSkill} />)}>
                 Add an educational institution
                 </button>
                 <h3>Language</h3>
-                <div className="bg-[#F8F8FF] p-5 rounded-3xl">
-                    <div>
-                    <h4 className="text-[#141313] text-[16px]" >English</h4>
-                    </div>
-                    <div>
-                        <div></div>
-                    </div>
-                </div>
-                    <button className="button">
-                    Add language
-                </button>
+                <LanguageManager/>
                 <h3>Knowledge and skills</h3>
                 <div className="bg-[#F8F8FF] p-5 rounded-3xl">
                     <div className="flex flex-wrap justify-between gap-1">
@@ -54,7 +69,7 @@ const cvPage = () => {
                         <p className="bg-[#E4E4E4] p-2 w-max rounded-xl font-normal">React.js</p>
                         <p className="bg-[#E4E4E4] p-2 w-max rounded-xl font-normal">React.js</p>
                     </div>
-                    <button>Edit</button>
+                    <button className="button" onClick={() => handleOpenModal(SkillsContent)}>Edit</button>
                 </div>
             </div>
             <div className="flex flex-col gap-2 w-full p-4">
@@ -66,7 +81,7 @@ const cvPage = () => {
                         <p className="text-[#59585A] font-medium text-[14px]">Full Stack Dev</p>
                         <p className="text-[#4A4A4D] font-normal text-[12px]">02.2022 - 03.2025</p>
                     </div>
-                    <div className="rounded-full bg-[#FAD7DC] h-10 w-10"></div>
+                    <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer"><FaTrash className="" color="#F94861" size={20}></FaTrash></div>
                     </div>
                     <div>
                     <p className="text-[#706F72] text-[12px]"> Text text text text text text text text text text text text text text text text text text text text text text  text text text text text text text text text text text text text text </p>
@@ -79,19 +94,32 @@ const cvPage = () => {
                         <p className="text-[#59585A] font-medium text-[14px]">Full Stack Dev</p>
                         <p className="text-[#4A4A4D] font-normal text-[12px]">02.2022 - 03.2025</p>
                     </div>
-                    <div className="rounded-full bg-[#FAD7DC] h-10 w-10"></div>
+                    <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer"><FaTrash className="" color="#F94861" size={20}></FaTrash></div>
                     </div>
                     <div>
                     <p className="text-[#706F72] text-[12px]"> Text text text text text text text text text text text text text text text text text text text text text text  text text text text text text text text text text text text text text </p>
                     </div>
                 </div>
-                <button className="button">
+                <button className="button" onClick={() => handleOpenModal(WorkContent)}>
                 Add work experience                </button>
                 <div>
                 </div>
             </div>
+            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+        <div>{modalContent}</div>
+        <div className="mt-5 flex justify-end gap-5">
+        <button
+          className="button-disable"
+          onClick={handleCloseModal}
+        >
+          Cencel
+        </button>
+        <button className="button">Save</button>
+
         </div>
-    </RootLayout> );
+      </Modal>
+        </div>
+    </> );
 }
  
 export default cvPage;

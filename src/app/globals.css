@@ -45,9 +45,9 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-.country {
+/* .country {
   @apply bg-[url('./countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
-}
+} */
 
 .input{
   font-size: 15px;
@@ -83,5 +83,15 @@ body {
 }
 .button:hover{
   scale: 0.94;
-  @apply bg-[url('/countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
-}
+/*   @apply bg-[url('/countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
+ */}
+
+
+ .button-disable{
+  background:#D1D1D6;
+  font-size: 16px;
+  color: #023047;
+  padding: 10px;
+  border-radius: 20px;
+  transition: 0.5s;
+ }
