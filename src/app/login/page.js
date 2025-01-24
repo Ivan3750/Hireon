@@ -6,12 +6,12 @@ export default function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [username, setUsername] = useState("");
+  const [fullName, setfullName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isSignup ? "/api/auth/register" : "/api/auth/login";
+    const url = isSignup ? "/auth/registration" : "/auth/login";
 
     try {
       const response = await fetch(url, {
@@ -22,15 +22,16 @@ export default function Auth() {
         body: JSON.stringify({
           email,
           password,
-          username: isSignup ? username : undefined,
+          fullName: isSignup ? fullName : undefined,
           phone: !isSignup ? phone : undefined,
         }),
       });
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data)
         localStorage.setItem("token", data.token);
-        window.location.pathname = "/main";  // Navigate to main page
+        window.location.pathname = "/"; 
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "Something went wrong. Please try again.");
@@ -44,7 +45,7 @@ export default function Auth() {
   const toggleForm = () => {
     setIsSignup(!isSignup);
     setErrorMessage("");
-    setUsername("");
+    setfullName("");
     setPhone("");
   };
 
@@ -59,8 +60,8 @@ export default function Auth() {
                   <label className="ml-[5px] font-[350] text-[15px]" >Full Name</label>
                   <input
                     type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    value={fullName}
+                    onChange={(e) => setfullName(e.target.value)}
                     placeholder="John Petersen"
                     required
                     className="w-full p-2.5 border border-gray-300 rounded-[20px] focus:outline-none placeholder:text-[15px]"
