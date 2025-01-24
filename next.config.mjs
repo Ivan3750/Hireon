@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['flagsapi.com'],
+      remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
     }
   };
 export default nextConfig;

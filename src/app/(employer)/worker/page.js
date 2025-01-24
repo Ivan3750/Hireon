@@ -5,7 +5,7 @@ import WorkerCard from "@/app/components/WorkerCard";
 const JobSearchPage = () => {
   return (
     <>
-      <div className="w-full flex justify-center gap-5">
+      <div className="w-full flex justify-center gap-2">
         <div className="w-[900px] bg-[#F0F8FF]  rounded-2xl h-10 flex items-center p-3">
           <CiSearch size={40} />
           <input
@@ -20,7 +20,7 @@ const JobSearchPage = () => {
         </div>
         <button className="bg-[#FB8500] text-[#F8F8FF] rounded-2xl w-[120px] ">Search</button>
       </div>
-      <div className="my-2 w-full flex justify-center gap-5">
+      <div className="my-2 w-full flex justify-center gap-2">
         <input type="text" className="rounded-2xl text-center p-2 w-[250px] focus:outline-none"  placeholder="Type of employment"/>
         <input type="text" className="rounded-2xl text-center p-2 w-[250px] focus:outline-none"  placeholder="Professional areas"/>
         <input type="number" className="rounded-2xl text-center p-2 w-[250px] focus:outline-none" min={0} max={50000}  placeholder="Salary from"/>

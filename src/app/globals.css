@@ -14,8 +14,8 @@ body {
   color: #11181C;
   background: #8ecae6;
   font-family: Arial, Helvetica, sans-serif;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -3,37 +3,36 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import Link from "next/link";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
+import {FaArrowLeft} from "react-icons/fa6";
 export async function generateMetadata({ params }) {
-  const { workerId } = params;
+  const { workerId } = await params;
   return {
     title: `Worker Details - ${workerId}`,
   };
 }
-
-const JobDetailsPage = ({ params }) => {
-  const workerId = params.workerId;
-
+const JobDetailsPage = async ({ params }) => {
+  const workerId = (await params).workerId;
   return (
     <>
       <div className="bg-[#F8F8FF] w-[850px] h-max p-4 rounded-2xl my-5 m-auto">
         <div className="flex justify-between my-2 items-center">
-            <Link href="/worker">Back</Link>
-            <button className="bg-[#FFB703] text-[#11181C] font-light text-[14px] h-[50px] w-[200px] rounded-2xl">Offer a job</button>
+        <Link href="/worker" className="flex flex-row gap-[5px] items-center"><FaArrowLeft></FaArrowLeft>Back</Link>
+        <button className="bg-[#FFB703] text-[#11181C] text-[16px] h-[50px] w-[200px] rounded-2xl hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Offer a job</button>
         </div>
         <h2 className="font-semibold text-[25px] text-[#11181C]">Peter Petersen</h2>
         <h2 className="font-semibold text-[20px] text-[#11181C]">Junior Front End  Developer</h2>
-        <div className="flex text-[14px] text-[#5D5D5D] font-normal gap-1 my-2 flex-col">
-            <p>Employment: <span>Full-time</span></p>
-            <p>Age: <span>44 years</span></p>
-            <p>City of residence: <span>Zaporizhzhia</span></p>
-            <p>Ready to work: <span>Remote</span></p>
+        <div className="flex text-[14px] text-[#5D5D5D] font-normal gap-1 my-3 flex-col">
+            <p>Employment: <span className="text-[#11181C]">Full-time</span></p>
+            <p>Age: <span className="text-[#11181C]">44 years</span></p>
+            <p>City of residence: <span className="text-[#11181C]">Zaporizhzhia</span></p>
+            <p>Ready to work: <span className="text-[#11181C]">Remote</span></p>
         </div>
-            <h3 className="text-[#11181C] font-normal text-[16px]">Contact information</h3>
-        <div className="flex gap-2 my-5 items-center">
-        <BsFillTelephoneFill />
-            <p className="text-[#11181C] text-[14px] text-light cursor-pointer">+380 672 850 96 88</p>
-            <MdEmail size={20}/>
-            <p className="text-[#11181C] text-[14px] text-light cursor-pointer">emailtest@gmail.com</p>
+        <h3 className="text-[#11181C] font-normal text-[16px]">Contact information</h3>
+        <div className="flex gap-2 mb-5 mt-1 items-center">
+          <BsFillTelephoneFill />
+          <p className="text-[#11181C] text-[14px] text-light cursor-pointer">+380 672 850 96 88</p>
+          <MdEmail size={20}/>
+          <p className="text-[#11181C] text-[14px] text-light cursor-pointer">emailtest@gmail.com</p>
         </div>
         <div>
             <p className="text-[12px] font-light text-wrap w-full">
@@ -82,5 +81,4 @@ const JobDetailsPage = ({ params }) => {
     </>
   );
 };
-
 export default JobDetailsPage;

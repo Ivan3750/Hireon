@@ -1,7 +1,4 @@
 'use client'
-import Image from "next/image";
-import icon from '@/app/favicon.ico'
-import Link from "next/link";
 import noRender from '../noRender.json'
 import { usePathname } from "next/navigation";
 import { FaFacebook, FaLinkedinIn, FaTwitter, FaYoutube } from "react-icons/fa6";
