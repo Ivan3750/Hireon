@@ -53,7 +53,7 @@ const cvPage = () => {
                     <div>
                     <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer"><FaTrash className="" color="#F94861" size={20}></FaTrash></div>                    </div>
                 </div>
-                <button className="button"   onClick={() => handleOpenModal(<SkillsContent onAddSkill={addSkill} />)}>
+                <button className="button"   onClick={() => handleOpenModal(EducationContent)}>
                 Add an educational institution
                 </button>
                 <h3>Language</h3>
@@ -69,7 +69,7 @@ const cvPage = () => {
                         <p className="bg-[#E4E4E4] p-2 w-max rounded-xl font-normal">React.js</p>
                         <p className="bg-[#E4E4E4] p-2 w-max rounded-xl font-normal">React.js</p>
                     </div>
-                    <button className="button" onClick={() => handleOpenModal(SkillsContent)}>Edit</button>
+                    <button className="button" onClick={() => handleOpenModal(<SkillsContent onAddSkill={addSkill} skills={skills} />)}>Edit</button>
                 </div>
             </div>
             <div className="flex flex-col gap-2 w-full p-4">

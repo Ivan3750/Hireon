@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 
-const SkillsContent = ({ onAddSkill }) => {
+const SkillsContent = ({ onAddSkill, skills }) => {
+  console.log(skills)
   const [inputValue, setInputValue] = useState("");
 
   const addSkill = () => {
     if (inputValue && onAddSkill) {
       onAddSkill(inputValue);
-      setInputValue(""); // Clears the input after adding
+      setInputValue("");
     }
   };
 
@@ -18,12 +19,15 @@ const SkillsContent = ({ onAddSkill }) => {
       <div className="flex justify-center gap-8">
         <div className="bg-[#E3E6ED] w-full h-48 rounded-2xl p-5 flex items-center justify-center">
           <div className="flex gap-2">
+            {skills.map((skill)=>{
+              <p>{skill}</p>
+            })}
             <input
               type="text"
               className="bg-transparent input"
               placeholder="Enter a skill"
               value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)} // Updating the input value
+              onChange={(e) => setInputValue(e.target.value)} 
             />
             <button
               onClick={addSkill}
