@@ -28,7 +28,7 @@ export default function Auth() {
         userType,
         email,
         password,
-        phone: userType === "applicant" || !isSignup ? phone : undefined,
+        phone: !isSignup ? phone : undefined,
         fullName: userType === "applicant" && isSignup ? fullName : undefined,
         companyName: userType === "employer" && isSignup ? companyName : undefined,
       };
