@@ -1,0 +1,16 @@
+{
+    "header": {
+        "applicant": "Заявник",
+        "employer": "Роботодавець",
+        "getStarted": "Розпочати"
+    },
+    "footer": {},
+    "home": {},
+    "login": {},
+    "job": {},
+    "jobid": {},
+    "worker": {},
+    "workerid": {},
+    "cv": {},
+    "vacancy": {}
+}

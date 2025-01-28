@@ -13,7 +13,7 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import Pill from "../components/Pill";
 export default function Settings() {
   return (
-    <div className="bg-[#dcdcdc] w-full h-3/4 flex flex-row justify-center">
+    <div className="bg-[#dcdcdc] w-full aspect-auto flex flex-row justify-center">
       <div className="w-4/5 h-full flex flex-row items-center justify-center gap-[20px] p-[20px]">
         <div className="flex flex-col gap-[20px] h-full w-[40%] rounded-[20px]">
           <div className="bg-[#F8F8FF] h-2/3 w-full rounded-[20px] p-[20px] flex flex-col">

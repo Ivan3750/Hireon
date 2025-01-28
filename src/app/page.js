@@ -1,5 +1,6 @@
 import { FaMagnifyingGlass, FaGlobe, FaMoneyBill, FaHouse } from "react-icons/fa6"
 import Image from "next/image"
+import Link from "next/link"
 // import video from './conversation_example.mp4'
 export default function Home() {
   return (
@@ -15,7 +16,9 @@ export default function Home() {
               <FaMagnifyingGlass size={20} color="808080" className="bg-[#F8F8FF] h-[48px]"></FaMagnifyingGlass>
             </div>
             <input placeholder="Find dream job" className="p-3 w-[690px] placeholder:text-[#808080] bg-[#F8F8FF] outline-none"></input>
-            <button className="bg-[#FB8500] p-3 rounded-e-full text-[#023047] hover:bg-[#023047] hover:text-[#FB8500] transition-all">Search</button>
+            <Link href="/job">
+              <button className="bg-[#FB8500] p-3 rounded-e-full text-[#023047] hover:bg-[#023047] hover:text-[#FB8500] transition-all">Search</button>
+            </Link>
           </div>
         </div>
         <div className="flex flex-row justify-around items-center">
@@ -37,7 +40,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-[10px] items-center">
                   <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]"><FaMoneyBill size={30}></FaMoneyBill>$999</p>
-                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px]">Review</button>
+                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Review</button>
                 </div>
               </div>
               <div className="flex flex-row justify-between">
@@ -50,7 +53,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-[10px] items-center">
                   <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]"><FaMoneyBill size={30}></FaMoneyBill>$999</p>
-                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px]">Review</button>
+                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Review</button>
                 </div>
               </div>
               <div className="flex flex-row justify-between">
@@ -63,7 +66,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-[10px] items-center">
                   <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]"><FaMoneyBill size={30}></FaMoneyBill>$999</p>
-                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px]">Review</button>
+                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Review</button>
                 </div>
               </div>
               <div className="flex flex-row justify-between">
@@ -76,7 +79,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col gap-[10px] items-center">
                   <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]"><FaMoneyBill size={30}></FaMoneyBill>$999</p>
-                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px]">Review</button>
+                  <button className="rounded-full bg-[#FFB703] px-[30px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Review</button>
                 </div>
               </div>
             </div>
@@ -133,7 +136,9 @@ export default function Home() {
       <div className="flex flex-col w-screen h-[50vh] bg-[#F8F8FF] items-center justify-center px-[100px] border-[#023047] border-t-[10px]">
         <h2 className="font-medium text-[42px] text-left w-1/2">So, what are you waiting for?</h2>
         <h2 className="font-medium text-[42px] text-right w-1/2">Go make your dream come true!</h2>
-        <button className="bg-[#FB8500] rounded-full p-[15px] text-[32px] my-[20px] hover:text-[#FB8500] hover:bg-[#11181C] transition-all ">Get started</button>
+        <Link href='/login'>
+          <button className="bg-[#FB8500] rounded-full p-[15px] text-[32px] my-[20px] hover:text-[#FB8500] hover:bg-[#11181C] transition-all ">Get started</button>
+        </Link>
         <p className="text-[30px] mb-[10px] text-center">A few people we helped:</p>
         <div className="flex flex-row gap-[30px]">
           <div className="flex flex-col items-center">

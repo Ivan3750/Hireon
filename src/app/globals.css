@@ -31,7 +31,7 @@ body {
   @apply bg-[#F8F8FF] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#11181C] hover:text-[#F8F8FF] transition-all cursor-pointer
 }
 .switch {
-  @apply /* border border-[#F8F8FF] */ rounded-full px-[10px] text-[15px] h-[25px] w-[110px] text-[#F8F8FF] transition-all cursor-pointer hover:bg-[#F8F8FF] hover:text-[#11181C]
+  @apply /* border border-[#F8F8FF] */ rounded-full px-[10px] text-[15px] h-[25px] text-[#F8F8FF] transition-all cursor-pointer hover:bg-[#F8F8FF] hover:text-[#11181C]
 }
 .switch-active{
   @apply border border-[#f8f8ff]
@@ -51,9 +51,9 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
-/* .country {
-  @apply bg-[url('./countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
-} */
+.country {
+  @apply bg-[url('/countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
+}
 
 .input{
   font-size: 15px;

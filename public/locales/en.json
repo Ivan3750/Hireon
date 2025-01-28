@@ -1,0 +1,16 @@
+{
+    "header": {
+        "applicant": "Applicant",
+        "employer": "Employer",
+        "getStarted": "Get started"
+    },
+    "footer": {},
+    "home": {},
+    "login": {},
+    "job": {},
+    "jobid": {},
+    "worker": {},
+    "workerid": {},
+    "cv": {},
+    "vacancy": {}
+}
