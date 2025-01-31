@@ -1,20 +1,20 @@
-const next = require('next');
 const express = require('express');
+const next = require('next');
 const authRoutes = require("./server/routes/auth");
-const db = require('./server/db');
+const dataUser = require("./server/routes/data");
 const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const morgan = require('morgan');
 
 const dev = process.env.NODE_ENV !== 'production';
-const app = next({ dev }); // Ось тут ініціалізуємо лише один раз
+const app = next({ dev });
 const handle = app.getRequestHandler();
-const PORT = parseInt(process.env.PORT, 10) || 5000;
+const PORT = 5000;
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, 
-  max: 100 
+  windowMs: 15 * 60 * 1000,
+  max: 100
 });
 
 app.prepare().then(() => {
@@ -22,30 +22,29 @@ app.prepare().then(() => {
 
   server.use(helmet());
   server.use(cors());
-  server.use(limiter);
-  
   server.use(morgan('dev'));
-  
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
+  
+  server.use((req, res, next) => {
+    console.log(`[${req.method}] ${req.path}`);
+    next();
+  });
 
-  server.use('/auth', authRoutes);
+  server.use('/api', dataUser);
+  server.use('/api/auth', authRoutes);
 
   server.all('*', (req, res) => {
-    handle(req, res);
+    return handle(req, res);
   });
 
   server.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ 
-      error: 'Internal Server Error',
-      message: dev ? err.message : undefined
-    });
+    console.error('Server Error:', err.stack);
+    res.status(500).json({ error: 'Internal Server Error', message: err.message });
   });
 
-  server.listen(PORT, err => {
-    if (err) throw err;
-    console.log(`Server running on http://localhost:${PORT}`);
+  server.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
   });
 
 }).catch(err => {

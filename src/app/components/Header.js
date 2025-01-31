@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation";
 import {FaGear, FaEnvelope} from 'react-icons/fa6'
 import noRender from '../noRender.json'
 
-
+import icon from "../../../public/h6.svg"
+import Image from "next/image";
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false); 
   const pathname = usePathname();
@@ -45,15 +46,18 @@ export default function Header() {
     verifyToken();
   }, []);
   if (noRender.includes(usePathname())) return null;
-  if (loading) return <div>Loading...</div>;
-  return (
+/*   if (loading) return <div>Loading...</div>;
+ */  return (
     <header className="flex items-center justify-between w-full p-6 text-[#11181C]">
       <div className="flex flex-row gap-[10px] self-start">
-        <Link href="/" className="text-[30px]">Hireon</Link>
-        <select id="lang" className="circle-btn !bg-[#FFB703] text-[#F8F8FF]" onChange={(e) => setLang(e.target.value)} value={lang}>
+        <Link href="/" className="text-[30px]">
+        <Image src={icon} alt="icon" width={220} height={
+          220
+        } /></Link>
+        {/* <select id="lang" className="circle-btn !bg-[#FFB703] text-[#F8F8FF]" onChange={(e) => setLang(e.target.value)} value={lang}>
           <option value="en">EN</option>
           <option value="ua">UA</option>
-        </select>
+        </select> */}
       </div>
       <div className="bg-[#219EBC] rounded-full h-[40px] w-[250px] flex flex-row items-center justify-center gap-[10px]">
         <button className="switch"><Link href='/applicant'>Applicant</Link></button>
