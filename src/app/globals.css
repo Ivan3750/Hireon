@@ -6,10 +6,8 @@
   padding: 0;
   box-sizing: border-box;
   overflow-x: hidden;
+  outline: 0;
 }
-
-
-
 body {
   color: #11181C;
   background: #8ecae6;
@@ -19,10 +17,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.footer ul{
-  list-style: none;
-  text-align: center;
 }
 .login-signin {
   @apply text-[#F8F8FF] bg-[#FFB703] rounded-full p-[10px] flex justify-center items-center text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer
@@ -38,12 +32,6 @@ body {
 }
 .social-networks {
   @apply bg-[#219EBC] border-[#11181C] border-2 w-[50px] h-[50px] rounded-full flex items-center justify-center hover:bg-[#11181C] hover:text-[#219EBC] transition-all cursor-pointer
-}
-.footer-item {
-  @apply text-[20px] font-light
-}
-.footer ul {
-  @apply flex-1 list-none text-center
 }
 .sun-btn {
   @apply bg-[#11181C] text-[#FFB703] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#F8F8FF] hover:text-[#FFB703] transition-all cursor-pointer

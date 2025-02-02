@@ -1,4 +1,3 @@
-import { Unbounded } from "next/font/google";
 import "@/app/globals.css";
 import { FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";

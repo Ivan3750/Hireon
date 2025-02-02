@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -10,14 +11,16 @@ import {
   FaGithub,
 } from "react-icons/fa6";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
-import Pill from "../components/Pill";
+import Pill from "@/app/components/Pill";
+import { useState } from "react";
 export default function Settings() {
+  const [isEditable, setIsEditable] = useState(false)
   return (
-    <div className="bg-[#dcdcdc] w-full aspect-auto flex flex-row justify-center">
+    <div className="bg-[#dcdcdc] w-full aspect-auto flex flex-row justify-center" suppressContentEditableWarning>
       <div className="w-4/5 h-full flex flex-row items-center justify-center gap-[20px] p-[20px]">
         <div className="flex flex-col gap-[20px] h-full w-[40%] rounded-[20px]">
           <div className="bg-[#F8F8FF] h-2/3 w-full rounded-[20px] p-[20px] flex flex-col">
-            <h2 className="text-[1.6vw] font-medium my-[20px]">Name Surname</h2>
+            <h2 className="text-[1.6vw] font-medium my-[20px] overflow-hidden">Name Surname</h2>
             <div className="flex flex-row justify-between w-full">
               <div className="flex flex-row gap-[20px] text-[0.9vw] font-light">
                 <ul className="text-[#808080]">
@@ -28,11 +31,11 @@ export default function Settings() {
                   <li>Country:</li>
                 </ul>
                 <ul>
-                  <li>email@gmail.com</li>
-                  <li>+1234567890</li>
-                  <li>42</li>
-                  <li>Kyiv</li>
-                  <li>Ukraine</li>
+                  <li contentEditable={isEditable}>email@gmail.com</li>
+                  <li contentEditable={isEditable}>+1234567890</li>
+                  <li contentEditable={isEditable}>42</li>
+                  <li contentEditable={isEditable}>Kyiv</li>
+                  <li contentEditable={isEditable}>Ukraine</li>
                 </ul>
               </div>
               <Image
@@ -77,8 +80,8 @@ export default function Settings() {
                   </button>
                 </div>
                 <div className="w-full flex flex-row gap-[10px]">
-                  <button className="bg-[#219EBC] rounded-md w-1/2 px-[5px] text-[0.9vw] hover:text-[#219EBC] hover:bg-[#11181C] transition-all">
-                    Edit
+                  <button className={`${isEditable ? "bg-[#88e788] hover:text-[#88e788]" : "bg-[#219EBC] hover:text-[#219EBC]"} rounded-md w-1/2 px-[5px] text-[0.9vw] hover:bg-[#11181C] transition-all`} onClick={() => {setIsEditable(prev => !prev)}}>
+                    {isEditable ? "Save" : "Edit"}
                   </button>
                   <button className="bg-[#F47174] rounded-md w-1/2 px-[5px] text-[0.9vw] hover:text-[#F47174] hover:bg-[#11181C] transition-all">
                     Delete
@@ -88,14 +91,14 @@ export default function Settings() {
             </div>
           </div>
           <div className="bg-[#F8F8FF] h-1/3 w-full rounded-[20px] p-[20px]">
-            <h2 className="text-[1.3vw] font-medium">Frontend Developer</h2>
+            <h2 className="text-[1.3vw] font-medium" contentEditable={isEditable}>Frontend Developer</h2>
             <div className="flex flex-row text-[1vw] text-[#808080] gap-[30px] mb-[10px]">
-              <p>Full time</p>
-              <p>Remote</p>
+              <p contentEditable={isEditable}>Full time</p>
+              <p contentEditable={isEditable}>Remote</p>
             </div>
             <div className="flex flex-col text-[0.8vw] font-light">
               <p className="text-[#808080] text-nowrap">About me:</p>
-              <p className="break-words w-full overflow-ellipsis">
+              <p className="break-words w-full overflow-ellipsis" >
                 i am frontend developer and i know react lol also i have 100
                 words to type so im gonna do it
               </p>
@@ -104,15 +107,15 @@ export default function Settings() {
           <div className="bg-[#F8F8FF] h-1/3 w-full rounded-[20px] p-[20px] grid gap-[20px] grid-rows-2 grid-cols-2">
             <div className="flex flex-col w-full">
               <h2 className="text-[1.3vw] font-medium">Login</h2>
-              <h2 className="text-[0.9vw] text-[#808080]">mylogin1337</h2>
+              <h2 className="text-[0.9vw] text-[#808080]" contentEditable={isEditable}>mylogin1337</h2>
             </div>
             <div className="flex flex-col w-full">
               <h2 className="text-[1.3vw] font-medium">Password</h2>
-              <h2 className="text-[0.9vw] text-[#808080]">********</h2>
+              <h2 className="text-[0.9vw] text-[#808080]" contentEditable={isEditable}>********</h2>
             </div>
             <div className="flex flex-col w-full">
               <h2 className="text-[1.3vw] font-medium">Own link</h2>
-              <h2 className="text-[0.9vw] text-[#808080]">iamaworker</h2>
+              <h2 className="text-[0.9vw] text-[#808080]" contentEditable={isEditable}>iamaworker</h2>
             </div>
             <div className="flex flex-col w-full">
               <Link
@@ -128,12 +131,12 @@ export default function Settings() {
           <div className="bg-[#F8F8FF] h-1/4 w-full rounded-[20px] p-[20px]">
             <h2 className="text-[1.3vw] font-medium">Skills</h2>
             <div className="flex flex-row gap-[10px] flex-wrap">
-              <Pill color="#FFB703">C++</Pill>
-              <Pill color="#FFB703">React</Pill>
-              <Pill color="#FFB703">Vue</Pill>
-              <Pill color="#FFB703">Python</Pill>
-              <Pill color="#FFB703">PHP</Pill>
-              <Pill color="#FFB703">MySQL</Pill>
+              <Pill color="#FFB703" contentEditable={isEditable} text="C++"></Pill>
+              <Pill color="#FFB703" contentEditable={isEditable} text="React"></Pill>
+              <Pill color="#FFB703" contentEditable={isEditable} text="Vue"></Pill>
+              <Pill color="#FFB703" contentEditable={isEditable} text="Python"></Pill>
+              <Pill color="#FFB703" contentEditable={isEditable} text="PHP"></Pill>
+              <Pill color="#FFB703" contentEditable={isEditable} text="MySQL"></Pill>
             </div>
           </div>
           <div className="bg-[#F8F8FF] h-1/4 w-full rounded-[20px] p-[20px]">
@@ -181,19 +184,19 @@ export default function Settings() {
               <div className="flex flex-col text-[0.8vw] font-light">
                 <div className="flex flex-row gap-[5px] w-fit">
                   <p className="text-[#808080]">Education:</p>
-                  <p>Higher(2)</p>
+                  <p contentEditable={isEditable}>Higher(2)</p>
                 </div>
                 <div className="flex flex-row gap-[5px] w-fit">
                   <p className="text-[#808080]">Date of registration:</p>
-                  <p>7.02.2025</p>
+                  <p contentEditable={isEditable}>7.02.2025</p>
                 </div>
                 <div className="flex flex-row gap-[5px] w-fit">
                   <p className="text-[#808080]">Degree:</p>
-                  <p>PhD</p>
+                  <p contentEditable={isEditable}>PhD</p>
                 </div>
                 <div className="flex flex-row gap-[5px] w-fit">
                   <p className="text-[#808080]">Certification:</p>
-                  <p>Certificate</p>
+                  <p contentEditable={isEditable}>Certificate</p>
                 </div>
               </div>
               <div className="flex flex-col text-[0.8vw]">

@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${unbounded.className} antialiased`}
       >
+        <Header></Header>
         <main className="w-screen h-full flex flex-col items-center flex-1">{children}</main>
         <Footer></Footer>
       </body>
