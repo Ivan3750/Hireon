@@ -1,6 +1,7 @@
 const express = require('express');
 const next = require('next');
 const authRoutes = require("./server/routes/auth");
+const jobRoute = require("./server/routes/jobs");
 const dataUser = require("./server/routes/data");
 const helmet = require('helmet');
 const cors = require('cors');
@@ -31,6 +32,7 @@ app.prepare().then(() => {
     next();
   });
 
+  server.use('/api', jobRoute);
   server.use('/api', dataUser);
   server.use('/api/auth', authRoutes);
 

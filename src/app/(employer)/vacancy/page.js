@@ -1,0 +1,125 @@
+"use client";
+
+import { useState, useEffect, useRef } from "react";
+
+const VacancyPage = () => {
+    const [jobTitle, setJobTitle] = useState("");
+    const [salary, setSalary] = useState("");
+    const [address, setAddress] = useState("");
+    const [contact, setContact] = useState("");
+    const [email, setEmail] = useState("");
+    const [content, setContent] = useState(`
+        <p><b>Main responsibilities:</b></p>
+        <p><b>Requirements:</b></p>
+        <p><b>For us, the following are important:</b></p>
+        <p><b>What we offer:</b></p>
+    `);
+
+    const editorRef = useRef(null);
+
+    useEffect(() => {
+        fetch("/api/myvacancy")
+            .then((res) => res.json())
+            .then((data) => {
+                if (data) {
+                    setJobTitle(data.job_title);
+                    setSalary(data.salary);
+                    setAddress(data.address);
+                    setContact(data.contact);
+                    setEmail(data.email);
+                    setContent(data.about);
+                }
+            })
+            .catch((err) => console.error("Error fetching job:", err));
+    }, []);
+
+    const handleSave = async () => {
+        const jobData = { 
+            job_title: jobTitle, 
+            salary, 
+            address, 
+            contact, 
+            email, 
+            about: editorRef.current.innerHTML 
+        };
+
+        try {
+            const response = await fetch("/api/new/job", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(jobData),
+            });
+
+            const result = await response.json();
+            console.log(result);
+        } catch (error) {
+            console.error("Error saving job:", error);
+        }
+    };
+
+    return (
+        <div className="w-full bg-[#E5E5E5] p-10">
+            <div className="flex justify-center gap-14">
+                <div className="flex flex-col w-[70%]">
+                    <label className="label">Job</label>
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="Front end"
+                        value={jobTitle}
+                        onChange={(e) => setJobTitle(e.target.value)}
+                    />
+                    <label className="label">Salary</label>
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="2 000"
+                        value={salary}
+                        onChange={(e) => setSalary(e.target.value)}
+                    />
+                    <label className="label">Address</label>
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="Hireon street 1"
+                        value={address}
+                        onChange={(e) => setAddress(e.target.value)}
+                    />
+                    <label className="label">Contact</label>
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="+38 067 320 70 22"
+                        value={contact}
+                        onChange={(e) => setContact(e.target.value)}
+                    />
+                    <label className="label">Email</label>
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="hireon@gmail.com"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+                <div className="flex flex-col w-full">
+                    <label>About this job</label>
+                    <div
+                        ref={editorRef}
+                        className="border p-2 min-h-[200px] bg-white rounded-md"
+                        contentEditable
+                        dangerouslySetInnerHTML={{ __html: content }}
+                    />
+                </div>
+            </div>
+            <div className="my-5">
+                <button className="button-disable">Cancel</button>
+                <button className="button" onClick={handleSave}>Save</button>
+            </div>
+        </div>
+    );
+};
+
+export default VacancyPage;

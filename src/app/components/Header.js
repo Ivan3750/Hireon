@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import {FaGear, FaEnvelope} from 'react-icons/fa6'
 import noRender from '../noRender.json'
-
+import useTranslate from "../hooks/useTranslate";
 
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
@@ -45,7 +45,7 @@ export default function Header() {
         <select id="lang" className="circle-btn !bg-[#FFB703] text-[#F8F8FF]" onChange={(e) => setLang(e.target.value)} value={lang}>
           <option value="en">EN</option>
           <option value="ua">UA</option>
-        </select> */}
+        </select>
       </div>
       {!isLogin && <div className="bg-[#219EBC] rounded-full h-[40px] flex flex-row items-center justify-center gap-[10px] p-[10px]">
       <button className={`switch ${selectedType === "applicant" ? "switch-active" : ""}`} onClick={() => setSelectedType("applicant")}>
