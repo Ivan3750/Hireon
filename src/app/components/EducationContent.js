@@ -1,7 +1,7 @@
 const EducationContent = () => {
     return ( <>
     <h2 className="font-bold text-[25px]">Education</h2>
-    <div className="flex justify-center gap-8">
+    <div className="flex justify-center gap-8 flex-wrap">
     <div className="flex flex-col w-full gap-2">
         <label className="label">Education level</label>
     <input type="text" className="input" placeholder="High school" />

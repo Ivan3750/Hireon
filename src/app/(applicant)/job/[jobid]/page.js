@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 
 const JobDetailsPage = () => {
-  const { jobid } = useParams(); // Отримуємо параметр jobid
+  const { jobid } = useParams(); 
   const [job, setJob] = useState(null);
 
   useEffect(() => {

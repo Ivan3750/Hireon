@@ -97,7 +97,7 @@ const CvPage = () => {
 
     return (
         <>
-            <div className="flex bg-[#E3E3ED] w-full p-14 justify-between gap-[70px]">
+            <div className="flex bg-[#E3E3ED] w-full justify-between gap-[70px] lg:flex-nowrap flex-wrap lg:p-14 p-2">
                 <div className="flex flex-col gap-2 w-full p-4">
                     <label className="label">Job</label>
                     <input 
@@ -148,7 +148,7 @@ const CvPage = () => {
                     />
                     <label className="label">Additional information</label>
                     <textarea 
-                        className="rounded-2xl bg-[#F8F8FF] resize-none focus:outline-none h-52 p-5" 
+                        className="rounded-2xl bg-[#F8F8FF] resize-none focus:outline-none h-52 p-5 max-[500px]:text-[12px]" 
                         value={additionalInfo} 
                         onChange={handleChange} 
                         name="additionalInfo" 
@@ -156,11 +156,11 @@ const CvPage = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 w-full p-4">
-                    <h3>Education</h3>
+                    <h3 className="max-[500px]:text-[14px]">Education</h3>
                     <div className="bg-[#F8F8FF] p-5 rounded-3xl flex justify-between">
                         <div>
-                            <h4 className="text-[#141313] text-[16px]">High Name</h4>
-                            <p className="text-[10px]">2020 - 2025</p>
+                            <h4 className="text-[#141313] text-[16px] max-[500px]:text-[14px]">High Name</h4>
+                            <p className="text-[10px] max-[500px]:text-[8px]" >2020 - 2025</p>
                         </div>
                         <div>
                             <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer">
@@ -170,14 +170,14 @@ const CvPage = () => {
                     </div>
                     <button className="button" onClick={() => handleOpenModal(<EducationContent />)}>Add an educational institution</button>
 
-                    <h3>Language</h3>
+                    <h3 className="max-[500px]:text-[14px]">Language</h3>
                     <LanguageManager  /> 
 
-                    <h3>Knowledge and skills</h3>
+                    <h3 className="max-[500px]:text-[14px]">Knowledge and skills</h3>
                     <div className="bg-[#F8F8FF] p-5 rounded-3xl">
-                        <div className="flex flex-wrap justify-between gap-1">
+                        <div className="flex flex-wrap justify-start gap-2 py-2 ">
                             {skills.map((skill, index) => (
-                                <p key={index} className="bg-[#E4E4E4] p-2 w-max rounded-xl font-normal">{skill}</p>
+                                <p key={index} className="bg-[#E4E4E4] p-2 w-max rounded-xl font-normal max-[500px]:text-[12px]">{skill}</p>
                             ))}
                         </div>
                         <button className="button" onClick={() => handleOpenModal(<SkillsContent onAddSkill={addSkill} skills={skills} />)}>Edit</button>
@@ -185,20 +185,20 @@ const CvPage = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 w-full p-4">
-                    <h2>Work experience</h2>
+                    <h2 className="max-[500px]:text-[14px]">Work experience</h2>
                     <div className="bg-[#F8F8FF] p-5 rounded-3xl">
                         <div className="flex justify-between">
                             <div>
-                                <h3 className="text-[#141313] font-semibold">SharkIT</h3>
-                                <p className="text-[#59585A] font-medium text-[14px]">Full Stack Dev</p>
-                                <p className="text-[#4A4A4D] font-normal text-[12px]">02.2022 - 03.2025</p>
+                                <h3 className="text-[#141313] font-semibold max-[500px]:text-[12px]">SharkIT</h3>
+                                <p className="text-[#59585A] font-medium text-[14px] max-[500px]:text-[10px]">Full Stack Dev</p>
+                                <p className="text-[#4A4A4D] font-normal text-[12px] max-[500px]:text-[8px]">02.2022 - 03.2025</p>
                             </div>
                             <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer">
                                 <FaTrash color="#F94861" size={20} />
                             </div>
                         </div>
                         <div>
-                            <p className="text-[#706F72] text-[12px]">Text text text...</p>
+                            <p className="text-[#706F72] text-[12px] max-[500px]:text-[8px]">Text text text...</p>
                         </div>
                     </div>
 

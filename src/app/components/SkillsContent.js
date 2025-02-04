@@ -16,7 +16,7 @@ const SkillsContent = ({ onAddSkill, skills }) => {
   return (
     <>
       <h2 className="font-bold text-[25px]">Knowledge and Skills</h2>
-      <div className="flex justify-center gap-8">
+      <div className="flex justify-center gap-8 flex-wrap">
         <div className="bg-[#E3E6ED] w-full h-48 rounded-2xl p-5 flex items-center justify-center">
           <div className="flex gap-2">
             {skills.map((skill)=>{

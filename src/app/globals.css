@@ -67,6 +67,8 @@ body {
 
 }
 
+
+
 .button{
   background:#FFB703;
   font-size: 16px;
@@ -88,6 +90,23 @@ body {
   border-radius: 20px;
   transition: 0.5s;
  }
-a {
-  @apply transition-all hover:underline
+
+
+
+/* a {
+  @apply transition-all hover:underline // Я видалив тому що це не сучасно і на деяких частинах проекту це зайве
+}
+ */
+
+
+@media (max-width: 500px) {
+  .label{
+    font-size: 12px;
+  }
+  .input{
+    font-size: 12.5px;
+  }
+  .button{
+    font-size: 12px;
+  }
 }

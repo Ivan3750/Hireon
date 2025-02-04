@@ -1,7 +1,7 @@
 const LanguageContent = () => {
     return ( <>
     <h2 className="font-bold text-[25px]">Work experience</h2>
-    <div className="flex justify-center gap-8">
+    <div className="flex justify-center gap-8 flex-wrap">
     <div className="flex flex-col w-full gap-2">
         <label className="label">Job title</label>
     <input type="text" className="input" placeholder="High school" />
