@@ -68,7 +68,7 @@ export default function Auth() {
       <div className="w-full max-w-sm p-6 w-520 h-639 bg-[#8ECAE6] border-rad rounded-2xl">
         {isSignup ? (
           <>
-            <h2 className="text-[25px] font-medium text-gray-900 mb-6 text-center ">Create account</h2>
+            <h2 className="text-[25px] font-medium text-gray-900 mb-6 text-center ">Sign up</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
               {userType === "applicant" && (
                 <div className="mb-4">
