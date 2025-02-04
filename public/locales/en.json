@@ -1,19 +1,13 @@
 {
+  "globals": {
+    "getStarted": "Get started",
+    "back": "Back",
+    "signUp": "Sign up",
+    "logIn": "Log in"
+  },
   "header": {
     "applicant": "Applicant",
-    "employer": "Employer",
-    "getStarted": "Get started"
-  },
-  "footer": {
-    "contactUs": "Contact us",
-    "usefulLinks": "Useful links",
-    "faq": "FAQs",
-    "support": "Support",
-    "navigation": "Navigation",
-    "aboutUs": "About us",
-    "termsOfUse": "Terms of use",
-    "privacyPolicy": "Privacy policy",
-    "youCanFind": "You can find us in"
+    "employer": "Employer"
   },
   "home": {
     "mainTitle": "Hireon is the best way to success",
@@ -36,8 +30,18 @@
     "makeDreamTrue": "Go make your dream come true!",
     "peopleWeHelped": "A few people we helped:"
   },
-  "login": {},
-  "job": {},
+  "login": {
+    "fullName": "Full name",
+    "companyName": "Company name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
+    "agree": "By clicking 'Get Started' you agree to Terms of Use and Privacy Policy",
+    "haveAccount": "Already have an account?",
+    "dontHaveAccount": "Dont have an account?"
+  },
+  "job": {
+  },
   "jobid": {},
   "worker": {},
   "workerid": {},

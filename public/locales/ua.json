@@ -1,19 +1,14 @@
 {
+  "globals": {
+    "getStarted": "Розпочати",
+    "back": "Назад",
+    "signUp": "Зареєструватись",
+    "logIn": "Ввійти"
+  },
   "header": {
     "applicant": "Заявник",
     "employer": "Роботодавець",
     "getStarted": "Розпочати"
-  },
-  "footer": {
-    "contactUs": "Зв'яжіться з нами",
-    "usefulLinks": "Корисні посилання",
-    "faq": "Часті питання",
-    "support": "Підтримка",
-    "navigation": "Навігація",
-    "aboutUs": "Про нас",
-    "termsOfUse": "Умови використання",
-    "privacyPolicy": "Політика конфіденційності",
-    "youCanFind": "Ви можете знайти нас в"
   },
   "home": {
     "mainTitle": "Hireon - це найкращий шлях до успіху",

@@ -91,3 +91,6 @@ body {
 a {
   @apply transition-all hover:underline
 }
+.item {
+  @apply p-[10px];
+}
