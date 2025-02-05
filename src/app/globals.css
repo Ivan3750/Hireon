@@ -94,6 +94,12 @@ body {
     font-size: 12px;
   }
 }
-.item {
-  @apply p-[10px];
+
+
+
+
+@media (max-width: 1400px){
+  .country {
+    @apply w-[200px] h-[125px] 
+}
 }

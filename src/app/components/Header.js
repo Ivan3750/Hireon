@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {FaGear, FaEnvelope, FaXmark} from 'react-icons/fa6'
+import { MdBusiness, MdWork } from "react-icons/md"; 
+
 import {useTranslate} from "../hooks/useTranslate";
 import Notification from "./Notification";
 import noRender from '../noRender.json'
@@ -60,24 +62,23 @@ export default function Header() {
         </div>
       </div>
       {!isLogin && (
-        <div className="bg-[#219EBC] rounded-full h-[40px] flex flex-row items-center justify-center gap-[10px] p-[10px]">
-          <button
-            className={`switch ${
-              selectedType === "applicant" ? "switch-active" : ""
-            }`}
-            onClick={() => setSelectedType("applicant")}
-          >
-            {translations.header.applicant}
-          </button>
-          <button
-            className={`switch ${
-              selectedType === "employer" ? "switch-active" : ""
-            }`}
-            onClick={() => setSelectedType("employer")}
-          >
-            {translations.header.employer}
-          </button>
-        </div>
+       <div className="bg-[#219EBC] rounded-full h-[40px] flex flex-row items-center justify-center gap-[10px] p-[10px]">
+       <button
+         className={`switch ${selectedType === "applicant" ? "switch-active" : ""}`}
+         onClick={() => setSelectedType("applicant")}
+       >
+         <span className="hidden md:inline">{translations.header.applicant}</span>
+         <MdWork className="md:hidden" size={20} />
+       </button>
+       <button
+         className={`switch ${selectedType === "employer" ? "switch-active" : ""}`}
+         onClick={() => setSelectedType("employer")}
+       >
+         <span className="hidden md:inline">{translations.header.employer}</span>
+         <MdBusiness className="md:hidden" size={20} />
+       </button>
+     </div>
+     
       )}
       <nav className="flex flex-row items-center">
         <div className="flex flex-row gap-[10px] items-center">

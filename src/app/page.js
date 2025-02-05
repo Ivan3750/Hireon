@@ -9,7 +9,6 @@ import Image from "next/image";
 import Link from "next/link";
 import example from "./example.json";
 import {useTranslate} from "./hooks/useTranslate";
-// import video from './conversation_example.mp4'
 import { useEffect, useState } from "react";
 export default function Home() {
   const [found, setFound] = useState([]);
@@ -32,48 +31,36 @@ export default function Home() {
         layout="fill"
         className="absolute -z-50 top-0 blur-sm"
       ></Image>
-      <div className="flex flex-col w-screen h-[calc(100vh-98px)] justify-end gap-[50px] p-[75px]">
-        <div className="flex flex-col flex-nowrap justify-center items-center">
-          <h2 className="text-[50px] text-nowrap font-extrabold">
+      <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-end gap-[50px] p-[20px] md:p-[50px]">
+        <div className="flex flex-col justify-center items-center text-center">
+          <h2 className="text-[30px] md:text-[50px] font-extrabold h-[50px]">
             {translations.home.mainTitle}
           </h2>
-          <p className="text-[20px] font-medium">
+          <p className="text-[16px] md:text-[20px] font-medium">
             {translations.home.secondaryTitle}
           </p>
-          <div className="flex flex-col mt-3">
-            <div className="flex flex-row z-50">
-              <div className="bg-[#F8F8FF] ps-3 rounded-s-[20px]">
-                <FaMagnifyingGlass
-                  size={20}
-                  color="808080"
-                  className="bg-[#F8F8FF] h-[48px]"
-                ></FaMagnifyingGlass>
+          <div className="flex flex-col mt-3 w-full max-w-[720px]">
+            <div className="flex flex-row z-50 w-full">
+              <div className="bg-[#F8F8FF] ps-3 rounded-s-[20px] flex items-center">
+                <FaMagnifyingGlass size={20} color="808080" className="h-[48px]"></FaMagnifyingGlass>
               </div>
               <input
                 placeholder={translations.home.findJob}
-                className="p-3 w-[690px] placeholder:text-[#808080] bg-[#F8F8FF] outline-none rounded-e-[20px]"
-                onInput={(e) => {
-                  setSearch(e.target.value.trim());
-                }}
-              ></input>
+                className="p-3 w-full placeholder:text-[#808080] bg-[#F8F8FF] outline-none rounded-e-[20px]"
+                onInput={(e) => setSearch(e.target.value.trim())}
+              />
             </div>
-            <div
-              className={`absolute w-[722px] ${
-                search ? "h-[518px]" : "h-0"
-              } bg-[#F8F8FF] mt-[24px] transition-all rounded-b-[20px] pt-[24px]`}
-            >
-              {found.map((e) => {
-                return (
-                  <>
-                    <div className="item">
-                      <Link href="/job">{e.name.split(new RegExp(`(${search})`, 'gi')).map((f, i) => {
-                        return f.toLowerCase() === search.toLowerCase() ? <mark key={i}>{f}</mark> : f
-                      })}</Link>
-                    </div>
-                    <hr></hr>
-                  </>
-                );
-              })}
+            <div className={`absolute w-full  ${search ? "h-[518px]" : "h-0"} bg-[#F8F8FF]  transition-all rounded-b-[20px]  overflow-hidden`}>
+              {found.map((e) => (
+                <>
+                  <div className="item">
+                    <Link href="/job">{e.name.split(new RegExp(`(${search})`, 'gi')).map((f, i) => (
+                      f.toLowerCase() === search.toLowerCase() ? <mark key={i}>{f}</mark> : f
+                    ))}</Link>
+                  </div>
+                  <hr />
+                </>
+              ))}
               {(found.length && found.length >= 10) ? (
                 <Link className="font-medium text-center my-[10px] w-full block" href={`/job?search=${search}`}>
                   More
@@ -84,120 +71,59 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div
-          className={`flex flex-row justify-between ${
-            search ? "px-[200px]" : "px-[400px]"
-          } items-center transition-all`}
-        >
-          <div className="flex flex-col items-start">
-            <h2 className="text-[#023047] font-medium text-[45px]">
+        <div className="flex flex-col md:flex-row justify-between items-center transition-all w-full">
+          <div className="flex flex-col items-start text-center md:text-left w-full md:w-1/2">
+            <h2 className="text-[#023047] font-medium text-[30px] md:text-[45px]">
               {translations.home.createResume}
             </h2>
-            <p className="text-[#023047] font-medium text-[24px] w-[400px]">
+            <p className="text-[#023047] font-medium text-[18px] md:text-[24px] w-full md:w-[400px]">
               {translations.home.createResume2}
             </p>
-            <button className="mt-[10px] bg-[#023047] text-[#F8F8FF] h-[40px] text-[20px] font-medium rounded-full px-[20px] hover:bg-[#F8F8FF] hover:text-[#023047] transition-all">
+            <button className="mt-[10px] bg-[#023047] text-[#F8F8FF] h-[40px] text-[18px] md:text-[20px] font-medium rounded-full px-[20px] hover:bg-[#F8F8FF] hover:text-[#023047] transition-all">
               {translations.home.create}
             </button>
           </div>
-          <div className="h-[530px] w-[580px] rounded-[20px] bg-[#219EBC] p-[25px] text-[#F8F8FF] overflow-hidden">
-            <h2 className="text-[#F8F8FF] font-semibold text-[32px]">
+          <div className="h-auto md:h-[530px] w-full md:w-[580px] rounded-[20px] bg-[#219EBC] p-[25px] text-[#F8F8FF] overflow-hidden mt-5 md:mt-0">
+            <h2 className="text-[#F8F8FF] font-semibold text-[24px] md:text-[32px]">
               {translations.home.bestOffers}
             </h2>
-            <div className="flex flex-col justify-evenly h-full">
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-col gap-[10px]">
-                  <p className="text-[20px]">Software developer</p>
-                  <div className="flex flex-row gap-[10px]">
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaGlobe></FaGlobe>London
-                    </small>
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaHouse></FaHouse>Remote
-                    </small>
+            <div className="flex flex-col gap-4 md:gap-0 justify-evenly h-full">
+              {[...Array(4)].map((_, index) => (
+                <div key={index} className="flex flex-col md:flex-row justify-between gap-3">
+                  <div className="flex flex-col gap-[10px]">
+                    <p className="text-[18px] md:text-[20px]">Software developer</p>
+                    <div className="flex flex-row gap-[10px]">
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[14px] md:text-[16px]">
+                        <FaGlobe />London
+                      </small>
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[14px] md:text-[16px]">
+                        <FaHouse />Remote
+                      </small>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[10px] items-center">
+                    <p className="text-[18px] md:text-[20px] font-medium flex flex-row gap-[10px]">
+                      <FaMoneyBill size={30} />$999
+                    </p>
+                    <button className="rounded-full bg-[#FFB703] px-[20px] py-[5px] text-[18px] md:text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">
+                      {translations.home.review}
+                    </button>
                   </div>
                 </div>
-                <div className="flex flex-col gap-[10px] items-center">
-                  <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]">
-                    <FaMoneyBill size={30}></FaMoneyBill>$999
-                  </p>
-                  <button className="rounded-full bg-[#FFB703] px-[20px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">
-                    {translations.home.review}
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-col gap-[10px]">
-                  <p className="text-[20px]">Software developer</p>
-                  <div className="flex flex-row gap-[10px]">
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaGlobe></FaGlobe>London
-                    </small>
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaHouse></FaHouse>Remote
-                    </small>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-[10px] items-center">
-                  <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]">
-                    <FaMoneyBill size={30}></FaMoneyBill>$999
-                  </p>
-                  <button className="rounded-full bg-[#FFB703] px-[20px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">
-                    {translations.home.review}
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-col gap-[10px]">
-                  <p className="text-[20px]">Software developer</p>
-                  <div className="flex flex-row gap-[10px]">
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaGlobe></FaGlobe>London
-                    </small>
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaHouse></FaHouse>Remote
-                    </small>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-[10px] items-center">
-                  <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]">
-                    <FaMoneyBill size={30}></FaMoneyBill>$999
-                  </p>
-                  <button className="rounded-full bg-[#FFB703] px-[20px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">
-                    {translations.home.review}
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-row justify-between">
-                <div className="flex flex-col gap-[10px]">
-                  <p className="text-[20px]">Software developer</p>
-                  <div className="flex flex-row gap-[10px]">
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaGlobe></FaGlobe>London
-                    </small>
-                    <small className="flex flex-row items-center gap-[5px] font-light text-[16px]">
-                      <FaHouse></FaHouse>Remote
-                    </small>
-                  </div>
-                </div>
-                <div className="flex flex-col gap-[10px] items-center">
-                  <p className="text-[20px] font-medium items-center flex flex-row gap-[10px]">
-                    <FaMoneyBill size={30}></FaMoneyBill>$999
-                  </p>
-                  <button className="rounded-full bg-[#FFB703] px-[20px] py-[5px] text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">
-                    {translations.home.review}
-                  </button>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col w-screen h-[75vh] bg-[#F8F8FF] items-center justify-center gap-[50px]">
-        <h2 className="font-medium text-[42px]">
+      <div className=" w-screen bg-[#F8F8FF] py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
+        <h2 className="font-medium text-[42px] text-center mb-5 max-[1537px]:text-[32px] 
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px]">
           {translations.home.jobsInCountries}
         </h2>
-        <div className="grid gap-[20px] grid-rows-2 grid-cols-4">
+        <div className="flex flex-wrap gap-5 justify-center sm:justify-start">
           <div className="country">
             <small>Ukraine</small>
             <small>1337 {translations.home.vacancy}</small>
@@ -231,43 +157,77 @@ export default function Home() {
             <small>1337 {translations.home.vacancy}</small>
           </div>
         </div>
-        <h2 className="font-medium text-[42px]">
+        <h2 className="font-medium text-[42px] text-center mt-5 max-[1537px]:text-[32px] 
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px]">
           {translations.home.payForTravel}
         </h2>
       </div>
-      <div className="flex flex-col w-screen h-[60vh] bg-[#F8F8FF] items-center justify-center border-[#023047] border-t-[10px]">
-        <h2 className="font-medium text-[42px] text-left w-3/4">
+      <div className=" w-screen  bg-[#F8F8FF] py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
+        <h2 className="font-medium text-[38px] text-left w-3/4 my-0 mx-auto
+          max-[1537px]:text-[32px] 
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px] ">
           {translations.home.aiHelper}
         </h2>
-        <h2 className="font-medium text-[42px] text-right w-3/4">
+        <h2 className="font-medium text-[42px] text-right w-3/4 my-0 mx-auto
+          max-[1537px]:text-[32px] 
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px]">
           {translations.home.aiHelper2}
         </h2>
-        <h2 className="font-medium text-[42px] m-[25px]">
+        <h2 className="font-medium text-[42px] m-[25px]   max-[1537px]:text-[32px] text-center
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px]">
           {translations.home.convExample}
         </h2>
         <video
-          className="m-[20px] bg-[#808080] rounded-[20px] w-[350px] h-[250px]"
-          autoPlay
+          className="m-[20px] bg-[#808080] rounded-[20px] w-[350px] h-[250px] my-0 mx-auto"
+          autoPlay muted
         >
           {/* <source src={video} type="video/mp4"></source> */}
         </video>
-        <p className="font-light text-[24px] text-left w-3/4">
+        <p className="font-light text-[24px] text-left w-3/4   max-[1537px]:text-[20px] mt-4
+          max-[1280px]:text-[18px] 
+          max-[1024px]:text-[17px] 
+          max-[768px]:text-[15px] 
+          max-[480px]:text-[14px]">
           {translations.home.poweredBy}
         </p>
       </div>
-      <div className="flex flex-col w-screen h-[50vh] bg-[#F8F8FF] items-center justify-center px-[100px] border-[#023047] border-t-[10px]">
-        <h2 className="font-medium text-[42px] text-left w-1/2">
+      <div className=" w-screen bg-[#F8F8FF] p-5 py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
+        <h2 className="font-medium text-[42px] text-left    max-[1537px]:text-[32px]  my-[15px] mx-auto
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px]">
           {translations.home.dontWait}
         </h2>
-        <h2 className="font-medium text-[42px] text-right w-1/2">
+        <h2 className="font-medium text-[42px] text-right  max-[1537px]:text-[32px] my-[15px] mx-auto 
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px]">
           {translations.home.makeDreamTrue}
         </h2>
-        <Link href="/login">
-          <button className="bg-[#FB8500] rounded-full p-[15px] text-[32px] my-[20px] hover:text-[#FB8500] hover:bg-[#11181C] transition-all ">
-            {translations.header.getStarted}
+        <Link href="/login" className="my-[25px]">
+          <button className="bg-[#FB8500] rounded-[30px] p-[10px] block text-[20px] my-[0px] mx-auto hover:text-[#FB8500] hover:bg-[#11181C] transition-all ">
+            {translations.header.getStarted} Login
           </button>
         </Link>
-        <p className="text-[30px] mb-[10px] text-center">
+        <p className="text-[30px] mb-[10px] text-center max-[1537px]:text-[28px] 
+          max-[1280px]:text-[26px] 
+          max-[1024px]:text-[22px] 
+          max-[768px]:text-[18px] 
+          max-[480px]:text-[14px]">
           {translations.home.peopleWeHelped}
         </p>
         <div className="flex flex-row gap-[30px]">
