@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       >
       <TranslateProvider>
         <Header></Header>
-        <main className="w-screen h-full flex flex-col items-center flex-1">{children}</main>
+        <main className="w-screen h-full flex flex-col items-center flex-1" suppressContentEditableWarning suppressHydrationWarning>{children}</main>
         <Footer></Footer>
       </TranslateProvider>
       </body>

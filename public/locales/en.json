@@ -3,7 +3,10 @@
     "getStarted": "Get started",
     "back": "Back",
     "signUp": "Sign up",
-    "logIn": "Log in"
+    "logIn": "Log in",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password"
   },
   "header": {
     "applicant": "Applicant",
@@ -33,15 +36,11 @@
   "login": {
     "fullName": "Full name",
     "companyName": "Company name",
-    "email": "Email",
-    "phone": "Phone",
-    "password": "Password",
     "agree": "By clicking 'Get Started' you agree to Terms of Use and Privacy Policy",
     "haveAccount": "Already have an account?",
     "dontHaveAccount": "Dont have an account?"
   },
-  "job": {
-  },
+  "job": {},
   "jobid": {},
   "worker": {},
   "workerid": {},

@@ -1,26 +1,21 @@
-import { useRef, useState, useEffect } from "react";
+import { useState } from "react";
+import { FaXmark } from "react-icons/fa6";
 export default function Pill({ text, color, contentEditable }) {
-  const [isExited, setIsExited] = useState(false);
   const [content, setContent] = useState(text);
-  const contentRef = useRef(null);
-  useEffect(() => {
-    if (contentRef.current) {
-      contentRef.current.innerText = content;
-    }
-  }, [content]);
-  if (isExited && !content.length) return null;
+  const [isDeleted, setIsDeleted] = useState(false)
+  console.log(content)
+  if (isDeleted || !content) return null;
   return (
     <div
-      className={`bg-[${color}] transition-all rounded-full p-[10px] text-[0.75vw] w-fit min-w-[50px] text-center`}
+      className={`bg-[${color}] flex flex-row items-center transition-all rounded-full p-[10px] text-[0.75vw] w-fit min-w-[50px] text-center gap-[5px]`}
     >
       <p
-        ref={contentRef}
         contentEditable={contentEditable}
-        onBlur={() => {setIsExited(true);setContent(contentRef.current.innerText);}}
-        onFocus={() => setIsExited(false)}
+        onInput={(e) => setContent(e.target.innerText)}
       >
-        {content}
+        {text}
       </p>
+      {contentEditable && <FaXmark onClick={() => {setIsDeleted(true)}} className="cursor-pointer text-[0.75vw]"></FaXmark>}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-
+import { useTranslate } from "../hooks/useTranslate";
 export default function Auth() {
   const [isSignup, setIsSignup] = useState(true);
   const [email, setEmail] = useState("");

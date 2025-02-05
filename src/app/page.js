@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import example from "./example.json";
-import useTranslate from "./hooks/useTranslate";
+import {useTranslate} from "./hooks/useTranslate";
 // import video from './conversation_example.mp4'
 import { useEffect, useState } from "react";
 export default function Home() {
@@ -62,7 +62,7 @@ export default function Home() {
                 search ? "h-[518px]" : "h-0"
               } bg-[#F8F8FF] mt-[24px] transition-all rounded-b-[20px] pt-[24px]`}
             >
-              {/* {found.map((e) => {
+              {found.map((e) => {
                 return (
                   <>
                     <div className="item">
@@ -73,7 +73,7 @@ export default function Home() {
                     <hr></hr>
                   </>
                 );
-              })} */}
+              })}
               {(found.length && found.length >= 10) ? (
                 <Link className="font-medium text-center my-[10px] w-full block" href={`/job?search=${search}`}>
                   More
