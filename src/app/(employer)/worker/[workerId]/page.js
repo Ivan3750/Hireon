@@ -14,13 +14,13 @@ const JobDetailsPage = async ({ params }) => {
   const workerId = (await params).workerId;
   return (
     <>
-      <div className="bg-[#F8F8FF] w-[850px] h-max p-4 rounded-2xl my-5 m-auto">
+      <div key={workerId} className="bg-[#F8F8FF] w-[850px] h-max p-4 rounded-2xl my-5 m-auto">
         <div className="flex justify-between my-2 items-center">
         <Link href="/worker" className="flex flex-row gap-[5px] items-center"><FaArrowLeft></FaArrowLeft>Back</Link>
         <button className="bg-[#FFB703] text-[#11181C] text-[16px] h-[50px] w-[200px] rounded-2xl hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Offer a job</button>
         </div>
-        <h2 className="font-semibold text-[25px] text-[#11181C]">Peter Petersen</h2>
-        <h2 className="font-semibold text-[20px] text-[#11181C]">Junior Front End  Developer</h2>
+        <h2 className="font-semibold md:text-[25px] text-[#11181C] text-[20px]">Peter Petersen</h2>
+        <h2 className="font-semibold md:text-[20px] text-[#11181C] text-[16px]">Junior Front End  Developer</h2>
         <div className="flex text-[14px] text-[#5D5D5D] font-normal gap-1 my-3 flex-col">
             <p>Employment: <span className="text-[#11181C]">Full-time</span></p>
             <p>Age: <span className="text-[#11181C]">44 years</span></p>

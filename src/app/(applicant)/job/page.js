@@ -29,28 +29,32 @@ const JobSearchPage = () => {
 
   return (
     <>
-      <div className="w-full flex justify-center gap-5 p-2">
-        <div className="w-[900px] bg-[#F0F8FF] rounded-2xl h-10 flex items-center p-3">
-          <CiSearch size={40} />
+      <div className="w-full flex justify-center gap-5 p-2 max-[500px]:gap-2">
+        <div className=" bg-[#F0F8FF] rounded-2xl h-10 flex items-center p-2">
           <input
             type="text"
-            className="w-full ml-4 pl-2 focus:outline-none bg-transparent"
+            className="w-full  pl-2 focus:outline-none bg-transparent"
             placeholder="Enter job"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <div className="flex ml-4">
-            <FaMapMarkerAlt size={25} color={"#FFB703"} />
+          <div className="flex ">
             <input
               type="text"
               placeholder="City"
-              className="ml-4 pl-2 focus:outline-none bg-transparent"
+              className=" pl-2 focus:outline-none bg-transparent"
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
           </div>
         </div>
-        <button onClick={handleSearch} className="bg-[#FB8500] text-[#F8F8FF] rounded-2xl w-[120px]">Search</button>
+        <button  onClick={handleSearch} className="bg-[#FB8500] text-[#F8F8FF] rounded-2xl w-[120px] max-[768px]:w-[50px] max-[768px]:flex max-[768px]:justify-center max-[768px]:items-center">
+                  <p className="max-[768px]:hidden">
+                  Search
+                  </p>
+                  <CiSearch className="max-[768px]:block hidden w-[20px] h-[20px]"  width={20} height={20}/>
+        </button>
+       {/*  <button onClick={handleSearch} className="bg-[#FB8500] text-[#F8F8FF] rounded-2xl w-[120px]">Search</button> */}
       </div>
       <div className="my-2 p-2 w-full flex justify-center gap-5 max-[500px]:flex-wrap max-[500px]:gap-1">
         <input type="text" className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px]  w-full focus:outline-none" placeholder="Type of employment" value={employmentType} onChange={(e) => setEmploymentType(e.target.value)} />

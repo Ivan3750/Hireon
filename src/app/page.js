@@ -62,18 +62,18 @@ export default function Home() {
                 search ? "h-[518px]" : "h-0"
               } bg-[#F8F8FF] mt-[24px] transition-all rounded-b-[20px] pt-[24px]`}
             >
-              {found.map((e) => {
+              {/* {found.map((e) => {
                 return (
                   <>
                     <div className="item">
                       <Link href="/job">{e.name.split(new RegExp(`(${search})`, 'gi')).map((f, i) => {
-                        return f.toLowerCase() === search.toLowerCase() ? <mark>{f}</mark> : f
+                        return f.toLowerCase() === search.toLowerCase() ? <mark key={i}>{f}</mark> : f
                       })}</Link>
                     </div>
                     <hr></hr>
                   </>
                 );
-              })}
+              })} */}
               {(found.length && found.length >= 10) ? (
                 <Link className="font-medium text-center my-[10px] w-full block" href={`/job?search=${search}`}>
                   More
