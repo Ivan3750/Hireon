@@ -8,7 +8,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import example from "./example.json";
-import useTranslate from "./hooks/useTranslate";
+import { useTranslate } from "./hooks/useTranslate";
 // import video from './conversation_example.mp4'
 import { useEffect, useState } from "react";
 export default function Home() {
@@ -62,7 +62,7 @@ export default function Home() {
                 search ? "h-[518px]" : "h-0"
               } bg-[#F8F8FF] mt-[24px] transition-all rounded-b-[20px] pt-[24px]`}
             >
-              {found.map((e) => {
+              {search ? found.map((e) => {
                 return (
                   <>
                     <div className="item">
@@ -73,14 +73,14 @@ export default function Home() {
                     <hr></hr>
                   </>
                 );
-              })}
-              {(found.length && found.length >= 10) ? (
+              }) : null}
+              {search ? ((found.length && found.length >= 10) ? (
                 <Link className="font-medium text-center my-[10px] w-full block" href={`/job?search=${search}`}>
                   More
                 </Link>
               ) : (
                 <h2 className="text-[#808080] text-center my-[10px]">Sorry, nothing found.</h2>
-              )}
+              )) : null}
             </div>
           </div>
         </div>
@@ -264,7 +264,7 @@ export default function Home() {
         </h2>
         <Link href="/login">
           <button className="bg-[#FB8500] rounded-full p-[15px] text-[32px] my-[20px] hover:text-[#FB8500] hover:bg-[#11181C] transition-all ">
-            {translations.header.getStarted}
+            {translations.globals.getStarted}
           </button>
         </Link>
         <p className="text-[30px] mb-[10px] text-center">

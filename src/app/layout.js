@@ -2,6 +2,7 @@ import { Unbounded } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { TranslateProvider } from "./hooks/useTranslate";
 const unbounded = Unbounded({
   display: 'swap',
   subsets: ["latin"],
@@ -16,9 +17,11 @@ export default function RootLayout({ children }) {
       <body
         className={`${unbounded.className} antialiased`}
       >
-{/*         <Header></Header>
- */}        <main className="w-screen h-full flex flex-col items-center flex-1">{children}</main>
+      <TranslateProvider>
+        <Header></Header>
+        <main className="w-screen h-full flex flex-col items-center flex-1">{children}</main>
         <Footer></Footer>
+      </TranslateProvider>
       </body>
     </html>
   );

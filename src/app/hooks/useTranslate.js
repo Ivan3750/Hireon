@@ -1,7 +1,8 @@
-'use client'
+"use client";
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
-export default function useTranslate() {
+import { useState, useEffect, useContext, createContext } from "react";
+const TranslateContext = createContext(null);
+export function TranslateProvider({ children }) {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [translations, setTranslations] = useState(null);
@@ -23,5 +24,16 @@ export default function useTranslate() {
     };
     loadLang();
   }, [lang]);
-  return { translations, loading, lang, setLang };
+  return (
+    <TranslateContext.Provider value={{ translations, loading, lang, setLang }}>
+      {children}
+    </TranslateContext.Provider>
+  );
+}
+export function useTranslate() {
+  const context = useContext(TranslateContext);
+  if (!context) {
+    throw new Error("useTranslate must be used within a TranslateProvider");
+  }
+  return context;
 }

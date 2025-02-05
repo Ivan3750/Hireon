@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
-import {FaGear, FaEnvelope} from 'react-icons/fa6'
+import { usePathname, useRouter } from "next/navigation";
+import {FaGear, FaEnvelope, FaXmark} from 'react-icons/fa6'
+import {useTranslate} from "../hooks/useTranslate";
+import Notification from "./Notification";
 import noRender from '../noRender.json'
-
-
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const { translations, loading, lang, setLang } = useTranslate();
@@ -53,8 +53,8 @@ export default function Header() {
             <h2>{lang.toUpperCase()}</h2>
           </div>
           <div className={`absolute bg-[#F8F8FF] gap-x-[20px] flex flex-row items-center justify-end h-[50px] ms-[25px] rounded-e-full cursor-pointer transition-all ${isOpen ? 'w-[170px]' : 'w-0'}`}>
-            <h2 onClick={() => {setLang("en");window.location.href = `${pathname}?lang=en`}}>EN</h2>
-            <h2 onClick={() => {setLang("ua");window.location.href = `${pathname}?lang=ua`}}>UA</h2>
+            <h2 onClick={() => {setLang("en");router.push(`${pathname}?lang=en`)}}>EN</h2>
+            <h2 onClick={() => {setLang("ua");router.push(`${pathname}?lang=ua`)}}>UA</h2>
             <FaXmark onClick={() => {setIsOpen(false)}} className="me-[20px]"></FaXmark>
           </div>
         </div>
