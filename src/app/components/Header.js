@@ -52,6 +52,38 @@ export default function Header() {
         <Link href="/" className="text-[30px]">
           <Image src={Logo} width={100} height={100}/>
         </Link>
+        
+      </div>
+      {!isLogin && (
+        <div className="bg-[#219EBC] rounded-full h-[40px]  flex-row items-center justify-center gap-[10px] p-[10px] hidden sm:flex">
+          <button
+            className={`switch ${
+              selectedType === "applicant" ? "switch-active" : ""
+            }`}
+            onClick={() => setSelectedType("applicant")}
+          >
+            <span className="hidden md:inline">
+              {translations.header.applicant}
+            </span>
+            <MdWork className="md:hidden" size={20} />
+          </button>
+          <button
+            className={`switch ${
+              selectedType === "employer" ? "switch-active" : ""
+            }`}
+            onClick={() => setSelectedType("employer")}
+          >
+            <span className="hidden md:inline">
+              {translations.header.employer}
+            </span>
+            <MdBusiness className="md:hidden" size={20} />
+          </button>
+        </div>
+      )}
+      
+      <nav className="flex flex-row items-center">
+     
+        <div className="flex flex-row gap-[10px] items-center">
         <div className="flex flex-row">
           <div
             className="!bg-[#FFB703] text-[#F8F8FF] flex flex-row circle-btn z-50"
@@ -88,35 +120,6 @@ export default function Header() {
             ></FaXmark>
           </div>
         </div>
-      </div>
-      {!isLogin && (
-        <div className="bg-[#219EBC] rounded-full h-[40px]  flex-row items-center justify-center gap-[10px] p-[10px] hidden sm:flex">
-          <button
-            className={`switch ${
-              selectedType === "applicant" ? "switch-active" : ""
-            }`}
-            onClick={() => setSelectedType("applicant")}
-          >
-            <span className="hidden md:inline">
-              {translations.header.applicant}
-            </span>
-            <MdWork className="md:hidden" size={20} />
-          </button>
-          <button
-            className={`switch ${
-              selectedType === "employer" ? "switch-active" : ""
-            }`}
-            onClick={() => setSelectedType("employer")}
-          >
-            <span className="hidden md:inline">
-              {translations.header.employer}
-            </span>
-            <MdBusiness className="md:hidden" size={20} />
-          </button>
-        </div>
-      )}
-      <nav className="flex flex-row items-center">
-        <div className="flex flex-row gap-[10px] items-center">
           <button
             className="circle-btn"
             onClick={() => setToggled((prev) => !prev)}

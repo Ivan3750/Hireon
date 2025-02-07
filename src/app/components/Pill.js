@@ -7,7 +7,7 @@ export default function Pill({ text, color, contentEditable }) {
   if (isDeleted || !content) return null;
   return (
     <div
-      className={`bg-[${color}] flex flex-row items-center transition-all rounded-full p-[10px] text-[0.75vw] w-fit min-w-[50px] text-center gap-[5px]`}
+      className={`bg-[${color}] flex flex-row justify-center items-center transition-all rounded-full p-[10px] text-[0.75vw] w-fit min-w-[50px] text-center gap-[5px]`}
     >
       <p
         contentEditable={contentEditable}

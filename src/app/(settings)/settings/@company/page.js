@@ -17,11 +17,11 @@ export default function Settings() {
   const [isEditable, setIsEditable] = useState(false);
   return (
     <div className="bg-[#dcdcdc] w-full aspect-auto flex flex-row justify-center">
-      <div className="w-4/5 h-full flex flex-row items-center justify-center gap-[20px] p-[20px]">
-        <div className="flex flex-col gap-[20px] h-full w-[40%] rounded-[20px]">
+      <div className="w-4/5 flex flex-row items-center justify-center gap-[20px] p-[20px]">
+        <div className="flex flex-col gap-[20px]  w-[40%] rounded-[20px]">
           <div className="bg-[#F8F8FF] h-2/3 w-full rounded-[20px] p-[20px] flex flex-col">
             <h2 className="text-[1.6vw] font-medium my-[20px] overflow-hidden">
-              Name Surname
+             Company
             </h2>
             <div className="flex flex-row justify-between w-full">
               <div className="flex flex-row gap-[20px] text-[0.9vw] font-light">
