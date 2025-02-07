@@ -1,21 +1,26 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import {FaGear, FaEnvelope, FaXmark} from 'react-icons/fa6'
-import { MdBusiness, MdWork } from "react-icons/md"; 
-
-import {useTranslate} from "../hooks/useTranslate";
+import { FaGear, FaEnvelope, FaXmark } from "react-icons/fa6";
+import { MdBusiness, MdWork } from "react-icons/md";
+import { IoLogIn, IoMenu } from "react-icons/io5";
+import { useTranslate } from "../hooks/useTranslate";
 import Notification from "./Notification";
-import noRender from '../noRender.json'
+import noRender from "../noRender.json";
+import Logo from "../../../public/logo-cropped.svg"
+
+
+
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const { translations, loading, lang, setLang } = useTranslate();
   const [selectedType, setSelectedType] = useState("applicant");
   const [isOpen, setIsOpen] = useState(false);
   const [toggled, setToggled] = useState(false);
-  const router = useRouter()
-  const pathname = usePathname()
+  const router = useRouter();
+  const pathname = usePathname();
   const verifyToken = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -43,9 +48,9 @@ export default function Header() {
   if (loading) return null;
   return (
     <header className="flex items-center justify-between w-full p-6 text-[#11181C]">
-      <div className="flex flex-row gap-[10px] self-start">
+      <div className="flex flex-row gap-[10px] self-start items-center">
         <Link href="/" className="text-[30px]">
-          Hireon
+          <Image src={Logo} width={100} height={100}/>
         </Link>
         <div className="flex flex-row">
           <div
@@ -54,31 +59,61 @@ export default function Header() {
           >
             <h2>{lang.toUpperCase()}</h2>
           </div>
-          <div className={`absolute bg-[#F8F8FF] gap-x-[20px] flex flex-row items-center justify-end h-[50px] ms-[25px] rounded-e-full cursor-pointer transition-all ${isOpen ? 'w-[170px]' : 'w-0'}`}>
-            <h2 onClick={() => {setLang("en");router.push(`${pathname}?lang=en`)}}>EN</h2>
-            <h2 onClick={() => {setLang("ua");router.push(`${pathname}?lang=ua`)}}>UA</h2>
-            <FaXmark onClick={() => {setIsOpen(false)}} className="me-[20px]"></FaXmark>
+          <div
+            className={`absolute bg-[#F8F8FF] gap-x-[20px] flex flex-row items-center justify-end h-[50px] ms-[25px] rounded-e-full cursor-pointer transition-all ${
+              isOpen ? "w-[170px]" : "w-0"
+            }`}
+          >
+            <h2
+              onClick={() => {
+                setLang("en");
+                router.push(`${pathname}?lang=en`);
+              }}
+            >
+              EN
+            </h2>
+            <h2
+              onClick={() => {
+                setLang("ua");
+                router.push(`${pathname}?lang=ua`);
+              }}
+            >
+              UA
+            </h2>
+            <FaXmark
+              onClick={() => {
+                setIsOpen(false);
+              }}
+              className="me-[20px]"
+            ></FaXmark>
           </div>
         </div>
       </div>
       {!isLogin && (
-       <div className="bg-[#219EBC] rounded-full h-[40px] flex flex-row items-center justify-center gap-[10px] p-[10px]">
-       <button
-         className={`switch ${selectedType === "applicant" ? "switch-active" : ""}`}
-         onClick={() => setSelectedType("applicant")}
-       >
-         <span className="hidden md:inline">{translations.header.applicant}</span>
-         <MdWork className="md:hidden" size={20} />
-       </button>
-       <button
-         className={`switch ${selectedType === "employer" ? "switch-active" : ""}`}
-         onClick={() => setSelectedType("employer")}
-       >
-         <span className="hidden md:inline">{translations.header.employer}</span>
-         <MdBusiness className="md:hidden" size={20} />
-       </button>
-     </div>
-     
+        <div className="bg-[#219EBC] rounded-full h-[40px]  flex-row items-center justify-center gap-[10px] p-[10px] hidden sm:flex">
+          <button
+            className={`switch ${
+              selectedType === "applicant" ? "switch-active" : ""
+            }`}
+            onClick={() => setSelectedType("applicant")}
+          >
+            <span className="hidden md:inline">
+              {translations.header.applicant}
+            </span>
+            <MdWork className="md:hidden" size={20} />
+          </button>
+          <button
+            className={`switch ${
+              selectedType === "employer" ? "switch-active" : ""
+            }`}
+            onClick={() => setSelectedType("employer")}
+          >
+            <span className="hidden md:inline">
+              {translations.header.employer}
+            </span>
+            <MdBusiness className="md:hidden" size={20} />
+          </button>
+        </div>
       )}
       <nav className="flex flex-row items-center">
         <div className="flex flex-row gap-[10px] items-center">
@@ -89,10 +124,10 @@ export default function Header() {
             <FaEnvelope size={25}></FaEnvelope>
           </button>
           <div
-            className={`w-[366px] absolute bg-[#8ecae6] border border-black top-[100px] right-[200px] rounded-md transition-all ${
-              !toggled && "opacity-0 !top-[80px]"
-            } gap-[10px] flex flex-col p-[10px] items-center`}
-          >
+  className={`w-[366px] max-w-full absolute bg-[#8ecae6] z-[80] border border-black top-[100px] right-[200px] rounded-md transition-all 
+              ${!toggled ? "hidden !top-[80px]" : ""} gap-[10px] flex flex-col p-[10px] items-center 
+              max-[1024px]:right-[50px] max-[768px]:w-[300px] max-[500px]:w-[100vw] max-[500px]:right-0`}
+>
             <p className="font-medium text-[18px]">Notifications</p>
             <hr className="border-[#11181C] w-full"></hr>
             <Notification
@@ -128,8 +163,9 @@ export default function Header() {
           {isLogin ? (
             <p>Profile</p>
           ) : (
-            <Link href="/login" className="login-signin">
-              {translations.globals.getStarted}
+            <Link href="/login" className="login-signin ">
+             <p className="md:block hidden"> {translations.globals.getStarted}</p>
+              <IoLogIn className="md:hidden"/>
             </Link>
           )}
         </div>

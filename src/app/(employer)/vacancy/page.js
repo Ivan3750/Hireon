@@ -60,60 +60,60 @@ const VacancyPage = () => {
     };
 
     return (
-        <div className="w-full bg-[#E5E5E5] p-10">
-            <div className="flex justify-center gap-14">
-                <div className="flex flex-col w-[70%]">
-                    <label className="label">Job</label>
-                    <input
-                        type="text"
-                        className="input"
-                        placeholder="Front end"
-                        value={jobTitle}
-                        onChange={(e) => setJobTitle(e.target.value)}
-                    />
-                    <label className="label">Salary</label>
-                    <input
-                        type="text"
-                        className="input"
-                        placeholder="2 000"
-                        value={salary}
-                        onChange={(e) => setSalary(e.target.value)}
-                    />
-                    <label className="label">Address</label>
-                    <input
-                        type="text"
-                        className="input"
-                        placeholder="Hireon street 1"
-                        value={address}
-                        onChange={(e) => setAddress(e.target.value)}
-                    />
-                    <label className="label">Contact</label>
-                    <input
-                        type="text"
-                        className="input"
-                        placeholder="+38 067 320 70 22"
-                        value={contact}
-                        onChange={(e) => setContact(e.target.value)}
-                    />
-                    <label className="label">Email</label>
-                    <input
-                        type="text"
-                        className="input"
-                        placeholder="hireon@gmail.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                    />
-                </div>
-                <div className="flex flex-col w-full">
-                    <label>About this job</label>
-                    <div
-                        ref={editorRef}
-                        className="border p-2 min-h-[200px] bg-white rounded-md"
-                        contentEditable
-                        dangerouslySetInnerHTML={{ __html: content }}
-                    />
-                </div>
+        <div className="w-full bg-[#E5E5E5] p-4 md:p-10">
+                 <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-14 p-4">
+            <div className="flex flex-col w-full md:w-[70%] space-y-3">
+                <label className="label">Job</label>
+                <input
+                    type="text"
+                    className="border p-2 rounded-2xl"
+                    placeholder="Front end"
+                    value={jobTitle}
+                    onChange={(e) => setJobTitle(e.target.value)}
+                />
+                <label className="label">Salary</label>
+                <input
+                    type="text"
+                    className="border p-2 rounded-2xl"
+                    placeholder="2 000"
+                    value={salary}
+                    onChange={(e) => setSalary(e.target.value)}
+                />
+                <label className="label">Address</label>
+                <input
+                    type="text"
+                    className="border p-2 rounded-2xl"
+                    placeholder="Hireon street 1"
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                />
+                <label className="label">Contact</label>
+                <input
+                    type="text"
+                    className="border p-2 rounded-2xl"
+                    placeholder="+38 067 320 70 22"
+                    value={contact}
+                    onChange={(e) => setContact(e.target.value)}
+                />
+                <label className="label">Email</label>
+                <input
+                    type="email"
+                    className="border p-2 rounded-2xl"
+                    placeholder="hireon@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
             </div>
+            <div className="flex flex-col w-full">
+                <label className="label">About this job</label>
+                <div
+                    ref={editorRef}
+                    className="border p-2 min-h-[400px] bg-white rounded-2xl text-[12px]"
+                    contentEditable
+                    dangerouslySetInnerHTML={{ __html: content }}
+                />
+            </div>
+        </div>
             <div className="my-5">
                 <button className="button-disable">Cancel</button>
                 <button className="button" onClick={handleSave}>Save</button>

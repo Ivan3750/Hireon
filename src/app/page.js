@@ -31,7 +31,7 @@ export default function Home() {
         layout="fill"
         className="absolute -z-50 top-0 blur-sm"
       ></Image>
-      <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-end gap-[50px] p-[20px] md:p-[50px]">
+      <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-end gap-[50px] p-[10px] md:p-[20px]">
         <div className="flex flex-col justify-center items-center text-center">
           <h2 className="text-[30px] md:text-[50px] font-extrabold h-[50px]">
             {translations.home.mainTitle}
@@ -50,7 +50,7 @@ export default function Home() {
                 onInput={(e) => setSearch(e.target.value.trim())}
               />
             </div>
-            <div className={`absolute w-full  ${search ? "h-[518px]" : "h-0"} bg-[#F8F8FF]  transition-all rounded-b-[20px]  overflow-hidden`}>
+            <div className={`absolute z-50 w-full max-w-[690px] ${search ? "h-[518px]" : "h-0"} bg-[#F8F8FF]  transition-all rounded-b-[20px]  overflow-hidden`}>
               {found.map((e) => (
                 <>
                   <div className="item">
@@ -71,7 +71,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-center transition-all w-full">
+        <div className="flex flex-col md:flex-row justify-between items-center transition-all w-full gap-8 ">
           <div className="flex flex-col items-start text-center md:text-left w-full md:w-1/2">
             <h2 className="text-[#023047] font-medium text-[30px] md:text-[45px]">
               {translations.home.createResume}
@@ -83,15 +83,15 @@ export default function Home() {
               {translations.home.create}
             </button>
           </div>
-          <div className="h-auto md:h-[530px] w-full md:w-[580px] rounded-[20px] bg-[#219EBC] p-[25px] text-[#F8F8FF] overflow-hidden mt-5 md:mt-0">
+          <div className="h-auto w-full md:w-[500px] rounded-[20px] bg-[#219EBC] p-[20px] text-[#F8F8FF] overflow-hidden mt-5 md:mt-0">
             <h2 className="text-[#F8F8FF] font-semibold text-[24px] md:text-[32px]">
               {translations.home.bestOffers}
             </h2>
-            <div className="flex flex-col gap-4 md:gap-0 justify-evenly h-full">
+            <div className="flex flex-col gap-5 md:gap-4 justify-between">
               {[...Array(4)].map((_, index) => (
-                <div key={index} className="flex flex-col md:flex-row justify-between gap-3">
+                <div key={index} className="flex  md:flex-row justify-between gap-3">
                   <div className="flex flex-col gap-[10px]">
-                    <p className="text-[18px] md:text-[20px]">Software developer</p>
+                    <p className="text-[16px] md:text-[18px]">Software developer</p>
                     <div className="flex flex-row gap-[10px]">
                       <small className="flex flex-row items-center gap-[5px] font-light text-[14px] md:text-[16px]">
                         <FaGlobe />London
@@ -102,10 +102,10 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-[10px] items-center">
-                    <p className="text-[18px] md:text-[20px] font-medium flex flex-row gap-[10px]">
-                      <FaMoneyBill size={30} />$999
+                    <p className="text-[16px] md:text-[18px] font-medium flex flex-row gap-[10px]">
+                      <FaMoneyBill size={20} />$999
                     </p>
-                    <button className="rounded-full bg-[#FFB703] px-[20px] py-[5px] text-[18px] md:text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">
+                    <button className="rounded-full bg-[#FFB703] px-[17px] py-[5px] text-[16px] md:text-[18px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all">
                       {translations.home.review}
                     </button>
                   </div>
@@ -115,7 +115,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className=" w-screen bg-[#F8F8FF] py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
+      <div className=" w-screen bg-[#F8F8FF] py-10 px-5 sm:py-16 pb-0 sm:px-10 lg:py-20 lg:px-14">
         <h2 className="font-medium text-[42px] text-center mb-5 max-[1537px]:text-[32px] 
           max-[1280px]:text-[28px] 
           max-[1024px]:text-[24px] 
@@ -203,7 +203,7 @@ export default function Home() {
           {translations.home.poweredBy}
         </p>
       </div>
-      <div className=" w-screen bg-[#F8F8FF] p-5 py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
+      <div className=" w-screen bg-[#F8F8FF] p-5 py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14 pb-0">
         <h2 className="font-medium text-[42px] text-left    max-[1537px]:text-[32px]  my-[15px] mx-auto
           max-[1280px]:text-[28px] 
           max-[1024px]:text-[24px] 
@@ -225,13 +225,13 @@ export default function Home() {
         </Link>
         <p className="text-[30px] mb-[10px] text-center max-[1537px]:text-[28px] 
           max-[1280px]:text-[26px] 
-          max-[1024px]:text-[22px] 
-          max-[768px]:text-[18px] 
-          max-[480px]:text-[14px]">
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[18px]">
           {translations.home.peopleWeHelped}
         </p>
-        <div className="flex flex-row gap-[30px]">
-          <div className="flex flex-col items-center">
+        <div className="flex flex-row gap-[30px] flex-wrap justify-center">
+          <div className="flex flex-col items-center max-[768px]:w-[250px]">
             <Image
               src="/person.jpg"
               alt="user"
@@ -242,7 +242,7 @@ export default function Home() {
             <p>Name</p>
             <p>Job name</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center max-[768px]:w-[250px]">
             <Image
               src="/person.jpg"
               alt="user"
@@ -253,7 +253,7 @@ export default function Home() {
             <p>Name</p>
             <p>Job name</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center max-[768px]:w-[250px]">
             <Image
               src="/person.jpg"
               alt="user"
@@ -264,7 +264,7 @@ export default function Home() {
             <p>Name</p>
             <p>Job name</p>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center max-[768px]:w-[250px]">
             <Image
               src="/person.jpg"
               alt="user"

@@ -22,7 +22,7 @@ body {
   @apply text-[#F8F8FF] bg-[#FFB703] rounded-full p-[10px] flex justify-center items-center text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer
 }
 .circle-btn {
-  @apply bg-[#F8F8FF] rounded-full w-[50px] h-[50px] flex items-center justify-center hover:bg-[#11181C] hover:text-[#F8F8FF] transition-all cursor-pointer
+  @apply bg-[#F8F8FF] rounded-full w-[40px] h-[40px] flex items-center justify-center hover:bg-[#11181C] hover:text-[#F8F8FF] transition-all cursor-pointer
 }
 .switch {
   @apply /* border border-[#F8F8FF] */ rounded-full px-[10px] text-[15px] h-[25px] text-[#F8F8FF] transition-all cursor-pointer hover:bg-[#F8F8FF] hover:text-[#11181C]
@@ -70,6 +70,7 @@ body {
   padding: 10px;
   border-radius: 20px;
   transition: 0.5s;
+  margin: 5px;
 }
 .button:hover{
   scale: 0.94;
@@ -81,6 +82,7 @@ body {
   padding: 10px;
   border-radius: 20px;
   transition: 0.5s;
+  margin: 5px;
  }
 /* a {
   @apply transition-all hover:underline // Я видалив тому що це не сучасно і на деяких частинах проекту це зайве
@@ -91,9 +93,16 @@ body {
     font-size: 12px;
   }
   .input{
-    font-size: 12.5px;
+    font-size: 12px;
+  }
+
+  .input::placeholder{
+    font-size: 12px;
   }
   .button{
+    font-size: 12px;
+  }
+  .button-disable{
     font-size: 12px;
   }
 }
@@ -106,3 +115,10 @@ body {
     @apply w-[200px] h-[125px] 
 }
 }
+
+
+
+/* D.R */
+/* *{
+  outline: 2px solid #f0f;
+} */

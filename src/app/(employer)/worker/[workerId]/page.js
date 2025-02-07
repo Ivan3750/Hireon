@@ -1,5 +1,5 @@
 import React from "react";
-import { FaMapLocationDot } from "react-icons/fa6";
+import { FaMapLocationDot, FaRegPaperPlane } from "react-icons/fa6";
 import Link from "next/link";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
@@ -14,11 +14,15 @@ const JobDetailsPage = async ({ params }) => {
   const workerId = (await params).workerId;
   return (
     <>
-      <div key={workerId} className="bg-[#F8F8FF] w-[850px] h-max p-4 rounded-2xl my-5 m-auto">
+      <div key={workerId} className="bg-[#F8F8FF] w-[90%] max-w-[800px] h-max p-4 rounded-2xl my-5 m-auto">
         <div className="flex justify-between my-2 items-center">
         <Link href="/worker" className="flex flex-row gap-[5px] items-center"><FaArrowLeft></FaArrowLeft>Back</Link>
-        <button className="bg-[#FFB703] text-[#11181C] text-[16px] h-[50px] w-[200px] rounded-2xl hover:bg-[#11181C] hover:text-[#FFB703] transition-all">Offer a job</button>
-        </div>
+<button className="bg-[#FFB703] text-[#11181C] text-[16px] h-[50px] w-[200px] rounded-2xl hover:bg-[#11181C] hover:text-[#FFB703] transition-all max-[768px]:w-[50px] max-[768px]:flex max-[768px]:justify-center max-[768px]:items-center">
+          <p className="max-[768px]:hidden">
+          Apply now 
+          </p>
+          <FaRegPaperPlane className="max-[768px]:block hidden w-[20px] h-[20px]"  width={20} height={20}/>
+        </button>        </div>
         <h2 className="font-semibold md:text-[25px] text-[#11181C] text-[20px]">Peter Petersen</h2>
         <h2 className="font-semibold md:text-[20px] text-[#11181C] text-[16px]">Junior Front End  Developer</h2>
         <div className="flex text-[14px] text-[#5D5D5D] font-normal gap-1 my-3 flex-col">
@@ -28,14 +32,20 @@ const JobDetailsPage = async ({ params }) => {
             <p>Ready to work: <span className="text-[#11181C]">Remote</span></p>
         </div>
         <h3 className="text-[#11181C] font-normal text-[16px]">Contact information</h3>
-        <div className="flex gap-2 mb-5 mt-1 items-center">
+        <div className="flex gap-2 mb-5 mt-1 items-center flex-wrap">
+          <div>
+
           <BsFillTelephoneFill />
           <p className="text-[#11181C] text-[14px] text-light cursor-pointer">+380 672 850 96 88</p>
+          </div>
+          <div>
+
           <MdEmail size={20}/>
           <p className="text-[#11181C] text-[14px] text-light cursor-pointer">emailtest@gmail.com</p>
+          </div>
         </div>
         <div>
-            <p className="text-[12px] font-light text-wrap w-full">
+            <p className="text-[10px] md:text-[12px] font-light text-wrap w-full">
             Front-end Розробник
 Ми шукаємо досвідченого Front-end розробника з глибокими знаннями Vue.js для розробки та підтримки геоінформаційної системи. Великим плюсом є досвід роботи з картографічними бібліотеками, WebGL, розробкою застосунків на Electron.
 
