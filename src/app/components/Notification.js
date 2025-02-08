@@ -6,7 +6,7 @@ export default function Notification({ text, jobName, companyName, link }) {
       <p>{jobName}</p>
       <div className="flex flex-row justify-between">
         <p>by {companyName}</p>
-        <Link href={link}>More...</Link>
+        <Link href={link} className="link">More...</Link>
       </div>
     </div>
   );

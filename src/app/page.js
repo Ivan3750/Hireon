@@ -50,17 +50,23 @@ export default function Home() {
                 onInput={(e) => setSearch(e.target.value.trim())}
               />
             </div>
-            <div className={`absolute z-50 w-full max-w-[690px] ${search ? "h-[518px]" : "h-0"} bg-[#F8F8FF]  transition-all rounded-b-[20px]  overflow-hidden`}>
-              {found.map((e) => (
-                <>
-                  <div className="item">
-                    <Link href="/job">{e.name.split(new RegExp(`(${search})`, 'gi')).map((f, i) => (
-                      f.toLowerCase() === search.toLowerCase() ? <mark key={i}>{f}</mark> : f
-                    ))}</Link>
-                  </div>
-                  <hr />
-                </>
-              ))}
+            <div
+              className={`absolute w-[722px] ${
+                search ? "h-[518px]" : "h-0"
+              } bg-[#F8F8FF] mt-[24px] transition-all rounded-b-[20px] pt-[24px]`}
+            >
+              {found.map((e) => {
+                return (
+                  <>
+                    <div className="item">
+                      <Link href={`/job/${e.name}`} className="link overflow-ellipsis">{e.name.split(new RegExp(`(${search})`, 'gi')).map((f, i) => {
+                        return f.toLowerCase() === search.toLowerCase() ? <mark key={i}>{f}</mark> : f
+                      })} by {e.by}</Link>
+                    </div>
+                    <hr></hr>
+                  </>
+                );
+              })}
               {(found.length && found.length >= 10) ? (
                 <Link className="font-medium text-center my-[10px] w-full block" href={`/job?search=${search}`}>
                   More

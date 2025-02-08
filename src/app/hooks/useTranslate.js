@@ -6,8 +6,9 @@ export function TranslateProvider({ children }) {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [translations, setTranslations] = useState(null);
-  const [lang, setLang] = useState(searchParams.get("lang") || "en");
+  const [lang, setLang] = useState(localStorage.getItem('lang') || "en");
   useEffect(() => {
+    localStorage.setItem('lang', lang)
     const loadLang = async () => {
       setLoading(true);
       try {

@@ -84,10 +84,9 @@ body {
   transition: 0.5s;
   margin: 5px;
  }
-/* a {
-  @apply transition-all hover:underline // Я видалив тому що це не сучасно і на деяких частинах проекту це зайве
+.link {
+  @apply transition-all hover:underline
 }
- */
 @media (max-width: 500px) {
   .label{
     font-size: 12px;
@@ -106,19 +105,15 @@ body {
     font-size: 12px;
   }
 }
-
-
-
-
 @media (max-width: 1400px){
   .country {
     @apply w-[200px] h-[125px] 
 }
 }
-
-
-
 /* Dont Remove it on Dev */
 /* *{
   outline: 0.4px solid #f0f;
 } */
+.item {
+  @apply p-[10px] flex flex-row gap-[5px];
+}

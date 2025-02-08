@@ -1,16 +1,11 @@
 {
   "globals": {
-    "getStarted": "Get started",
-    "back": "Back",
-    "signUp": "Sign up",
-    "logIn": "Log in",
-    "email": "Email",
-    "phone": "Phone",
-    "password": "Password"
+    "back": "Back"
   },
   "header": {
     "applicant": "Applicant",
-    "employer": "Employer"
+    "employer": "Employer",
+    "getStarted": "Get started"
   },
   "home": {
     "mainTitle": "Hireon is the best way to success",
@@ -34,8 +29,13 @@
     "peopleWeHelped": "A few people we helped:"
   },
   "login": {
+    "signUp": "Sign up",
+    "logIn": "Log in",
     "fullName": "Full name",
     "companyName": "Company name",
+    "email": "Email",
+    "phone": "Phone",
+    "password": "Password",
     "agree": "By clicking 'Get Started' you agree to Terms of Use and Privacy Policy",
     "haveAccount": "Already have an account?",
     "dontHaveAccount": "Dont have an account?"
@@ -46,6 +46,87 @@
   "workerid": {},
   "cv": {},
   "vacancy": {},
+  "settings": {
+    "age": "Age:",
+    "founded": "Founding date:",
+    "city": "City of residence:",
+    "country": "Country:",
+    "social": "Social networks",
+    "signOut": "Sign out",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "time": {
+      "fullTime": "Full-time",
+      "weekdays": "Weekdays",
+      "weekends": "Weekends"
+    },
+    "type": {
+      "remote": "Remote",
+      "onSite": "On-site",
+      "mixed": "Mixed"
+    },
+    "aboutMe": "About me:",
+    "goals": "Goals:",
+    "experience": "Experience:",
+    "aboutUs": "About us:",
+    "ceo": "CEO:",
+    "motto": "Motto:",
+    "login": "Login",
+    "ownLink": "Own link",
+    "mfa": "MFA",
+    "skills": "Skills",
+    "vacancies": "Vacancies",
+    "statistics": "Statistics",
+    "reputation": "Reputation",
+    "positives": "Positive reviews",
+    "helps": "Helps",
+    "employees": "Employees",
+    "resumes": "Resumes",
+    "investors": "Investors",
+    "friends": "Friends",
+    "children": "Child companies",
+    "jobs": "Jobs",
+    "positions": "Positions",
+    "useful": "Useful information",
+    "registration": "Date of registration:",
+    "education": "Education:",
+    "docs": "Documents",
+    "struct": "Legal structure:",
+    "legals": {
+      "sole": "Sole proprietorship",
+      "partnership": "Partnership",
+      "llc": "LLC",
+      "corp": "Corporation"
+    },
+    "educations": {
+      "bachelor": "Bachelor",
+      "master": "Master",
+      "phd": "PhD"
+    },
+    "educInst": "Educational institutions:",
+    "certification": "Certification:",
+    "cv": "My CV",
+    "portfolio": "My portfolio",
+    "website": "My website",
+    "resume": "My resumes",
+    "general": "General",
+    "notifications": "Send notifications",
+    "messages": "Send messages",
+    "theme": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "time": {
+    "years": "years",
+    "months": "months",
+    "weeks": "weeks",
+    "days": "days",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds"
+  },
   "countries": {
     "afghanistan": "Afghanistan",
     "albania": "Albania",

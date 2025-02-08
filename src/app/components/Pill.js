@@ -3,7 +3,6 @@ import { FaXmark } from "react-icons/fa6";
 export default function Pill({ text, color, contentEditable }) {
   const [content, setContent] = useState(text);
   const [isDeleted, setIsDeleted] = useState(false)
-  console.log(content)
   if (isDeleted || !content) return null;
   return (
     <div

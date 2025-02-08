@@ -1,9 +1,6 @@
 {
   "globals": {
-    "getStarted": "Розпочати",
-    "back": "Назад",
-    "signUp": "Зареєструватись",
-    "logIn": "Ввійти"
+    "back": "Назад"
   },
   "header": {
     "applicant": "Заявник",
@@ -31,13 +28,113 @@
     "makeDreamTrue": "Здійсніть свою мрію!",
     "peopleWeHelped": "Кілька людей яким ми допомогли:"
   },
-  "login": {},
+  "login": {
+    "signUp": "Зареєструватись",
+    "logIn": "Ввійти",
+    "fullName": "Повне ім'я",
+    "companyName": "Назва компанії",
+    "email": "Ел-пошта",
+    "phone": "Номер тел",
+    "password": "Пароль",
+    "agree": "Натискаючи 'Розпочати' ви погоджуєтесь з Умовами Використання та Політикою Конфіденційності.",
+    "haveAccount": "Вже маєте акаунт?",
+    "dontHaveAccount": "Не маєте акаунту?"
+  },
   "job": {},
   "jobid": {},
   "worker": {},
   "workerid": {},
   "cv": {},
   "vacancy": {},
+  "settings": {
+    "age": "Вік:",
+    "founded": "Рік заснування:",
+    "city": "Місто проживання:",
+    "country": "Країна:",
+    "social": "Соцмережі",
+    "signOut": "Вийти",
+    "delete": "Видалити",
+    "edit": "Редагувати",
+    "save": "Зберегти",
+    "time": {
+      "fullTime": "Повний робочий день",
+      "weekdays": "По будніх",
+      "weekends": "По вихідних",
+      "days": {
+        "monday": "Понеділок",
+        "tuesday": "Вівторок",
+        "wednesday": "Середа",
+        "thursday": "Четвер",
+        "friday": "П'ятниця",
+        "saturday": "Субота",
+        "sunday": "Неділя"
+      }
+    },
+    "type": {
+      "remote": "Віддалено",
+      "onSite": "На місці",
+      "mixed": "Змішано"
+    },
+    "aboutMe": "Про мене:",
+    "goals": "Цілі:",
+    "experience": "Роки досвіду:",
+    "aboutUs": "Про нас:",
+    "ceo": "Головний директор:",
+    "motto": "Девіз:",
+    "login": "Логін",
+    "ownLink": "Ваше посилання",
+    "skills": "Вміння",
+    "vacancies": "Вакансії",
+    "statistics": "Статистика",
+    "reputation": "Репутація",
+    "positives": "Позитивні відгуки",
+    "helps": "Допомога",
+    "employees": "Працівники",
+    "resumes": "Резюме",
+    "investors": "Інвестори",
+    "friends": "Друзі",
+    "children": "Дочірні компанії",
+    "jobs": "Роботи",
+    "positions": "Вільні місця",
+    "useful": "Корисна інформація",
+    "registration": "Дата реєстрації:",
+    "education": "Освіта:",
+    "docs": "Документи:",
+    "struct": "Структура:",
+    "legals": {
+      "sole": "Sole proprietorship",
+      "partnership": "Partnership",
+      "llc": "LLC",
+      "corp": "Корпорація"
+    },
+    "educations": {
+      "bachelor": "Бакалавр",
+      "master": "Магістр",
+      "phd": "Доктор наук"
+    },
+    "educInst": "Навчальні заклади:",
+    "certification": "Сертифікація:",
+    "cv": "Мій CV",
+    "portfolio": "Моє портфоліо",
+    "website": "Мій вебсайт",
+    "resume": "Мої резюме",
+    "general": "Загальне",
+    "notifications": "Надсилати сповіщення",
+    "messages": "Надсилати повідомлення",
+    "theme": "Тема",
+    "system": "Системна",
+    "light": "Світла",
+    "dark": "Темна"
+  },
+  "time": {
+    "years": "роки",
+    "months": "місяці",
+    "weeks": "тижні",
+    "days": "дні",
+    "hours": "години",
+    "minutes": "хвилини",
+    "seconds": "секунди"
+  },
   "countries": {
     "afghanistan": "Афганістан",
     "albania": "Албанія",
