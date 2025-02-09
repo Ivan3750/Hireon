@@ -5,6 +5,7 @@ import { FaMapLocationDot, FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaRegPaperPlane } from "react-icons/fa";
+import Loading from "@/app/components/Loading";
 
 const JobDetailsPage = () => {
   const { jobid } = useParams(); 
@@ -18,18 +19,19 @@ const JobDetailsPage = () => {
         setJob(data);
       } catch (error) {
         console.error("Error fetching job:", error);
+  
       }
     };
 
     fetchJob();
   }, [jobid]);
 
-  if (!job) {
-    return <p>Loading...</p>;
-  }
+
 
   return (
+    
     <div className="bg-[#F8F8FF] min-w-[850px] h-max p-4 rounded-2xl m-5 max-[300px]:m-2  box-border">
+      <Loading/>
       <div className="flex justify-between my-2 items-center">
         <Link href="/job" className="flex flex-row gap-[5px] items-center">
           <FaArrowLeft /> Back

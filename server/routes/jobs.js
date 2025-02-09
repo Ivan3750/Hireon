@@ -4,6 +4,17 @@ const jwt = require('jsonwebtoken');
 const db = require('../db');
 const router = express.Router();
 
+const authenticateToken = (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1]; 
+  if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' });
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ message: 'Invalid token.' });
+    req.user = user; 
+    next();
+  });
+};
+
 router.get("/jobs", async (req, res) => {
     try {
         const { title, city, employment, area, salary, experience } = req.query;
@@ -13,6 +24,7 @@ router.get("/jobs", async (req, res) => {
 
         if (title) {
             query += ` AND job_title LIKE ?`;
+            query += ` OR about LIKE ?`;
             params.push(`%${title}%`);
         }
         if (city) {
@@ -45,11 +57,12 @@ router.get("/jobs", async (req, res) => {
 });
 
 
-router.get("/myvacancy", async (req, res) => {
+router.get("/myvacancy", authenticateToken, async (req, res) => {
+    const userId = req.user.id; 
     try {
 
         let query = `SELECT id, job_title, address, contact, city, about, salary FROM jobs WHERE id=?`;
-        let params = [9];
+        let params = [userId];
 
         const [results] = await db.execute(query, params);
         res.json(results);

@@ -10,6 +10,9 @@ import Link from "next/link";
 import example from "./example.json";
 import {useTranslate} from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
+import Loading from "./components/Loading";
+
+
 export default function Home() {
   const [found, setFound] = useState([]);
   const [search, setSearch] = useState("");
@@ -24,6 +27,7 @@ export default function Home() {
   if (loading) return null;
   return (
     <>
+    <Loading/>
       <div className="h-full w-full absolute bg-[rgba(142,202,230,0.6)] -z-40 top-0"></div>
       <Image
         src="/bg.jpg"
@@ -33,7 +37,7 @@ export default function Home() {
       ></Image>
       <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-end gap-[50px] p-[10px] md:p-[20px]">
         <div className="flex flex-col justify-center items-center text-center">
-          <h2 className="text-[30px] md:text-[50px] font-extrabold h-[50px]">
+          <h2 className="text-[30px] md:text-[50px] font-extrabold">
             {translations.home.mainTitle}
           </h2>
           <p className="text-[16px] md:text-[20px] font-medium">
@@ -77,7 +81,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row justify-between items-center transition-all w-full gap-8 ">
+        <div className="flex flex-col md:flex-row justify-evenly items-center transition-all w-full gap-8 ">
           <div className="flex flex-col items-start text-center md:text-left w-full md:w-1/2">
             <h2 className="text-[#023047] font-medium text-[30px] md:text-[45px]">
               {translations.home.createResume}
@@ -226,7 +230,7 @@ export default function Home() {
         </h2>
         <Link href="/login" className="my-[25px]">
           <button className="bg-[#FB8500] rounded-[30px] p-[10px] block text-[20px] my-[0px] mx-auto hover:text-[#FB8500] hover:bg-[#11181C] transition-all ">
-            {translations.header.getStarted} Login
+            {translations.header.getStarted}
           </button>
         </Link>
         <p className="text-[30px] mb-[10px] text-center max-[1537px]:text-[28px] 

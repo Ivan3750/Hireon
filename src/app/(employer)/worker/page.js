@@ -67,7 +67,7 @@ const JobSearchPage = () => {
               <input type="number" className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none" min={0} max={50000} placeholder="Salary from" value={salary} onChange={(e) => setSalary(e.target.value)} />
               <input type="number" className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none" min={0} max={50} placeholder="Experience" value={experience} onChange={(e) => setExperience(e.target.value)} />
             </div>
-      <div className="bg-[#E3E3ED] w-full flex justify-center p-5 flex-row flex-wrap gap-5 items-end">
+      <div className="bg-[#E3E3ED] w-full flex justify-center p-5 flex-row flex-wrap gap-5 items-start min-h-[100vh]">
         <WorkerCard name={"Peter K."} title={"Junior Front End  Developer"} city={"Cherkassy"} age={20} typeWork={"Full Time"}
         info={"The company is looking for a WordPress Full-stack (backend-frontend)...."} country={"UA"}
         id={132} key={132}

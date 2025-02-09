@@ -13,7 +13,7 @@ async function getFlag(language) {
   return countryCode ? `https://flagcdn.com/w40/${countryCode}.png` : "";
 }
 
-// Компонент для окремої мови
+
 const LanguageItem = ({ language, index, updateLanguage, saveLanguage, removeLanguage }) => {
   const [flagUrl, setFlagUrl] = useState("");
 
@@ -46,7 +46,7 @@ const LanguageItem = ({ language, index, updateLanguage, saveLanguage, removeLan
             />
             <input
               type="text"
-              className="input"
+              className="input w-[60px]"
               placeholder="C2"
               onBlur={(e) => {
                 updateLanguage(index, "proficiency_level", e.target.value);

@@ -28,10 +28,11 @@ export default function Header() {
       return;
     }
     try {
-      const response = await fetch("/auth/verify", {
+      const response = await fetch("/api/auth/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${localStorage.token}`
         },
         body: JSON.stringify({ token }),
       });
@@ -53,17 +54,6 @@ export default function Header() {
           <Image src={Logo} width={100} height={100}/>
         </Link>
         <div className="flex flex-row">
-          <div
-            className="!bg-[#FFB703] text-[#F8F8FF] flex flex-row circle-btn z-50"
-            onClick={() => setIsOpen((prev) => !prev)}
-          >
-            <h2>{lang.toUpperCase()}</h2>
-          </div>
-          <div className={`absolute bg-[#F8F8FF] gap-x-[20px] flex flex-row items-center justify-end h-[50px] ms-[25px] rounded-e-full cursor-pointer transition-all ${isOpen ? 'w-[170px]' : 'w-0'}`}>
-            <h2 onClick={() => {setLang("en");router.push(`${pathname}?lang=en`)}}>EN</h2>
-            <h2 onClick={() => {setLang("ua");router.push(`${pathname}?lang=ua`)}}>UA</h2>
-            <FaXmark onClick={() => {setIsOpen(false)}} className="me-[20px]"></FaXmark>
-          </div>
         </div>
       </div>
       {!isLogin && (

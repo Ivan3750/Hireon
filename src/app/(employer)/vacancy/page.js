@@ -61,7 +61,7 @@ const VacancyPage = () => {
 
     return (
         <div className="w-full bg-[#E5E5E5] p-4 md:p-10">
-                 <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-14 p-4">
+                 <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-14">
             <div className="flex flex-col w-full md:w-[70%] space-y-3">
                 <label className="label">Job</label>
                 <input

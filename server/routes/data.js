@@ -2,12 +2,25 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../db');
-
+const { token } = require('morgan');
+require('dotenv').config();
 const router = express.Router();
+const JWT_SECRET = process.env.JWT_TOKEN; 
 
-router.get('/user/:userId/data', async (req, res) => {
-    const userId = req.params.userId;
-    console.log(userId)
+const authenticateToken = (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1]; 
+  if (!token) return res.status(401).json({ message: 'Access denied. No token provided.' });
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.status(403).json({ message: 'Invalid token.' });
+    req.user = user; 
+    next();
+  });
+};
+
+router.get('/user/data', authenticateToken, async (req, res) => {
+    const userId = req.user.id; // Отримуємо ID користувача з токена
+
     if (!userId) {
         return res.status(400).send('User ID is required');
     }
@@ -18,7 +31,7 @@ router.get('/user/:userId/data', async (req, res) => {
 
     try {
         const query = `
-          SELECT users.id AS user_id, users.email, users.phone, users.age, users.city, users.country,users.salary, users.job, users.additionalInfo, users.created_at, users.full_name,
+          SELECT users.id AS user_id, users.email, users.phone, users.age, users.city, users.country, users.salary, users.job, users.additionalInfo, users.created_at, users.full_name,
                  education.id AS education_id, education.education_level, education.high_school, education.education_place, 
                  education.started, education.ended, education.more_info,
                  languages.id AS language_id, languages.language_name, languages.proficiency_level,
@@ -48,7 +61,6 @@ router.get('/user/:userId/data', async (req, res) => {
             job: results[0].job,
             additionalInfo: results[0].additionalInfo,
             salary: results[0].salary
-
         };
 
         const education = {
@@ -78,8 +90,8 @@ router.get('/user/:userId/data', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-router.get('/user/:userId/language', async (req, res) => {
-    const userId = req.params.userId;
+router.get('/user/language', authenticateToken, async (req, res) => {
+    const userId = req.user.id; 
     
     if (!userId || isNaN(userId)) {
         return res.status(400).send('Invalid User ID');
@@ -110,8 +122,8 @@ router.get('/user/:userId/language', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-router.put('/user/:userId/data', async (req, res) => {
-    const userId = req.params.userId;
+router.put('/user/data', authenticateToken, async (req, res) => {
+    const userId = req.user.id; 
     console.log(req)
     const { email, job, city, salary, phone, additionalInfo} = req.body.user;
 
@@ -146,11 +158,8 @@ router.put('/user/:userId/data', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-
-
-router.put('/user/:userId/skill', async (req, res) => {
-    const userId = req.params.userId;
+router.put('/user/skill',authenticateToken, async (req, res) => {
+    const userId = req.user.id; 
     const { skill_name } = req.body;
 
     if (!userId || !skill_name) {
@@ -182,9 +191,8 @@ router.put('/user/:userId/skill', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-router.post('/user/:userId/language', async (req, res) => {
-    const userId = req.params.userId;
+router.post('/user/language',authenticateToken, async (req, res) => {
+    const userId = req.user.id; 
     const { language_name, proficiency_level } = req.body;
 
     if (!userId) {
@@ -203,9 +211,8 @@ router.post('/user/:userId/language', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-router.delete('/user/:userId/language/', async (req, res) => {
-    const { userId} = req.params;
+router.delete('/user/language/',authenticateToken, async (req, res) => {
+    const userId = req.user.id; 
     const { language_name } = req.body;
 
     if (!userId || !language_name) {
@@ -224,10 +231,8 @@ router.delete('/user/:userId/language/', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-
-router.put('/user/:userId/profile', async (req, res) => {
-    const userId = req.params.userId;
+router.put('/user/profile',authenticateToken, async (req, res) => {
+    const userId = req.user.id; 
     const { email, phone, age, city, country, full_name } = req.body;
 
     if (!userId) {
@@ -247,10 +252,8 @@ router.put('/user/:userId/profile', async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-
-router.put('/user/:userId/education', async (req, res) => {
-    const userId = req.params.userId;
+router.put('/user/education', authenticateToken ,async (req, res) => {
+    const userId = req.user.id;
     const { education_level, high_school, education_place, started, ended, more_info } = req.body;
 
     if (!userId) {

@@ -8,6 +8,7 @@ import WorkContent from "@/app/components/WorkContent";
 import LanguageManager from "@/app/components/LanguageManager";
 import SkillsContent from "@/app/components/SkillsContent";
 import axios from "axios";
+import Loading from "@/app/components/Loading";
 
 const CvPage = () => {
     const [userData, setUserData] = useState(null);
@@ -97,6 +98,7 @@ const CvPage = () => {
 
     return (
         <>
+        <Loading/>
             <div className="flex bg-[#E3E3ED] w-full justify-between gap-[70px] lg:flex-nowrap flex-wrap lg:p-14 p-2">
                 <div className="flex flex-col gap-2 w-full p-4">
                     <label className="label">Job</label>

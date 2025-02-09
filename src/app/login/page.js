@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTranslate } from "../hooks/useTranslate";
+
 export default function Auth() {
   const [isSignup, setIsSignup] = useState(true);
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ export default function Auth() {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isSignup ? "/auth/registration" : "/auth/login";
+    const url = isSignup ? "/api/auth/registration" : "/api/auth/login";
     try {
       const body = {
         userType,
