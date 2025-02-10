@@ -8,7 +8,7 @@ router.get("/worker", async (req, res) => {
     try {
         const { email, city, country, age, job, salary } = req.query;
 
-        let query = `SELECT id, full_name, email, phone, city, country, created_at, job, salary FROM users WHERE 1=1`;
+        let query = `SELECT id, full_name, age, email, phone, city, country, created_at, job, salary, additionalInfo FROM users WHERE 1=1`;
         let params = [];
 
         if (email) {
@@ -45,22 +45,17 @@ router.get("/worker", async (req, res) => {
 });
 
 
-// API для отримання даних користувача за ID
 router.get("/worker/:id", async (req, res) => {
     try {
-        const { id } = req.params;  // Отримуємо ID з параметрів запиту
+        const { id } = req.params;  
 
-        // Запит до бази даних для отримання інформації про користувача за ID
         const query = `SELECT id, full_name, email, phone, city, country, created_at, job, salary, additionalInfo, notifications FROM users WHERE id = ?`;
         
-        // Виконання запиту до бази даних
-        const [results] = await db.execute(query, [id]);
-
-        // Якщо користувач знайдений, повертаємо його дані
+       const [results] = await db.execute(query, [id]);
         if (results.length > 0) {
-            res.json(results[0]);  // Повертаємо перший результат (оскільки ID унікальний)
+            res.json(results[0]); 
         } else {
-            res.status(404).json({ error: "User not found" });  // Якщо користувач не знайдений
+            res.status(404).json({ error: "User not found" });
         }
     } catch (err) {
         console.error("Database error:", err);

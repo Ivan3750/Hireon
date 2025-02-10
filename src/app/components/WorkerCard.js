@@ -8,7 +8,7 @@ const JobCard = ({id, name, title,country, city, info, age, typeWork}) => {
                 <div>
                     <div className="flex items-center gap-4">
                     <h2 className="font-semibold text-[#11181C] md:text-[18px] text-[16px] ">{name}</h2>
-                        <Image  className="w-[20px] h-[20px]" src={`https://flagsapi.com/${country}/flat/24.png`} width={20} height={20} alt={country}></Image>
+                        <Image  className="w-[20px] h-[20px]" src={`https://flagsapi.com/${country}/flat/24.png`} width={20} height={20} alt="country"></Image>
                     </div>
                     <h2 className="font-normal text-[#6D6D6D] md:text-[18px] text-[14px]">{title}</h2>
                     <div className="flex items-center">

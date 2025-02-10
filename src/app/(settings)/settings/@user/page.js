@@ -7,19 +7,11 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaHouse } from "react-icons/fa6";
 import { MdSunny } from "react-icons/md";
 import { HiMiniMoon } from "react-icons/hi2";
-import {
-  FaFacebook,
-  FaYoutube,
-  FaLinkedin,
-  FaTiktok,
-  FaInstagram,
-  FaTwitter,
-  FaGithub,
-} from "react-icons/fa6";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import Pill from "@/app/components/Pill";
 import { useTranslate } from "@/app/hooks/useTranslate";
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
+
 export default function Settings() {
   const { translations, loading, lang, setLang } = useTranslate();
   if (loading) return null;
@@ -39,31 +31,34 @@ export default function Settings() {
     }
   }, [darkMode]);
   return (
-    <div className="bg-[#dcdcdc] w-full aspect-auto flex flex-row justify-center">
-      <div className="w-4/5  flex flex-row items-center justify-center gap-[20px] p-[20px]">
-        <div className="flex flex-col gap-[20px]  w-[40%] rounded-[20px]">
+    <div className="bg-[#dcdcdc] w-full  flex flex-row h-full">
+      <div className="w-full flex flex-row items-center  gap-[20px] p-[20px]  max-[768px]:flex-wrap">
+        <div className="flex flex-col gap-[20px]   rounded-[20px]">
           <div className="bg-[#F8F8FF]  w-full rounded-[20px] p-[20px] flex flex-col">
-            <h2 className="text-[1.6vw] font-medium my-[15px] overflow-hidden">
+            <h2 className="text-[1.6vw] font-medium my-[15px] ">
               Name Surname
             </h2>
             <div className="flex flex-row justify-between w-full">
-              <div className="flex flex-row gap-[20px] text-[0.9vw] font-light">
+              <div className="flex flex-row gap-[20px]  font-light">
                 <ul className="text-[#808080] gap-[3px] flex flex-col">
                   <li key={1} className="flex items-center gap-1">
-                    <FaHouse className="text-[18px]" /> {translations.settings.city}:
+                    <FaHouse className="text-[18px]" />{" "}
+                    {translations.settings.city}:
                   </li>
                   <li key={2} className="flex items-center gap-1">
-                    <FaMapMarkerAlt className="text-[18px]" /> {translations.settings.country}:
+                    <FaMapMarkerAlt className="text-[18px]" />{" "}
+                    {translations.settings.country}:
                   </li>
                   <li key={3} className="flex items-center gap-1">
-                    <MdOutlineMail className="text-[20px]" /> {translations.login.email}:
+                    <MdOutlineMail className="text-[20px]" />{" "}
+                    {translations.login.email}:
                   </li>
-                  <li  key={4}className="flex items-center gap-1">
-                    <FaPhoneAlt className="text-[18px]" />{translations.login.phone}:
+                  <li key={4} className="flex items-center gap-1">
+                    <FaPhoneAlt className="text-[18px]" />
+                    {translations.login.phone}:
                   </li>
                 </ul>
 
-              
                 <ul className="text-[#808080] gap-[3px] flex flex-col">
                   <li
                     className="font-normal text-[14px]"
@@ -100,36 +95,10 @@ export default function Settings() {
               ></Image>
             </div>
             <div className="flex flex-row justify-between w-full py-[10px] items-end">
-              {/*   <div className="w-1/2">
-                <h2 className="text-[1.4vw] font-medium my-[20px] text-nowrap">
-                  Social networks
-                </h2>
-                <div className="flex flex-row text-[1.3vw] gap-[10px] p-[5px]">
-                  <FaFacebook
-                    color="#1877F2"
-                    className="hover:scale-110 transition-all cursor-pointer"
-                  />
-                  <FaYoutube
-                    color="#FF0000"
-                    className="hover:scale-110 transition-all cursor-pointer"
-                  />
-                  <FaLinkedin
-                    color="#0077B5"
-                    className="hover:scale-110 transition-all cursor-pointer"
-                  />
-                  <FaTiktok className="hover:scale-110 transition-all cursor-pointer" />
-                  <FaInstagram className="hover:scale-110 transition-all cursor-pointer" />
-                  <FaTwitter
-                    color="#1DA1F2"
-                    className="hover:scale-110 transition-all cursor-pointer"
-                  />
-                  <FaGithub className="hover:scale-110 transition-all cursor-pointer" />
-                </div>
-              </div> */}
               <div className="w-1/2 flex flex-col gap-[10px]">
                 <div className="w-full">
                   <button className="bg-[#FFB703] rounded-2xl w-full p-[5px] text-[1vw] hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-nowrap">
-                  {translations.settings.signOut}
+                    {translations.settings.signOut}
                   </button>
                 </div>
                 <div className="w-full flex flex-row gap-[10px]">
@@ -146,10 +115,9 @@ export default function Settings() {
                     {isEditable ? "Save" : "Edit"}
                   </button>
                   <button className="bg-[#F47174] rounded-2xl w-1/2 p-[5px] text-[0.9vw] hover:text-[#F47174] hover:bg-[#11181C] transition-all">
-                  {translations.settings.delete}
+                    {translations.settings.delete}
                   </button>
                 </div>
-                
               </div>
               <div className="flex flex-col text-[0.8vw] gap-2">
                 <div className="flex flex-row text-center">
@@ -166,7 +134,6 @@ export default function Settings() {
                     className="bg-[#FFB703] rounded-2xl w-full p-[5px] text-[1vw] hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-nowrap "
                   >
                     My portfolio
-        
                   </Link>
                 </div>
               </div>
@@ -191,11 +158,13 @@ export default function Settings() {
               </div>
               <div className="flex flex-col">
                 <h3 className="text-[1.3vw] font-light">20</h3>
-                <h3 className="text-[0.9vw] text-[#808080] font-light">Clicks</h3>
+                <h3 className="text-[0.9vw] text-[#808080] font-light">
+                  Clicks
+                </h3>
               </div>
             </div>
           </div>
-          
+
           <div className="bg-[#F8F8FF]  w-full rounded-[20px] p-[20px] grid gap-[20px] grid-rows-2 grid-cols-2">
             <div className="flex flex-col w-full">
               <h2 className="text-[1.3vw] font-medium">Password</h2>
@@ -225,7 +194,7 @@ export default function Settings() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-[20px] h-full w-[60%] rounded-[20px]">
+        <div className="flex flex-col gap-[20px] h-full  rounded-[20px]">
           <div className="bg-[#F8F8FF]  w-full rounded-[20px] p-[20px]">
             <h2 className="text-[1.3vw] font-medium pb-3">Skills</h2>
             <div className="flex flex-row gap-[10px] flex-wrap pb-3">
@@ -280,24 +249,22 @@ export default function Settings() {
             </div>
           </div>
           <div className="bg-[#F8F8FF]  w-full rounded-[20px] p-[20px] flex flex-col">
-            <h2 className="text-[1.3vw] font-medium w-fit mb-2">
-              Education
-            </h2>
+            <h2 className="text-[1.3vw] font-medium  mb-2">Education</h2>
             <div className="flex flex-row gap-[20px] items-center">
               <div className="flex flex-col text-[0.8vw] font-light">
-                <div className="flex flex-row gap-[5px] w-fit">
+                <div className="flex flex-row gap-[5px] ">
                   <p className="text-[#808080]">Education:</p>
                   <p contentEditable={isEditable}>Higher(2)</p>
                 </div>
-                <div className="flex flex-row gap-[5px] w-fit">
+                <div className="flex flex-row gap-[5px] ">
                   <p className="text-[#808080]">Date of registration:</p>
                   <p contentEditable={isEditable}>7.02.2025</p>
                 </div>
-                <div className="flex flex-row gap-[5px] w-fit">
+                <div className="flex flex-row gap-[5px] ">
                   <p className="text-[#808080]">Degree:</p>
                   <p contentEditable={isEditable}>PhD</p>
                 </div>
-                <div className="flex flex-row gap-[5px] w-fit">
+                <div className="flex flex-row gap-[5px] ">
                   <p className="text-[#808080]">Certification:</p>
                   <p contentEditable={isEditable}>Certificate</p>
                 </div>
@@ -312,13 +279,16 @@ export default function Settings() {
             </div>
             <div className="text-[1vw] flex flex-row items-center gap-[10px]">
               <label>Theme</label>
-              <div className="flex items-center cursor-pointer hover:scale-[0.96]" onClick={() => setDarkMode(!darkMode)}>
-      {darkMode ? (
-        <MdSunny className="text-[30px] text-[#FFB703]" />
-      ) : (
-        <HiMiniMoon className="text-[30px] text-[#023047]" />
-      )}
-    </div>
+              <div
+                className="flex items-center cursor-pointer hover:scale-[0.96]"
+                onClick={() => setDarkMode(!darkMode)}
+              >
+                {darkMode ? (
+                  <MdSunny className="text-[30px] text-[#FFB703]" />
+                ) : (
+                  <HiMiniMoon className="text-[30px] text-[#023047]" />
+                )}
+              </div>
             </div>
           </div>
         </div>

@@ -51,7 +51,7 @@ export default function Header() {
     <header className="flex items-center justify-between w-full p-6 text-[#11181C]">
       <div className="flex flex-row gap-[10px] self-start items-center">
         <Link href="/" className="text-[30px]">
-          <Image src={Logo} width={100} height={100}/>
+          <Image src={Logo} width={100} height={100} alt="HIREON"/>
         </Link>
         <div className="flex flex-row">
         </div>

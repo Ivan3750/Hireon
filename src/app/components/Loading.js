@@ -40,7 +40,7 @@ export default function Loading() {
           <div className="loadingBox w-full h-full opacity-0">
             <Image
               src={Logo}
-              alt="Logo"
+              alt="HIREON"
               className="splashLogo w-1/2 mb-12 mx-auto"
             />
             <div className="loadingBarContainer w-full bg-gray-200 h-2 mt-12">

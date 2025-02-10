@@ -17,7 +17,7 @@ const JobSearchPage = () => {
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        `/api/worker?title=${searchQuery}&city=${city}&employment=${employmentType}&area=${professionalArea}&salary=${salary}&experience=${experience}`
+        `/api/worker?job=${searchQuery}&city=${city}&employment=${employmentType}&area=${professionalArea}&salary=${salary}&experience=${experience}`
       );
       const data = await response.json();
       setJobs(data); // Update the state with the fetched jobs
@@ -101,7 +101,7 @@ const JobSearchPage = () => {
               city={job.city}
               age={job.age}
               typeWork={job.employment_type}
-              info={job.about}
+              info={job.additionalInfo}
               country={job.country}
               id={job.id}
             />
