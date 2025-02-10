@@ -10,7 +10,6 @@ import Link from "next/link";
 import example from "./example.json";
 import {useTranslate} from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
-import Loading from "./components/Loading";
 
 
 export default function Home() {
@@ -27,7 +26,7 @@ export default function Home() {
   if (loading) return null;
   return (
     <>
-    <Loading/>
+    
       <div className="h-full w-full absolute bg-[rgba(142,202,230,0.6)] -z-40 top-0"></div>
       <Image
         src="/bg.jpg"

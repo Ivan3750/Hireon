@@ -49,16 +49,16 @@ export default function Settings() {
             <div className="flex flex-row justify-between w-full">
               <div className="flex flex-row gap-[20px] text-[0.9vw] font-light">
                 <ul className="text-[#808080] gap-[3px] flex flex-col">
-                  <li className="flex items-center gap-1">
+                  <li key={1} className="flex items-center gap-1">
                     <FaHouse className="text-[18px]" /> {translations.settings.city}:
                   </li>
-                  <li className="flex items-center gap-1">
+                  <li key={2} className="flex items-center gap-1">
                     <FaMapMarkerAlt className="text-[18px]" /> {translations.settings.country}:
                   </li>
-                  <li className="flex items-center gap-1">
+                  <li key={3} className="flex items-center gap-1">
                     <MdOutlineMail className="text-[20px]" /> {translations.login.email}:
                   </li>
-                  <li className="flex items-center gap-1">
+                  <li  key={4}className="flex items-center gap-1">
                     <FaPhoneAlt className="text-[18px]" />{translations.login.phone}:
                   </li>
                 </ul>
