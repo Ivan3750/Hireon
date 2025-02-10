@@ -3,6 +3,7 @@ const next = require('next');
 const authRoutes = require("./server/routes/auth");
 const jobRoute = require("./server/routes/jobs");
 const dataUser = require("./server/routes/data");
+const workertRoute = require("./server/routes/worker");
 const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
@@ -35,6 +36,7 @@ app.prepare().then(() => {
   server.use('/api', jobRoute);
   server.use('/api', dataUser);
   server.use('/api/auth', authRoutes);
+  server.use('/api', workertRoute);
 
   server.all('*', (req, res) => {
     return handle(req, res);
