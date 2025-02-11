@@ -1,7 +1,5 @@
 import Link from "next/link";
 
-
-
 const Footer = () => {
   return (
     <>
@@ -9,9 +7,8 @@ const Footer = () => {
         <div className="footer__addr">
           <h3 className="footer__logo">HIREON</h3>
 
-
           <address>
-We can help you with Link job.
+            We can help you with Link job.
             <Link className="footer__btn" href="mailto:example@gmail.com">
               Email Us
             </Link>
@@ -78,8 +75,7 @@ We can help you with Link job.
           <p>&copy; 2025 Hireon. All rights reserved.</p>
 
           <div className="legal__links">
-            <span>
-            </span>
+            <span></span>
           </div>
         </div>
       </footer>

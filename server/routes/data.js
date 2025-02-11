@@ -20,9 +20,9 @@ const authenticateToken = (req, res, next) => {
 
 router.get('/user/data', authenticateToken, async (req, res) => {
     const userId = req.user.id; // Отримуємо ID користувача з токена
-
+    console.log(userId)
     if (!userId) {
-        return res.status(400).send('User ID is required');
+        return res.status(400).send('User ID is required', userId);
     }
 
     if (isNaN(userId)) {

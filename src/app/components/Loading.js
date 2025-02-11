@@ -23,7 +23,7 @@ export default function Loading() {
 
     setTimeout(() => {
       splashScreen.style.transition = 'top 1.5s ease';
-      splashScreen.style.top = '-100%';
+      splashScreen.style.display = 'none';
     }, 3000);
 
     
