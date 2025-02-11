@@ -68,10 +68,10 @@ export default function Settings() {
             <div className="flex flex-col md:flex-row gap-4 font-light">
               <ul className="text-[#808080] gap-1 flex flex-col">
                 <li className="flex items-center gap-1">
-                  <FaHouse className="text-lg" /> {translations.settings.city}:
+                  <FaHouse className="text-lg" /> {translations.settings.city}
                 </li>
                 <li className="flex items-center gap-1">
-                  <FaMapMarkerAlt className="text-lg" /> {translations.settings.country}:
+                  <FaMapMarkerAlt className="text-lg" /> {translations.settings.country}
                 </li>
                 <li className="flex items-center gap-1">
                   <MdOutlineMail className="text-lg" /> {translations.login.email}:
@@ -120,7 +120,7 @@ export default function Settings() {
                     setIsEditable((prev) => !prev);
                   }}
                 >
-                  {isEditable ? "Save" : "Edit"}
+                  {isEditable ? translations.settings.save : translations.settings.edit}
                 </button>
                 <button className="bg-[#F47174] rounded-[20px] w-1/2 xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#F47174] hover:bg-[#11181C] transition-all">
                   {translations.settings.delete}
@@ -132,48 +132,48 @@ export default function Settings() {
                 href="/cv"
                 className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
               >
-                My CV
+                {translations.settings.cv}
               </Link>
               <Link
                 href="/portfolio"
                 className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
               >
-                My portfolio
+                {translations.settings.portfolio}
               </Link>
             </div>
           </div>
         </div>
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium">Statistics</h2>
+          <h2 className="text-lg md:text-xl font-medium">{translations.settings.statistics}</h2>
           <div className="flex flex-row items-center gap-6">
             <div className="flex flex-col">
               <h3 className="text-lg font-light">100%</h3>
-              <h3 className="text-sm text-[#808080] font-light">Rating</h3>
+              <h3 className="text-sm text-[#808080] font-light">{translations.settings.reputation}</h3>
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">5</h3>
-              <h3 className="text-sm text-[#808080] font-light">Jobs</h3>
+              <h3 className="text-sm text-[#808080] font-light">{translations.settings.jobs}</h3>
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">100</h3>
-              <h3 className="text-sm text-[#808080] font-light">View</h3>
+              <h3 className="text-sm text-[#808080] font-light">{translations.settings.views}</h3>
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">20</h3>
-              <h3 className="text-sm text-[#808080] font-light">Clicks</h3>
+              <h3 className="text-sm text-[#808080] font-light">{translations.settings.resumes}</h3>
             </div>
           </div>
         </div>
 
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 grid gap-4 grid-cols-1 md:grid-cols-2 h-full">
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">Password</h2>
+            <h2 className="text-lg md:text-xl font-medium">{translations.settings.password}</h2>
             <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
               ••••••••••••••••
             </h2>
           </div>
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">Own link</h2>
+            <h2 className="text-lg md:text-xl font-medium">{translations.settings.ownLink}</h2>
             <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
               iamaworker
             </h2>
@@ -190,7 +190,7 @@ export default function Settings() {
       </div>
       <div className="flex flex-col gap-4 h-full rounded-[20px] w-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium pb-3">Skills</h2>
+          <h2 className="text-lg md:text-xl font-medium pb-3">{translations.settings.skills}</h2>
           <div className="flex flex-row gap-2 flex-wrap pb-3">
             <Pill color="#FFB703" contentEditable={isEditable} text="C++" />
             <Pill color="#FFB703" contentEditable={isEditable} text="React" />
@@ -238,9 +238,9 @@ export default function Settings() {
           </div>
         </div> */}
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col gap-3 h-full">
-          <h2 className="text-lg md:text-xl font-medium">General</h2>
+          <h2 className="text-lg md:text-xl font-medium">{translations.settings.general}</h2>
           <div className="text-sm flex flex-row items-center gap-2">
-            <label>Send notifications</label>
+            <label>{translations.settings.notifications}</label>
             <input type="checkbox" className="w-4 h-4" />
           </div>
           <div className="text-sm flex flex-row items-center gap-2">
