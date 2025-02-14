@@ -1,6 +1,9 @@
+'use client'
 import Link from "next/link";
-
+import { usePathname } from "next/navigation";
+import noRender from "../noRender.json";
 const Footer = () => {
+  if (noRender.includes(usePathname())) return null;
   return (
     <>
       <footer className="footer">

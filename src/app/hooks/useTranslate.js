@@ -3,10 +3,9 @@ import { useSearchParams } from "next/navigation";
 import { useState, useEffect, useContext, createContext } from "react";
 const TranslateContext = createContext(null);
 export function TranslateProvider({ children }) {
-  const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   const [translations, setTranslations] = useState(null);
-  const [lang, setLang] = useState(localStorage.getItem('lang') || "en");
+  const [lang, setLang] = useState(window?.localStorage?.getItem('lang') || "en");
   useEffect(() => {
     localStorage.setItem('lang', lang)
     const loadLang = async () => {

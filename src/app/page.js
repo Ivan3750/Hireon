@@ -3,30 +3,28 @@ import {
   FaGlobe,
   FaMoneyBill,
   FaHouse,
+  FaMagnifyingGlass
 } from "react-icons/fa6";
 import Image from "next/image";
 import example from "./example.json";
 import { useTranslate } from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import SearchBar from "@/app/components/SearchBar"
-import Loading from "./components/Loading";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
 export default function Home() {
-  
-  
   const [found, setFound] = useState([]);
   const [search, setSearch] = useState("");
-  const { translations, loading, lang, setLang } = useTranslate();
-
+  const { translations, loading } = useTranslate();
   useEffect(() => {
     AOS.init({
       duration: 1000, 
       once: false, 
     });
   }, []);
-
+  const [hovered, setHovered] = useState(false);
+  const [hoveredId, setHoveredId] = useState(null);
   useEffect(() => {
     const filtered = example.items.filter((e) => {
       return e.name.toLowerCase().includes(search.toLowerCase());
@@ -34,11 +32,8 @@ export default function Home() {
     filtered.length > 10 ? setFound(filtered.slice(0, 10)) : setFound(filtered);
   }, [search]);
   if (loading) return null;
-  
-
   return (
     <>
-    <Loading/>
       <div className="h-full w-full absolute bg-[rgba(142,202,230,0.6)] -z-40 top-0"></div>
       <Image
         src="/work.jpg"
@@ -178,8 +173,17 @@ export default function Home() {
 
        
         </div>
+        <h2
+          className="font-medium text-[42px] text-center mt-5 max-[1537px]:text-[32px] 
+          max-[1280px]:text-[28px] 
+          max-[1024px]:text-[24px] 
+          max-[768px]:text-[20px] 
+          max-[480px]:text-[16px]"
+        >
+          {translations.home.payForTravel}
+        </h2>
       </div>
-     {/*  <div className=" w-screen  bg-[#F8F8FF] py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
+      <div className=" w-screen  bg-[#F8F8FF] py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
         <h2
           className="font-medium text-[38px] text-left w-3/4 my-0 mx-auto
           max-[1537px]:text-[32px] 
@@ -214,10 +218,10 @@ export default function Home() {
           autoPlay
           muted
         >
-           <source src={video} type="video/mp4"></source> 
+           {/* <source src={video} type="video/mp4"></source>  */}
         </video>
         <p
-          className="font-light text-[24px] text-left w-3/4   max-[1537px]:text-[20px] mt-4
+          className="font-light text-[24px] text-left w-3/4 max-[1537px]:text-[20px] mt-4
           max-[1280px]:text-[18px] 
           max-[1024px]:text-[17px] 
           max-[768px]:text-[15px] 
@@ -225,26 +229,37 @@ export default function Home() {
         >
           {translations.home.poweredBy}
         </p>
-      </div> */}
-      <div className=" w-screen bg-[#F8F8FF] p-5 py-5 px-5 sm:py-5 sm:px-10 lg:py-20 lg:px-14 pb-0">
-    {/*     <h2
-          className="font-medium text-[42px] text-left    max-[1537px]:text-[32px]  my-[15px] mx-auto
+      </div>
+      <div className="w-screen bg-[#F8F8FF] pb-[100px] whitespace-nowrap will-change-transform ">
+        <h2
+          className="font-medium text-[42px] text-left max-[1537px]:text-[32px] my-[15px] mx-auto
           max-[1280px]:text-[28px] 
           max-[1024px]:text-[24px] 
           max-[768px]:text-[20px] 
-          max-[480px]:text-[16px]"
+          max-[480px]:text-[16px]
+          w-1/2
+          "
         >
           {translations.home.dontWait}
         </h2>
         <h2
-          className="font-medium text-[42px] text-right  max-[1537px]:text-[32px] my-[15px] mx-auto 
-          max-[1280px]:text-[28px] 
-          max-[1024px]:text-[24px] 
-          max-[768px]:text-[20px] 
-          max-[480px]:text-[16px]"
+          className="font-medium text-[42px] text-right max-[1537px]:text-[32px] my-[15px] mx-auto 
+          max-[1280px]:text-[28px]
+          max-[1024px]:text-[24px]
+          max-[768px]:text-[20px]
+          max-[480px]:text-[16px]
+          w-1/2
+          "
         >
           {translations.home.makeDreamTrue}
-        </h2> */}
+        </h2>
+        <Link href="/login" className="my-[25px]">
+          <button
+            className="bg-[#FB8500] rounded-[30px] p-[10px] block text-[20px] my-[0px] mx-auto hover:text-[#FB8500] hover:bg-[#11181C] transition-all"
+          >
+            {translations.header.getStarted}
+          </button>
+        </Link>
         <p
           className="text-[30px] mb-[10px] text-center max-[1537px]:text-[28px] 
           max-[1280px]:text-[26px] 
@@ -254,52 +269,51 @@ export default function Home() {
         >
           {translations.home.peopleWeHelped}
         </p>
-        <div className="flex flex-row gap-[30px] flex-wrap justify-center" data-aos="fade-up">
-          <div className="flex flex-col items-center max-[768px]:w-[250px]">
-            <Image
-              src="/Emil.jpg"
-              alt="user"
-              width={300}
-              height={175}
-              className="mb-[5px] rounded-[20px] h-[400px] w-auto"
-            ></Image>
-            <p className="text-[20px] font-medium">Emil</p>
-            <p>Marine Biologist</p>
-          </div>
-          <div className="flex flex-col items-center max-[768px]:w-[250px]">
-            <Image
-              src="/Sophie.jpg"
-              alt="user"
-              width={300}
-              height={175}
-              className="mb-[5px] rounded-[20px] h-[400px] w-auto"
-            ></Image>
-            <p className="text-[20px] font-medium">Sophie</p>
-            <p>Documentary Filmmaker</p>
-          </div>
-          <div className="flex flex-col items-center max-[768px]:w-[250px]">
-            <Image
-              src="/Matteo.jpg"
-              alt="user"
-              width={300}
-              height={175}
-              className="mb-[5px] rounded-[20px] h-[400px] w-auto"
-            ></Image>
-            <p className="text-[20px] font-medium">Matteo</p>
-            <p>Automotive Engineer</p>
-          </div>
-          <div className="flex flex-col items-center max-[768px]:w-[250px]">
-            <Image
-              src="/Lena.jpg"
-              alt="user"
-              width={300}
-              height={175}
-              className="mb-[5px] rounded-[20px] h-[400px] w-auto"
-            ></Image>
-            <p className="text-[20px] font-medium">Lena</p>
-            <p>Architect</p>
-          </div>
+        {/*цей блок має бути 100% ширини екрану*/}
+        <div
+          className={`flex flex-row gap-[20px] flex-nowrap w-full whitespace-nowrap will-change-transform !overflow-visible ${
+            !hovered && "animate-[scroll_10s_infinite_linear]"
+          }`}
+        >
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={i}
+              id={i}
+              className={`flex flex-col items-center text-[20px] flex-shrink-0 p-4 rounded-[20px] cursor-pointer transition-all
+            ${hoveredId === i && "scale-105 shadow-md"}`} // Apply hover effect conditionally
+              onMouseEnter={() => {
+                setHoveredId(i); // Set hoveredId to the current item's id on mouse enter
+              }}
+              onMouseLeave={() => {
+                setHoveredId(null); // Reset hoveredId when mouse leaves
+              }}
+            >
+              <Image
+                src="/person.jpg"
+                alt="user"
+                width={300}
+                height={225}
+                className="mb-[5px] rounded-[20px]"
+              />
+              <p>
+                {((Math.random() * 0xffffff) << 0)
+                  .toString(16)
+                  .padStart(6, "0")}
+              </p>
+              <p className="font-light">
+                {((Math.random() * 0xffffff) << 0)
+                  .toString(16)
+                  .padStart(6, "0")}
+              </p>
+              <p className="font-light">
+                {((Math.random() * 0xffffff) << 0)
+                  .toString(16)
+                  .padStart(6, "0")}
+              </p>
+            </div>
+          ))}
         </div>
+        {/*цей блок має бути 100% ширини екрану*/}
       </div>
     </>
   );

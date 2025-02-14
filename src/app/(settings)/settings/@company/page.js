@@ -8,17 +8,15 @@ import { FaArrowUpRightFromSquare,FaPhoneAlts,FaHouse } from "react-icons/fa6";
 import Pill from "@/app/components/Pill";
 import { useTranslate } from "@/app/hooks/useTranslate";
 import { useState, useEffect } from "react";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarker, FaPhone } from "react-icons/fa";
 
 export default function Settings() {
-  const { translations, loading: translationsLoading } = useTranslate();
+  const { translations, loading} = useTranslate();
   const [userData, setUserData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [apiLoad, setApiLoad] = useState(true)
+
   const [isEditable, setIsEditable] = useState(false);
-  const [darkMode, setDarkMode] = useState(
-    typeof window !== "undefined" && localStorage.getItem("theme") === "dark"
-  );
+  const [darkMode, setDarkMode] = useState(window?.localStorage?.getItem("theme") || "dark")
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -36,10 +34,9 @@ export default function Settings() {
 
         const data = await response.json();
         setUserData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      } catch (err) {} 
+      finally {
+        setApiLoad(false);
       }
     };
 
@@ -55,12 +52,9 @@ export default function Settings() {
       localStorage.setItem("theme", "light");
     }
   }, [darkMode]);
-
-  /* if (translationsLoading || loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>; */
-
+  if (loading) return null
   return (
-    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-max">
+    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-full">
       <div className="flex flex-col gap-4 rounded-[20px] w-full h-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col justify-between items-stretch h-full">
           <h2 className="text-lg md:text-xl font-medium my-2">{userData.name}</h2>
@@ -71,13 +65,13 @@ export default function Settings() {
                   <FaHouse className="text-lg" /> {translations.settings.city}
                 </li>
                 <li className="flex items-center gap-1">
-                  <FaMapMarkerAlt className="text-lg" /> {translations.settings.country}
+                  <FaMapMarker className="text-lg" /> {translations.settings.country}
                 </li>
                 <li className="flex items-center gap-1">
                   <MdOutlineMail className="text-lg" /> {translations.login.email}:
                 </li>
                 <li className="flex items-center gap-1">
-                  <FaPhoneAlt className="text-lg" /> {translations.login.phone}:
+                  <FaPhone className="text-lg" /> {translations.login.phone}:
                 </li>
               </ul>
 
@@ -155,8 +149,8 @@ export default function Settings() {
               <h3 className="text-sm text-[#808080] font-light">{translations.settings.jobs}</h3>
             </div>
             <div className="flex flex-col">
-              <h3 className="text-lg font-light">100</h3>
-              <h3 className="text-sm text-[#808080] font-light">{translations.settings.views}</h3>
+              <h3 className="text-lg font-light">100%</h3>
+              <h3 className="text-sm text-[#808080] font-light">{translations.settings.positives}</h3>
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">20</h3>
@@ -167,7 +161,7 @@ export default function Settings() {
 
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 grid gap-4 grid-cols-1 md:grid-cols-2 h-full">
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">{translations.settings.password}</h2>
+            <h2 className="text-lg md:text-xl font-medium">{translations.login.password}</h2>
             <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
               ••••••••••••••••
             </h2>

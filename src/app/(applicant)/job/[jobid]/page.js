@@ -5,7 +5,7 @@ import { FaMapLocationDot, FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { FaRegPaperPlane } from "react-icons/fa";
-import Loading from "@/app/components/Loading";
+import Loading from "@/app/loading";
 
 const JobDetailsPage = () => {
   const { jobid } = useParams(); 

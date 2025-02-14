@@ -44,7 +44,16 @@
   "jobid": {},
   "worker": {},
   "workerid": {},
-  "cv": {},
+  "notFound": {
+    "notFound": "Could not find requested resource",
+    "back": "Go back"
+  },
+  "cv": {
+    "job": "Job",
+    "ready": "Ready to work in",
+    "salary": "Salary",
+    "additional": "Add additional information"
+  },
   "vacancy": {},
   "settings": {
     "age": "Age:",

@@ -44,6 +44,10 @@
   "jobid": {},
   "worker": {},
   "workerid": {},
+  "notFound": {
+    "notFound": "не вдалося знайти потрібний ресурс",
+    "back": "Повернутися"
+  },
   "cv": {},
   "vacancy": {},
   "settings": {

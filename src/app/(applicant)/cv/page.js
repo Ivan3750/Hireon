@@ -7,8 +7,8 @@ import EducationContent from "@/app/components/EducationContent";
 import WorkContent from "@/app/components/WorkContent";
 import LanguageManager from "@/app/components/LanguageManager";
 import SkillsContent from "@/app/components/SkillsContent";
+import { useTranslate } from "@/app/hooks/useTranslate";
 import axios from "axios";
-import Loading from "@/app/components/Loading";
 
 const CvPage = () => {
     const [userData, setUserData] = useState(null);
@@ -19,11 +19,11 @@ const CvPage = () => {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
     const [additionalInfo, setAdditionalInfo] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [pageLoading, setPageLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalContent, setModalContent] = useState("");
     const [error, setError] = useState(null);  // Для збереження помилок
-
+    const { translations, loading, lang, setLang } = useTranslate();
     useEffect(() => {
         fetchUserData();
     }, []);
@@ -45,7 +45,7 @@ const CvPage = () => {
             setError("Error fetching user data.");
             console.error("Error fetching user data:", error);
         } finally {
-            setLoading(false);
+            setPageLoading(false);
         }
     };
 
@@ -59,7 +59,7 @@ const CvPage = () => {
         else if (name === "additionalInfo") setAdditionalInfo(value);
    
         try {
-            setLoading(true);
+            setPageLoading(true);
             await axios.put("/api/user/8/data", {
                 user: {
                     job: name === "job" ? value : job,
@@ -75,7 +75,7 @@ const CvPage = () => {
             setError("Error updating data.");
             console.error("Error updating user data:", error);
         } finally {
-            setLoading(false);
+            setPageLoading(false);
         }
     };
    
@@ -95,31 +95,31 @@ const CvPage = () => {
         setIsModalOpen(false);
         setModalContent("");
     };
-
+    if (loading) return null
     return (
         <>
         <Loading/>
             <div className="flex bg-[#E3E3ED] w-full justify-between gap-[70px] lg:flex-nowrap flex-wrap lg:p-14 p-2">
                 <div className="flex flex-col gap-2 w-full p-4">
-                    <label className="label">Job</label>
+                    <label className="label">{translations.cv.job}</label>
                     <input 
                         type="text" 
                         className="input" 
-                        placeholder="Job" 
+                        placeholder={translations.cv.job} 
                         value={job} 
                         onChange={handleChange} 
                         name="job" 
                     />
-                    <label className="label">Ready to work in</label>
+                    <label className="label">{translations.cv.ready}</label>
                     <input 
                         type="text" 
                         className="input" 
-                        placeholder="City" 
+                        placeholder={translations.cv.city}  
                         value={city} 
                         onChange={handleChange} 
                         name="city" 
                     />
-                    <label className="label">Salary</label>
+                    <label className="label">{translations.cv.salary}</label>
                     <input 
                         type="number" 
                         min="0" 
@@ -130,7 +130,7 @@ const CvPage = () => {
                         onChange={handleChange} 
                         name="salary" 
                     />
-                    <label className="label">Phone</label>
+                    <label className="label">{translations.login.phone}</label>
                     <input 
                         type="text" 
                         className="input" 
@@ -139,7 +139,7 @@ const CvPage = () => {
                         onChange={handleChange} 
                         name="phone" 
                     />
-                    <label className="label">Email</label>
+                    <label className="label">{translations.login.email}</label>
                     <input 
                         type="text" 
                         className="input" 
@@ -148,7 +148,7 @@ const CvPage = () => {
                         onChange={handleChange} 
                         name="email" 
                     />
-                    <label className="label">Additional information</label>
+                    <label className="label">{translations.cv.additional}</label>
                     <textarea 
                         className="rounded-2xl bg-[#F8F8FF] resize-none focus:outline-none h-52 p-5 max-[500px]:text-[12px]" 
                         value={additionalInfo} 
@@ -158,7 +158,7 @@ const CvPage = () => {
                 </div>
 
                 <div className="flex flex-col gap-2 w-full p-4">
-                    <h3 className="max-[500px]:text-[14px]">Education</h3>
+                    <h3 className="max-[500px]:text-[14px]">{translations.settings.education}</h3>
                     <div className="bg-[#F8F8FF] p-5 rounded-3xl flex justify-between">
                         <div>
                             <h4 className="text-[#141313] text-[16px] max-[500px]:text-[14px]">High Name</h4>
@@ -170,12 +170,12 @@ const CvPage = () => {
                             </div>
                         </div>
                     </div>
-                    <button className="button" onClick={() => handleOpenModal(<EducationContent />)}>Add an educational institution</button>
+                    <button className="button" onClick={() => handleOpenModal(<EducationContent />)}>{translations.cv.addInst}</button>
 
-                    <h3 className="max-[500px]:text-[14px]">Language</h3>
+                    <h3 className="max-[500px]:text-[14px]">{translations.cv.lang}</h3>
                     <LanguageManager  /> 
 
-                    <h3 className="max-[500px]:text-[14px]">Knowledge and skills</h3>
+                    <h3 className="max-[500px]:text-[14px]">{translations.cv.knowledges}</h3>
                     <div className="bg-[#F8F8FF] p-5 rounded-3xl">
                         <div className="flex flex-wrap justify-start gap-2 py-2 ">
                             {skills.map((skill, index) => (

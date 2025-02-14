@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic';
 import { useState, useEffect } from "react";
 import { useTranslate } from "../hooks/useTranslate";
-
+import { useRouter } from "next/navigation";
 export default function Auth() {
   const [isSignup, setIsSignup] = useState(true);
   const [email, setEmail] = useState("");
@@ -13,6 +13,7 @@ export default function Auth() {
   const [errorMessage, setErrorMessage] = useState("");
   const [userType, setUserType] = useState("applicant");
   const { translations, loading, lang, setLang } = useTranslate();
+  const router = useRouter()
   useEffect(() => {
     const type = localStorage.getItem("type");
     if (type) {
@@ -41,8 +42,8 @@ export default function Auth() {
       });
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("token", data.token);
-        window.location.pathname = "/";
+        window?.localStorage?.setItem("token", data.token);
+        router.push('/')
       } else {
         const errorData = await response.json();
         setErrorMessage(

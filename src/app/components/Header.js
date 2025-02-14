@@ -12,9 +12,6 @@ import { MdAccountCircle } from "react-icons/md";
 import Notification from "./Notification";
 import noRender from "../noRender.json";
 import Logo from "../../../public/logo-cropped.svg"
-
-
-
 export default function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const { translations, loading, lang, setLang } = useTranslate();
@@ -96,14 +93,13 @@ export default function Header() {
             <h2>{lang.toUpperCase()}</h2>
           </div>
           <div
-            className={`absolute bg-[#F8F8FF] gap-x-[20px] flex flex-row items-center justify-end h-[50px] ms-[25px] rounded-e-full cursor-pointer transition-all ${
-              isOpen ? "w-[170px]" : "w-0"
+            className={`absolute bg-[#F8F8FF] gap-y-[10px] flex flex-col items-center justify-end w-[40px] mt-[20px] rounded-b-full cursor-pointer transition-all ${
+              isOpen ? "h-[135px]" : "h-0"
             }`}
           >
             <h2
               onClick={() => {
                 setLang("en");
-                router.push(`${pathname}?lang=en`);
               }}
             >
               EN
@@ -111,7 +107,6 @@ export default function Header() {
             <h2
               onClick={() => {
                 setLang("ua");
-                router.push(`${pathname}?lang=ua`);
               }}
             >
               UA
@@ -120,7 +115,7 @@ export default function Header() {
               onClick={() => {
                 setIsOpen(false);
               }}
-              className="me-[20px]"
+              className="mb-[20px]"
             ></FaXmark>
           </div>
         </div>
