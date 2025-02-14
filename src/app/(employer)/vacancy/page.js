@@ -9,10 +9,6 @@ const VacancyPage = () => {
     const [contact, setContact] = useState("");
     const [email, setEmail] = useState("");
     const [content, setContent] = useState(`
-        <p><b>Main responsibilities:</b></p>
-        <p><b>Requirements:</b></p>
-        <p><b>For us, the following are important:</b></p>
-        <p><b>What we offer:</b></p>
     `);
 
     const editorRef = useRef(null);

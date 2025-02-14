@@ -1,23 +1,32 @@
 "use client";
 import {
-  FaMagnifyingGlass,
   FaGlobe,
   FaMoneyBill,
   FaHouse,
 } from "react-icons/fa6";
 import Image from "next/image";
-import Link from "next/link";
 import example from "./example.json";
 import { useTranslate } from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
-
-import Ukraine from "../../public/Ukraine.jpg";
 import SearchBar from "@/app/components/SearchBar"
 import Loading from "./components/Loading";
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 export default function Home() {
+  
+  
   const [found, setFound] = useState([]);
   const [search, setSearch] = useState("");
   const { translations, loading, lang, setLang } = useTranslate();
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, 
+      once: false, 
+    });
+  }, []);
+
   useEffect(() => {
     const filtered = example.items.filter((e) => {
       return e.name.toLowerCase().includes(search.toLowerCase());
@@ -25,6 +34,8 @@ export default function Home() {
     filtered.length > 10 ? setFound(filtered.slice(0, 10)) : setFound(filtered);
   }, [search]);
   if (loading) return null;
+  
+
   return (
     <>
     <Loading/>
@@ -45,7 +56,7 @@ export default function Home() {
           </p>
          <SearchBar/>
         </div>
-        <div className="flex flex-col md:flex-row justify-evenly items-center transition-all w-full gap-8 ">
+        <div className="flex flex-col md:flex-row justify-evenly items-center transition-all w-full gap-8 " >
           <div className="flex flex-col items-start text-center md:text-left w-full md:w-1/2">
             <h2 className="text-[#023047] font-bold text-[25px] md:text-[30px]">
               {translations.home.createResume}
@@ -107,7 +118,7 @@ export default function Home() {
         >
           {translations.home.jobsInCountries}
         </h2>
-        <div className="flex flex-wrap gap-5 justify-center sm:justify-start max-w-[1400px] m-auto my-0">
+        <div className="flex flex-wrap gap-5 justify-center sm:justify-start max-w-[1400px] m-auto my-0" data-aos="fade-up">
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Ukraine.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
@@ -243,7 +254,7 @@ export default function Home() {
         >
           {translations.home.peopleWeHelped}
         </p>
-        <div className="flex flex-row gap-[30px] flex-wrap justify-center">
+        <div className="flex flex-row gap-[30px] flex-wrap justify-center" data-aos="fade-up">
           <div className="flex flex-col items-center max-[768px]:w-[250px]">
             <Image
               src="/Emil.jpg"

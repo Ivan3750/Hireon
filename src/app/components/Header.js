@@ -169,7 +169,7 @@ export default function Header() {
             </button>
             </Link>
           ) : (
-            <Link href="/login" className="login-signin ">
+            <Link href="/login" className="login-signin a-btn">
              <p className="md:block hidden"> {translations.header.getStarted}</p>
               <IoLogIn className="md:hidden"/>
             </Link>
