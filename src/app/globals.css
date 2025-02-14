@@ -19,7 +19,7 @@ body {
   align-items: center;
 }
 .login-signin {
-  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full p-[10px] flex justify-center items-center text-[20px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer
+  @apply text-[#F8F8FF] bg-[#FFB703] rounded-full p-[8px] flex justify-center items-center text-[14px] h-[40] hover:bg-[#11181C] hover:text-[#FFB703] transition-all cursor-pointer box-border
 }
 .circle-btn {
   @apply bg-[#F8F8FF] rounded-full w-[40px] h-[40px] flex items-center justify-center hover:bg-[#11181C] hover:text-[#F8F8FF] transition-all cursor-pointer
@@ -40,7 +40,7 @@ body {
   display: none;
 }
 .country {
-  @apply bg-[url('/countrybg.png')] w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
+  @apply w-[325px] h-[200px] text-[#F8F8FF] text-[20px] flex flex-col justify-end rounded-[20px] p-[10px] bg-cover bg-no-repeat
 }
 .item {
   @apply p-[10px]
@@ -111,9 +111,9 @@ body {
 }
 }
 /* Dont Remove it on Dev */
-*{
+/* *{
   outline: 0.4px solid #f0f;
-}
+} */
 .item {
   @apply p-[10px] flex flex-row gap-[5px];
 }
@@ -184,11 +184,6 @@ body {
 	height: 100vh;
 }
 
-
-
-*, *:before, *:after {
-  box-sizing: border-box;
-}
 
 
 .footer {
@@ -323,3 +318,46 @@ body {
 .f-a{
   height: -webkit-fill-available;
 } */
+
+
+
+
+.a-btn {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.a-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0) 70%
+  );
+  animation: shine 15s ease-in-out infinite;
+  
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+    opacity: 1;
+  }
+  10% {
+    left: 100%;
+  }
+  12% {
+    opacity: 0;
+    left: -100%;
+  }
+  100%{
+
+  }
+}

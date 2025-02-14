@@ -9,7 +9,6 @@ export default function Loading() {
     const loadingbar = document.querySelector('.loadingbar');
     const loadingBox = document.querySelector('.loadingBox');
     const splashScreen = document.querySelector('.splashScreen');
-    const body = document.body;
 
     setTimeout(() => {
       loadingbar.style.transition = 'left 3s ease-out';
@@ -28,14 +27,11 @@ export default function Loading() {
 
     
 
-    setTimeout(() => {
-      body.classList.add('visibleSplash');
-    }, 200);
+
   }, []);
 
   return (
-    <div className="splashBody overflow-hidden">
-      <div className="splashScreen absolute top-0 left-0 w-full h-screen bg-[#8ecae6] border-b-5 border-[#023047]">
+      <div className="splashScreen absolute top-0 left-0 w-full h-screen bg-[#8ecae6] border-b-5 border-[#023047] overflow-hidden z-[999]">
         <div className="loadingContainer absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center overflow-hidden w-[400px]">
           <div className="loadingBox w-full h-full opacity-0">
             <Image
@@ -49,8 +45,6 @@ export default function Loading() {
           </div>
         </div>
       </div>
-      <div className="splashBehind bg-red-500 w-full h-screen"></div>
-      <div className="splashBehindTwo bg-white w-full h-screen"></div>
-    </div>
+
   );
 }

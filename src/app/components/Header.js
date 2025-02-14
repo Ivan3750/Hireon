@@ -7,6 +7,8 @@ import { FaGear, FaEnvelope, FaXmark } from "react-icons/fa6";
 import { MdBusiness, MdWork } from "react-icons/md";
 import { IoLogIn, IoMenu } from "react-icons/io5";
 import { useTranslate } from "../hooks/useTranslate";
+import { MdAccountCircle } from "react-icons/md";
+
 import Notification from "./Notification";
 import noRender from "../noRender.json";
 import Logo from "../../../public/logo-cropped.svg"
@@ -122,13 +124,13 @@ export default function Header() {
             ></FaXmark>
           </div>
         </div>
-          <button
+          {/* <button
             className="circle-btn"
             onClick={() => setToggled((prev) => !prev)}
           >
             <FaEnvelope size={25}></FaEnvelope>
-          </button>
-          <div
+          </button> */}
+          {/* <div
   className={`w-[366px] max-w-full absolute bg-[#8ecae6] z-[80] border border-black top-[100px] right-[200px] rounded-md transition-all 
               ${!toggled ? "hidden !top-[80px]" : ""} gap-[10px] flex flex-col p-[10px] items-center 
               max-[1024px]:right-[50px] max-[768px]:w-[300px] max-[500px]:w-[100vw] max-[500px]:right-0`}
@@ -159,14 +161,13 @@ export default function Header() {
             <Link href="/" className="font-medium text-[18px]">
               More
             </Link>
-          </div>
-          <Link href="/settings">
-            <button className="circle-btn">
-              <FaGear size={25}></FaGear>
-            </button>
-          </Link>
+          </div> */}
           {isLogin ? (
-            <p>Profile</p>
+            <Link href="/settings">
+            <button className="circle-btn">
+            <MdAccountCircle size={25}/>
+            </button>
+            </Link>
           ) : (
             <Link href="/login" className="login-signin ">
              <p className="md:block hidden"> {translations.header.getStarted}</p>
