@@ -17,7 +17,7 @@ export default function Settings() {
   const [error, setError] = useState(null);
   const [isEditable, setIsEditable] = useState(false);
   const [darkMode, setDarkMode] = useState(
-    typeof window !== "undefined" && localStorage.getItem("theme") === "dark"
+    localStorage.getItem("theme") === "dark"
   );
 
   useEffect(() => {

@@ -16,7 +16,7 @@ export default function Settings() {
   const [apiLoad, setApiLoad] = useState(true)
 
   const [isEditable, setIsEditable] = useState(false);
-  const [darkMode, setDarkMode] = useState(window?.localStorage?.getItem("theme") || "dark")
+  const [darkMode, setDarkMode] = useState(localStorage.getItem("theme") || "dark")
 
   useEffect(() => {
     const fetchUserData = async () => {

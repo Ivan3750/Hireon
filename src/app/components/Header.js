@@ -42,7 +42,7 @@ export default function Header() {
     }
   };
   useEffect(() => {
-    if (typeof window !== "undefined") verifyToken();
+     verifyToken();
   }, []);
   if (noRender.includes(usePathname())) return null;
   if (loading) return null;

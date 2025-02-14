@@ -15,11 +15,15 @@ export default function Auth() {
   const { translations, loading, lang, setLang } = useTranslate();
   const router = useRouter()
   useEffect(() => {
-    const type = localStorage.getItem("type");
-    if (type) {
-      setUserType(type);
+    if (typeof window !== "undefined") {
+      const type = localStorage.getItem("type");
+      if (type) {
+        setUserType(type);
+      }
     }
   }, []);
+  
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = isSignup ? "/api/auth/registration" : "/api/auth/login";
@@ -42,8 +46,12 @@ export default function Auth() {
       });
       if (response.ok) {
         const data = await response.json();
-        window?.localStorage?.setItem("token", data.token);
-        router.push('/')
+        useEffect(() => {
+          if (typeof window !== "undefined" && data?.token) {
+            localStorage.setItem("token", data.token);
+            router.push('/');
+          }
+        }, [data]);
       } else {
         const errorData = await response.json();
         setErrorMessage(
