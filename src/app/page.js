@@ -20,7 +20,7 @@ export default function Home() {
   useEffect(() => {
     AOS.init({
       duration: 1000, 
-      once: false, 
+      once: true, 
     });
   }, []);
   const [hovered, setHovered] = useState(false);
@@ -64,7 +64,7 @@ export default function Home() {
             </button>
           </div>
           <div className="h-auto w-full md:w-[500px] rounded-[20px] bg-[#219EBC] p-[20px] text-[#F8F8FF] overflow-hidden mt-5 md:mt-0">
-            <h2 className="text-[#F8F8FF] font-semibold text-[24px] md:text-[32px]">
+            <h2 className="text-[#F8F8FF] font-semibold text-[24px] md:text-[32px] pb-[30px]">
               {translations.home.bestOffers}
             </h2>
             <div className="flex flex-col gap-5 md:gap-4 justify-between">
@@ -78,22 +78,22 @@ export default function Home() {
                       Software developer
                     </p>
                     <div className="flex flex-row gap-[10px]">
-                      <small className="flex flex-row items-center gap-[5px] font-light text-[14px] md:text-[16px]">
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
                         <FaGlobe />
                         London
                       </small>
-                      <small className="flex flex-row items-center gap-[5px] font-light text-[14px] md:text-[16px]">
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
                         <FaHouse />
                         Remote
                       </small>
                     </div>
                   </div>
                   <div className="flex flex-col gap-[10px] items-center">
-                    <p className="text-[16px] md:text-[18px] font-medium flex flex-row gap-[10px]">
+                    <p className="text-[12px] md:text-[18px] font-medium flex flex-row gap-[10px]">
                       <FaMoneyBill size={20} />
                       €999
                     </p>
-                    <button className="rounded-full bg-[#FFB703] px-[17px] py-[5px] text-[16px] md:text-[18px] hover:bg-[#11181C] hover:text-[#FFB703] transition-all a-btn">
+                    <button className="rounded-full bg-[#FFB703] px-[15px] py-[5px] text-[12px] md:text-[16px] font-light hover:bg-[#11181C] hover:text-[#FFB703] transition-all a-btn">
                       {translations.home.review}
                     </button>
                   </div>

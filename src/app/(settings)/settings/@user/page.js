@@ -16,9 +16,7 @@ export default function Settings() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isEditable, setIsEditable] = useState(false);
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -46,15 +44,7 @@ export default function Settings() {
     fetchUserData();
   }, []);
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [darkMode]);
+
 
   if (translationsLoading || loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -243,19 +233,7 @@ export default function Settings() {
             <label>{translations.settings.notifications}</label>
             <input type="checkbox" className="w-4 h-4" />
           </div>
-          <div className="text-sm flex flex-row items-center gap-2">
-            <label>Theme</label>
-            <div
-              className="flex items-center cursor-pointer hover:scale-95"
-              onClick={() => setDarkMode(!darkMode)}
-            >
-              {darkMode ? (
-                <MdSunny className="text-2xl text-[#FFB703]" />
-              ) : (
-                <HiMiniMoon className="text-2xl text-[#023047]" />
-              )}
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

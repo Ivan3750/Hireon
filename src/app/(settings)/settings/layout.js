@@ -7,3 +7,4 @@ export default function SettingsLayout({ company, user }) {
     </div>
   );
 }
+  

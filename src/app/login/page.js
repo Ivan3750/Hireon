@@ -1,4 +1,5 @@
 "use client";
+
 export const dynamic = 'force-dynamic';
 import { useState, useEffect } from "react";
 import { useTranslate } from "../hooks/useTranslate";
@@ -24,6 +25,7 @@ export default function Auth() {
   }, []);
   
   
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = isSignup ? "/api/auth/registration" : "/api/auth/login";
@@ -34,8 +36,7 @@ export default function Auth() {
         password,
         phone: !isSignup ? phone : undefined,
         fullName: userType === "applicant" && isSignup ? fullName : undefined,
-        companyName:
-          userType === "employer" && isSignup ? companyName : undefined,
+        companyName: userType === "employer" && isSignup ? companyName : undefined,
       };
       const response = await fetch(url, {
         method: "POST",
@@ -44,25 +45,23 @@ export default function Auth() {
         },
         body: JSON.stringify(body),
       });
+  
       if (response.ok) {
         const data = await response.json();
-        useEffect(() => {
-          if (typeof window !== "undefined" && data?.token) {
-            localStorage.setItem("token", data.token);
-            router.push('/');
-          }
-        }, [data]);
+        if (typeof window !== "undefined" && data?.token) {
+          localStorage.setItem("token", data.token);
+          router.push('/');
+        }
       } else {
         const errorData = await response.json();
-        setErrorMessage(
-          errorData.message || "Something went wrong. Please try again."
-        );
+        setErrorMessage(errorData.message || "Something went wrong. Please try again.");
       }
     } catch (error) {
       setErrorMessage("Error: " + error.message);
       console.error("Error:", error);
     }
   };
+  
   const toggleForm = () => {
     setIsSignup(!isSignup);
     setErrorMessage("");
