@@ -12,7 +12,7 @@ const morgan = require('morgan');
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
