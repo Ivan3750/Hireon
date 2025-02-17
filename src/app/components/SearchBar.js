@@ -4,6 +4,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import Link from "next/link";
 import axios from "axios";
 import { useTranslate } from "../hooks/useTranslate";
+import _ from 'lodash'
 const testJobs = [
   { name: "Frontend Developer", by: "Google" },
   { name: "Backend Engineer", by: "Amazon" },
@@ -25,23 +26,29 @@ const SearchBar = () => {
   const [search, setSearch] = useState({ what: "", where: "", country: "" });
   const [found, setFound] = useState([]);
   useEffect(() => {
-    fetch(
-      `/api/search?what=${search.what}&where=${search.where}&country=${search.country}`
-    )
-      .then((res) => {
-        res.json().then((res1) => setFound(res1.results));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(search.what, search.where, search.country);
+    async function fetchSearch() {
+      try {
+        const res = await fetch(
+          `/api/search?what=${search.what}&where=${search.where}&country=${search.country}`
+        );
+        const data = await res.json();
+        console.log(data.results);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    const debounced = _.debounce(fetchSearch, 250);
+    debounced();
+    return () => {
+      debounced.cancel();
+    };
   }, [search]);
   const { translations, loading, lang, setLang } = useTranslate();
   return (
     <div className="mt-3 w-full max-w-[800px] relative">
       <div className="flex w-full relative z-50">
         <div className="bg-[#F8F8FF] ps-3 rounded-s-[20px] flex items-center">
-          <FaMagnifyingGlass size={20} color="#808080"/>
+          <FaMagnifyingGlass size={20} color="#808080" />
         </div>
         <input
           placeholder={translations.home.findJob}
@@ -49,7 +56,7 @@ const SearchBar = () => {
           onInput={(e) =>
             setSearch((prevState) => ({
               ...prevState,
-              what: e.target.value || ""
+              what: e.target.value || "",
             }))
           }
         />
@@ -60,7 +67,7 @@ const SearchBar = () => {
           onInput={(e) =>
             setSearch((prevState) => ({
               ...prevState,
-              where: e.target.value || ""
+              where: e.target.value || "",
             }))
           }
         />
@@ -70,7 +77,7 @@ const SearchBar = () => {
           onInput={(e) =>
             setSearch((prevState) => ({
               ...prevState,
-              country: e.target.value || ""
+              country: e.target.value || "",
             }))
           }
         />
@@ -94,7 +101,8 @@ const SearchBar = () => {
                         f
                       )
                     )}{" "}
-                  <span className="font-light">by</span> {e.company.display_name}
+                  <span className="font-light">by</span>{" "}
+                  {e.company.display_name}
                 </Link>
               </div>
             ))
