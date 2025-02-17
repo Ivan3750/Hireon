@@ -98,7 +98,6 @@ const CvPage = () => {
     if (loading) return null
     return (
         <>
-        <Loading/>
             <div className="flex bg-[#E3E3ED] w-full justify-between gap-[70px] lg:flex-nowrap flex-wrap lg:p-14 p-2">
                 <div className="flex flex-col gap-2 w-full p-4">
                     <label className="label">{translations.cv.job}</label>

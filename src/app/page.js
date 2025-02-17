@@ -11,18 +11,12 @@ import { useTranslate } from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import SearchBar from "@/app/components/SearchBar"
-import AOS from "aos";
-import "aos/dist/aos.css";
+ 
 export default function Home() {
   const [found, setFound] = useState([]);
   const [search, setSearch] = useState("");
   const { translations, loading } = useTranslate();
-  useEffect(() => {
-    AOS.init({
-      duration: 1000, 
-      once: true, 
-    });
-  }, []);
+ 
   const [hovered, setHovered] = useState(false);
   const [hoveredId, setHoveredId] = useState(null);
   useEffect(() => {
@@ -113,7 +107,7 @@ export default function Home() {
         >
           {translations.home.jobsInCountries}
         </h2>
-        <div className="flex flex-wrap gap-5 justify-center sm:justify-start max-w-[1400px] m-auto my-0" data-aos="fade-up">
+        <div className="flex flex-wrap gap-5 justify-center sm:justify-start max-w-[1400px] m-auto my-0" >
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Ukraine.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
@@ -173,17 +167,9 @@ export default function Home() {
 
        
         </div>
-        <h2
-          className="font-medium text-[42px] text-center mt-5 max-[1537px]:text-[32px] 
-          max-[1280px]:text-[28px] 
-          max-[1024px]:text-[24px] 
-          max-[768px]:text-[20px] 
-          max-[480px]:text-[16px]"
-        >
-          {translations.home.payForTravel}
-        </h2>
+        
       </div>
-      <div className=" w-screen  bg-[#F8F8FF] py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
+    {/*   <div className=" w-screen  bg-[#F8F8FF] py-10 px-5 sm:py-16 sm:px-10 lg:py-20 lg:px-14">
         <h2
           className="font-medium text-[38px] text-left w-3/4 my-0 mx-auto
           max-[1537px]:text-[32px] 
@@ -218,7 +204,7 @@ export default function Home() {
           autoPlay
           muted
         >
-           {/* <source src={video} type="video/mp4"></source>  */}
+         <source src={video} type="video/mp4"></source>  
         </video>
         <p
           className="font-light text-[24px] text-left w-3/4 max-[1537px]:text-[20px] mt-4
@@ -229,7 +215,7 @@ export default function Home() {
         >
           {translations.home.poweredBy}
         </p>
-      </div>
+      </div> */}
       <div className="w-screen bg-[#F8F8FF] pb-[100px] whitespace-nowrap will-change-transform ">
         <h2
           className="font-medium text-[42px] text-left max-[1537px]:text-[32px] my-[15px] mx-auto
@@ -269,7 +255,6 @@ export default function Home() {
         >
           {translations.home.peopleWeHelped}
         </p>
-        {/*цей блок має бути 100% ширини екрану*/}
         <div
           className={`flex flex-row gap-[20px] flex-nowrap w-full whitespace-nowrap will-change-transform !overflow-visible ${
             !hovered && "animate-[scroll_10s_infinite_linear]"
@@ -280,12 +265,12 @@ export default function Home() {
               key={i}
               id={i}
               className={`flex flex-col items-center text-[20px] flex-shrink-0 p-4 rounded-[20px] cursor-pointer transition-all
-            ${hoveredId === i && "scale-105 shadow-md"}`} // Apply hover effect conditionally
+            ${hoveredId === i && "scale-105 shadow-md"}`} 
               onMouseEnter={() => {
-                setHoveredId(i); // Set hoveredId to the current item's id on mouse enter
+                setHoveredId(i); 
               }}
               onMouseLeave={() => {
-                setHoveredId(null); // Reset hoveredId when mouse leaves
+                setHoveredId(null); 
               }}
             >
               <Image
@@ -313,7 +298,6 @@ export default function Home() {
             </div>
           ))}
         </div>
-        {/*цей блок має бути 100% ширини екрану*/}
       </div>
     </>
   );
