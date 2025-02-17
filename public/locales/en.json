@@ -10,7 +10,9 @@
   "home": {
     "mainTitle": "Hireon is the best way to success",
     "secondaryTitle": "Here anyone can find a job that fits you the best",
-    "findJob": "Find dream job",
+    "findJob": "Find job",
+    "country": "Country",
+    "city": "City",
     "search": "Search",
     "createResume": "Create resume",
     "createResume2": "Create a resume, so employers can see you and offer you a job",

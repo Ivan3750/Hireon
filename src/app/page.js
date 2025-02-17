@@ -3,14 +3,14 @@ import {
   FaGlobe,
   FaMoneyBill,
   FaHouse,
-  FaMagnifyingGlass
+  FaMagnifyingGlass,
 } from "react-icons/fa6";
 import Image from "next/image";
 import example from "./example.json";
 import { useTranslate } from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import SearchBar from "@/app/components/SearchBar"
+import SearchBar from "@/app/components/SearchBar";
 import AOS from "aos";
 import "aos/dist/aos.css";
 export default function Home() {
@@ -19,8 +19,8 @@ export default function Home() {
   const { translations, loading } = useTranslate();
   useEffect(() => {
     AOS.init({
-      duration: 1000, 
-      once: true, 
+      duration: 1000,
+      once: true,
     });
   }, []);
   const [hovered, setHovered] = useState(false);
@@ -41,7 +41,7 @@ export default function Home() {
         layout="fill"
         className="absolute -z-50 top-0 blur-sm bg-cover"
       ></Image>
-      <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-end gap-[50px] p-[10px] md:p-[20px]">
+      <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-evenly gap-[50px] p-[10px] md:p-[20px]">
         <div className="flex flex-col justify-center items-center text-center">
           <h2 className="text-[30px] md:text-[50px] font-extrabold">
             {translations.home.mainTitle}
@@ -49,9 +49,9 @@ export default function Home() {
           <p className="text-[16px] md:text-[20px] font-medium">
             {translations.home.secondaryTitle}
           </p>
-         <SearchBar/>
+          <SearchBar />
         </div>
-        <div className="flex flex-col md:flex-row justify-evenly items-center transition-all w-full gap-8 " >
+        <div className="flex flex-col md:flex-row justify-evenly items-center transition-all w-full gap-8 ">
           <div className="flex flex-col items-start text-center md:text-left w-full md:w-1/2">
             <h2 className="text-[#023047] font-bold text-[25px] md:text-[30px]">
               {translations.home.createResume}
@@ -113,65 +113,91 @@ export default function Home() {
         >
           {translations.home.jobsInCountries}
         </h2>
-        <div className="flex flex-wrap gap-5 justify-center sm:justify-start max-w-[1400px] m-auto my-0" data-aos="fade-up">
+        <div
+          className="flex flex-wrap gap-5 justify-center sm:justify-start max-w-[1400px] m-auto my-0"
+          data-aos="fade-up"
+        >
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Ukraine.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Ukraine</small>
-              <small> <span className="text-[25px] font-semibold">2337</span>{translations.home.vacancy}</small>
+              <small>
+                {" "}
+                <span className="text-[25px] font-semibold">2337</span>
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Denmark.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Denmark</small>
-              <small><span className="text-[25px] font-semibold">458</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">458</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Germany.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Germany</small>
-              <small><span className="text-[25px] font-semibold">742</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">742</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Poland.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Poland</small>
-              <small><span className="text-[25px] font-semibold">860</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">860</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/France.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>France</small>
-              <small><span className="text-[25px] font-semibold">1501</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">1501</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Spain.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Spain</small>
-              <small><span className="text-[25px] font-semibold">854</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">854</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Italy.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Italy</small>
-              <small><span className="text-[25px] font-semibold">398</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">398</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Sweden.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Sweden</small>
-              <small><span className="text-[25px] font-semibold">470</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">470</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
-
-       
         </div>
         <h2
           className="font-medium text-[42px] text-center mt-5 max-[1537px]:text-[32px] 
@@ -218,7 +244,7 @@ export default function Home() {
           autoPlay
           muted
         >
-           {/* <source src={video} type="video/mp4"></source>  */}
+          {/* <source src={video} type="video/mp4"></source>  */}
         </video>
         <p
           className="font-light text-[24px] text-left w-3/4 max-[1537px]:text-[20px] mt-4
@@ -254,9 +280,7 @@ export default function Home() {
           {translations.home.makeDreamTrue}
         </h2>
         <Link href="/login" className="my-[25px]">
-          <button
-            className="bg-[#FB8500] rounded-[30px] p-[10px] block text-[20px] my-[0px] mx-auto hover:text-[#FB8500] hover:bg-[#11181C] transition-all"
-          >
+          <button className="bg-[#FB8500] rounded-[30px] p-[10px] block text-[20px] my-[0px] mx-auto hover:text-[#FB8500] hover:bg-[#11181C] transition-all">
             {translations.header.getStarted}
           </button>
         </Link>
@@ -271,21 +295,19 @@ export default function Home() {
         </p>
         {/*цей блок має бути 100% ширини екрану*/}
         <div
-          className={`flex flex-row gap-[20px] flex-nowrap w-full whitespace-nowrap will-change-transform !overflow-visible ${
-            !hovered && "animate-[scroll_10s_infinite_linear]"
-          }`}
+          className={`flex flex-row gap-[20px] flex-nowrap w-full whitespace-nowrap will-change-transform !overflow-visible animate-[scroll_10s_infinite_linear]`}
         >
           {Array.from({ length: 20 }).map((_, i) => (
             <div
               key={i}
               id={i}
               className={`flex flex-col items-center text-[20px] flex-shrink-0 p-4 rounded-[20px] cursor-pointer transition-all
-            ${hoveredId === i && "scale-105 shadow-md"}`} // Apply hover effect conditionally
+            ${hoveredId === i && "scale-105 shadow-md"}`}
               onMouseEnter={() => {
-                setHoveredId(i); // Set hoveredId to the current item's id on mouse enter
+                setHoveredId(i);
               }}
               onMouseLeave={() => {
-                setHoveredId(null); // Reset hoveredId when mouse leaves
+                setHoveredId(null);
               }}
             >
               <Image
