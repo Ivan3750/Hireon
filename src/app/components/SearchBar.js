@@ -1,10 +1,10 @@
 "use client";
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import Link from "next/link";
+import axios from "axios";
 import { useTranslate } from "../hooks/useTranslate";
-// Тестові дані
+import _ from 'lodash'
 const testJobs = [
   { name: "Frontend Developer", by: "Google" },
   { name: "Backend Engineer", by: "Amazon" },
@@ -17,61 +17,113 @@ const testJobs = [
   { name: "Cybersecurity Specialist", by: "IBM" },
   { name: "Data Scientist", by: "OpenAI" },
 ];
-
 const SearchBar = () => {
-  const [search, setSearch] = useState("");
-    const { translations, loading, lang, setLang } = useTranslate();
-  const found = search
-    ? testJobs.filter((job) =>
-        job.name.toLowerCase().includes(search.toLowerCase())
-      )
-    : [];
-
+  navigator.geolocation.getCurrentPosition((e) => {
+    console.log(e.coords);
+  });
+  const apiID = process.env.ADZUNA_ID;
+  const apiKey = process.env.ADZUNA_KEY;
+  const [search, setSearch] = useState({ what: "", where: "", country: "" });
+  const [found, setFound] = useState([]);
+  useEffect(() => {
+    async function fetchSearch() {
+      try {
+        const res = await fetch(
+          `/api/search?what=${search.what}&where=${search.where}&country=${search.country}`
+        );
+        const data = await res.json();
+        console.log(data.results);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    const debounced = _.debounce(fetchSearch, 250);
+    debounced();
+    return () => {
+      debounced.cancel();
+    };
+  }, [search]);
+  const { translations, loading, lang, setLang } = useTranslate();
   return (
     <div className="mt-3 w-full max-w-[800px] relative">
-      <div className="flex w-full ">
+      <div className="flex w-full relative z-50">
         <div className="bg-[#F8F8FF] ps-3 rounded-s-[20px] flex items-center">
-          <FaMagnifyingGlass size={20} color="#808080" className="h-[48px]" />
+          <FaMagnifyingGlass size={20} color="#808080" />
         </div>
         <input
           placeholder={translations.home.findJob}
+          className="p-3 w-full placeholder:text-[#808080] bg-[#F8F8FF] outline-none"
+          onInput={(e) =>
+            setSearch((prevState) => ({
+              ...prevState,
+              what: e.target.value || "",
+            }))
+          }
+        />
+        <hr></hr>
+        <input
+          placeholder={translations.home.city}
+          className="p-3 w-full placeholder:text-[#808080] bg-[#F8F8FF] outline-none"
+          onInput={(e) =>
+            setSearch((prevState) => ({
+              ...prevState,
+              where: e.target.value || "",
+            }))
+          }
+        />
+        <input
+          placeholder={translations.home.country}
           className="p-3 w-full placeholder:text-[#808080] bg-[#F8F8FF] outline-none rounded-r-[20px]"
-          onInput={(e) => setSearch(e.target.value.trim())}
+          onInput={(e) =>
+            setSearch((prevState) => ({
+              ...prevState,
+              country: e.target.value || "",
+            }))
+          }
         />
       </div>
       <div
-        className={`relative -z-10 w-full transition-all rounded-b-[20px] bg-[#F8F8FF] pt-[20px] -top-[20px]`}
+        className={`relative w-full transition-all rounded-b-[20px] bg-[#F8F8FF] pt-[20px] -top-[20px]`}
       >
-        {search ? (found.length > 0 ? (
-          found.map((e, index) => (
-            <div key={index} className="item p-2">
-              <Link href={`/job/${e.name}`} className="link">
-                {e.name
-                  .split(new RegExp(`(${search})`, "gi"))
-                  .map((f, i) =>
-                    f.toLowerCase() === search.toLowerCase() ? (
-                      <mark key={i}>{f}</mark>
-                    ) : (
-                      f
+        {search.what && search.where && search.where ? (
+          found?.length > 0 ? (
+            found?.map((e, index) => (
+              <div key={index} className="item p-2 font-medium">
+                <Link href={`/job/${e.name}`} className="link">
+                  {e.title
+                    .split(
+                      new RegExp(`\b(?:${search.what.split("|")})\b`, "gi")
                     )
-                  )}{" "}
-                by {e.by}
-              </Link>
-            </div>
-          ))
+                    .map((f, i) =>
+                      f.toLowerCase() === search.what.toLowerCase() ? (
+                        <mark key={i}>{f}</mark>
+                      ) : (
+                        f
+                      )
+                    )}{" "}
+                  <span className="font-light">by</span>{" "}
+                  {e.company.display_name}
+                </Link>
+              </div>
+            ))
+          ) : (
+            <h2 className="text-[#808080] text-center my-3">
+              Sorry, nothing found.
+            </h2>
+          )
         ) : (
-          <h2 className="text-[#808080] text-center my-3">
-            Sorry, nothing found.
-          </h2>
-        )) : ''}
-        {search ? (found.length >= 10 && (
-          <Link
-            className="font-medium text-center my-3 w-full block"
-            href={`/job?search=${search}`}
-          >
-            More
-          </Link>
-        )) : ''}
+          ""
+        )}
+        {search.what && search.where && search.country
+          ? found?.length >= 10 && (
+              <Link
+                className="font-medium text-center my-3 w-full block"
+                href={`/job?search=${search.what}`}
+              >
+                More
+              </Link>
+            )
+          : ""}
       </div>
     </div>
   );

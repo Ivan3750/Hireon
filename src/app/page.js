@@ -3,20 +3,26 @@ import {
   FaGlobe,
   FaMoneyBill,
   FaHouse,
-  FaMagnifyingGlass
+  FaMagnifyingGlass,
 } from "react-icons/fa6";
 import Image from "next/image";
 import example from "./example.json";
 import { useTranslate } from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import SearchBar from "@/app/components/SearchBar"
- 
+import SearchBar from "@/app/components/SearchBar";
+import AOS from "aos";
+import "aos/dist/aos.css";
 export default function Home() {
   const [found, setFound] = useState([]);
   const [search, setSearch] = useState("");
   const { translations, loading } = useTranslate();
- 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  }, []);
   const [hovered, setHovered] = useState(false);
   const [hoveredId, setHoveredId] = useState(null);
   useEffect(() => {
@@ -35,7 +41,7 @@ export default function Home() {
         layout="fill"
         className="absolute -z-50 top-0 blur-sm bg-cover"
       ></Image>
-      <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-end gap-[50px] p-[10px] md:p-[20px]">
+      <div className="flex flex-col w-screen min-h-[calc(100vh-98px)] justify-evenly gap-[50px] p-[10px] md:p-[20px]">
         <div className="flex flex-col justify-center items-center text-center">
           <h2 className="text-[30px] md:text-[50px] font-extrabold">
             {translations.home.mainTitle}
@@ -43,9 +49,9 @@ export default function Home() {
           <p className="text-[16px] md:text-[20px] font-medium">
             {translations.home.secondaryTitle}
           </p>
-         <SearchBar/>
+          <SearchBar />
         </div>
-        <div className="flex flex-col md:flex-row justify-evenly items-center transition-all w-full gap-8 " >
+        <div className="flex flex-col md:flex-row justify-evenly items-center transition-all w-full gap-8 ">
           <div className="flex flex-col items-start text-center md:text-left w-full md:w-1/2">
             <h2 className="text-[#023047] font-bold text-[25px] md:text-[30px]">
               {translations.home.createResume}
@@ -112,60 +118,83 @@ export default function Home() {
             <div className="absolute inset-0 bg-[url(/Ukraine.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Ukraine</small>
-              <small> <span className="text-[25px] font-semibold">2337</span>{translations.home.vacancy}</small>
+              <small>
+                {" "}
+                <span className="text-[25px] font-semibold">2337</span>
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Denmark.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Denmark</small>
-              <small><span className="text-[25px] font-semibold">458</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">458</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Germany.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Germany</small>
-              <small><span className="text-[25px] font-semibold">742</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">742</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Poland.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Poland</small>
-              <small><span className="text-[25px] font-semibold">860</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">860</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/France.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>France</small>
-              <small><span className="text-[25px] font-semibold">1501</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">1501</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Spain.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Spain</small>
-              <small><span className="text-[25px] font-semibold">854</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">854</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Italy.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Italy</small>
-              <small><span className="text-[25px] font-semibold">398</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">398</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
           <div className="relative country">
             <div className="absolute inset-0 bg-[url(/Sweden.jpg)] bg-cover bg-center bg-blend-multiply bg-black/50"></div>
             <div className="relative z-10 flex flex-col">
               <small>Sweden</small>
-              <small><span className="text-[25px] font-semibold">470</span> {translations.home.vacancy}</small>
+              <small>
+                <span className="text-[25px] font-semibold">470</span>{" "}
+                {translations.home.vacancy}
+              </small>
             </div>
           </div>
-
-       
         </div>
         
       </div>
@@ -240,9 +269,7 @@ export default function Home() {
           {translations.home.makeDreamTrue}
         </h2>
         <Link href="/login" className="my-[25px]">
-          <button
-            className="bg-[#FB8500] rounded-[30px] p-[10px] block text-[20px] my-[0px] mx-auto hover:text-[#FB8500] hover:bg-[#11181C] transition-all"
-          >
+          <button className="bg-[#FB8500] rounded-[30px] p-[10px] block text-[20px] my-[0px] mx-auto hover:text-[#FB8500] hover:bg-[#11181C] transition-all">
             {translations.header.getStarted}
           </button>
         </Link>
@@ -256,9 +283,7 @@ export default function Home() {
           {translations.home.peopleWeHelped}
         </p>
         <div
-          className={`flex flex-row gap-[20px] flex-nowrap w-full whitespace-nowrap will-change-transform !overflow-visible ${
-            !hovered && "animate-[scroll_10s_infinite_linear]"
-          }`}
+          className={`flex flex-row gap-[20px] flex-nowrap w-full whitespace-nowrap will-change-transform !overflow-visible animate-[scroll_10s_infinite_linear]`}
         >
           {Array.from({ length: 20 }).map((_, i) => (
             <div
