@@ -103,4 +103,13 @@ router.post('/verify', authenticateToken, (req, res) => {
   });
 });
 
+router.get('/account-type', authenticateToken, (req, res) => {
+  const userType = req.user.userType;
+  if (!userType) {
+    return res.status(400).json({ message: 'Account type not found.' });
+  }
+
+  res.status(200).json({ userType });
+});
+
 module.exports = router;

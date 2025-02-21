@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
-// Функції для отримання коду країни та URL прапора
 async function getCountryCode(language) {
   const response = await fetch("https://restcountries.com/v3.1/lang/" + language.toLowerCase());
   const data = await response.json();
@@ -77,7 +76,11 @@ const LanguageManager = () => {
   useEffect(() => {
     const fetchLanguages = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/user/${userId}/language`);
+        const response = await fetch(`/api/user/language`,{
+          headers:{
+            Authorization: `Bearer ${localStorage.token}`
+          }
+        });
         if (response.ok) {
           const data = await response.json();
           setLanguages(data.languages);
@@ -124,11 +127,14 @@ const LanguageManager = () => {
   const removeLanguage = async (index, language) => {
     if (!language.isNew) {
       try {
-        await fetch(`http://localhost:5000/api/user/${userId}/language`, {
+        await fetch(`http://localhost:5000/api/user/language`, {
           method: "DELETE",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.token}`
+           },
           body: JSON.stringify({ language_name: language.language_name }),
         });
+        
       } catch (error) {
         console.error("Error deleting language:", error);
         return;

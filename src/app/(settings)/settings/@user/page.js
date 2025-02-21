@@ -4,7 +4,7 @@ import Link from "next/link";
 import { MdOutlineMail } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { HiMiniMoon } from "react-icons/hi2";
-import { FaArrowUpRightFromSquare,FaPhoneAlts,FaHouse } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare,FaPhoneAlt,FaHouse } from "react-icons/fa6";
 import Pill from "@/app/components/Pill";
 import { useTranslate } from "@/app/hooks/useTranslate";
 import { useState, useEffect } from "react";
@@ -34,6 +34,7 @@ export default function Settings() {
 
         const data = await response.json();
         setUserData(data);
+        console.log(data)
       } catch (err) {
         setError(err.message);
       } finally {
@@ -66,9 +67,9 @@ export default function Settings() {
                 <li className="flex items-center gap-1">
                   <MdOutlineMail className="text-lg" /> {translations.login.email}:
                 </li>
-                <li className="flex items-center gap-1">
+                {<li className="flex items-center gap-1">
                   <FaPhoneAlt className="text-lg" /> {translations.login.phone}:
-                </li>
+                </li>}
               </ul>
 
               <ul className="text-[#808080] gap-1 flex flex-col">
@@ -133,7 +134,7 @@ export default function Settings() {
             </div>
           </div>
         </div>
-        <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
+     {/*    <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
           <h2 className="text-lg md:text-xl font-medium">{translations.settings.statistics}</h2>
           <div className="flex flex-row items-center gap-6">
             <div className="flex flex-col">
@@ -153,7 +154,7 @@ export default function Settings() {
               <h3 className="text-sm text-[#808080] font-light">Clicks</h3>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 grid gap-4 grid-cols-1 md:grid-cols-2 h-full">
           <div className="flex flex-col w-full">
@@ -168,14 +169,7 @@ export default function Settings() {
               iamaworker
             </h2>
           </div>
-          <div className="flex flex-col w-full">
-            <Link
-              href="/mfa"
-              className="text-lg md:text-xl font-medium flex flex-row items-center gap-2"
-            >
-              MFA<FaArrowUpRightFromSquare />
-            </Link>
-          </div>
+          
         </div>
       </div>
       <div className="flex flex-col gap-4 h-full rounded-[20px] w-full">
@@ -227,14 +221,7 @@ export default function Settings() {
             </div>
           </div>
         </div>
-        <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col gap-3 h-full">
-          <h2 className="text-lg md:text-xl font-medium">{translations.settings.general}</h2>
-          <div className="text-sm flex flex-row items-center gap-2">
-            <label>{translations.settings.notifications}</label>
-            <input type="checkbox" className="w-4 h-4" />
-          </div>
-          
-        </div>
+       
       </div>
     </div>
   );

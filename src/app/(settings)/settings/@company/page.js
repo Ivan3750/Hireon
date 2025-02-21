@@ -44,7 +44,7 @@ export default function Settings() {
 
   if (loading) return null
   return (
-    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-full">
+    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6">
       <div className="flex flex-col gap-4 rounded-[20px] w-full h-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col justify-between items-stretch h-full">
           <h2 className="text-lg md:text-xl font-medium my-2">{userData.name}</h2>

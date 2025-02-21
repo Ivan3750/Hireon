@@ -30,7 +30,11 @@ const CvPage = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await axios.get("/api/user/8/data");
+            const response = await axios.get("/api/user/data", {
+                headers: {
+                  Authorization: `Bearer ${localStorage.token}`
+                }
+              });
             const { skills: userSkills, user} = response.data;
             console.log(response.data)
             setUserData(response.data);
