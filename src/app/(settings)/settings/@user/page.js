@@ -4,11 +4,10 @@ import Link from "next/link";
 import { MdOutlineMail } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { HiMiniMoon } from "react-icons/hi2";
-import { FaArrowUpRightFromSquare,FaPhoneAlt,FaHouse } from "react-icons/fa6";
+import { FaArrowUpRightFromSquare,FaPhone,FaHouse, FaLocationPin } from "react-icons/fa6";
 import Pill from "@/app/components/Pill";
 import { useTranslate } from "@/app/hooks/useTranslate";
 import { useState, useEffect } from "react";
-import { FaMapMarkerAlt } from "react-icons/fa";
 
 export default function Settings() {
   const { translations, loading: translationsLoading } = useTranslate();
@@ -44,14 +43,9 @@ export default function Settings() {
 
     fetchUserData();
   }, []);
-
-
-
   if (translationsLoading || loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
   return (
-    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-max">
+    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-[75%]">
       <div className="flex flex-col gap-4 rounded-[20px] w-full h-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col justify-between items-stretch h-full">
           <h2 className="text-lg md:text-xl font-medium my-2">{userData.name}</h2>
@@ -62,14 +56,14 @@ export default function Settings() {
                   <FaHouse className="text-lg" /> {translations.settings.city}
                 </li>
                 <li className="flex items-center gap-1">
-                  <FaMapMarkerAlt className="text-lg" /> {translations.settings.country}
+                  <FaLocationPin className="text-lg" /> {translations.settings.country}
                 </li>
                 <li className="flex items-center gap-1">
                   <MdOutlineMail className="text-lg" /> {translations.login.email}:
                 </li>
-                {<li className="flex items-center gap-1">
-                  <FaPhoneAlt className="text-lg" /> {translations.login.phone}:
-                </li>}
+                <li className="flex items-center gap-1">
+                  <FaPhone className="text-lg" /> {translations.login.phone}:
+                </li>
               </ul>
 
               <ul className="text-[#808080] gap-1 flex flex-col">
@@ -158,7 +152,7 @@ export default function Settings() {
 
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 grid gap-4 grid-cols-1 md:grid-cols-2 h-full">
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">{translations.settings.password}</h2>
+            <h2 className="text-lg md:text-xl font-medium">{translations.login.password}</h2>
             <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
               ••••••••••••••••
             </h2>

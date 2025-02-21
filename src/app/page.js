@@ -10,13 +10,7 @@ import example from "./example.json";
 import { useTranslate } from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-<<<<<<< Updated upstream
-import SearchBar from "./components/SearchBar";
-import AOS from "aos";
-import "aos/dist/aos.css";
-=======
 import SearchBar from "@/app/components/SearchBar";
->>>>>>> Stashed changes
 export default function Home() {
   const [found, setFound] = useState([]);
   const [search, setSearch] = useState("");

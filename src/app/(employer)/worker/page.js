@@ -1,10 +1,8 @@
 "use client";
-
 import { CiSearch } from "react-icons/ci";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaLocationPin } from "react-icons/fa6";
 import WorkerCard from "@/app/components/WorkerCard";
 import React, { useState, useEffect } from "react";
-
 const JobSearchPage = () => {
   const [jobs, setJobs] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,7 +11,6 @@ const JobSearchPage = () => {
   const [professionalArea, setProfessionalArea] = useState("");
   const [salary, setSalary] = useState("");
   const [experience, setExperience] = useState("");
-
   const handleSearch = async () => {
     try {
       const response = await fetch(
@@ -25,11 +22,9 @@ const JobSearchPage = () => {
       console.error("Error searching jobs:", error);
     }
   };
-
-
   return (
-    <>
-       <div className="max-w-[1200px] m-auto my-0">
+    <div className="flex flex-col w-full">
+       <div className=" w-3/4 m-auto my-0">
              <div className="w-full flex justify-center gap-5 p-2 max-[500px]:gap-2">
                <div className=" bg-[#F0F8FF] rounded-2xl h-10 flex items-center p-2 w-full">
                  <input
@@ -39,8 +34,8 @@ const JobSearchPage = () => {
                    value={searchQuery}
                    onChange={(e) => setSearchQuery(e.target.value)}
                  />
-                 <div className="flex gap-[1px] w-full max-w-[250px]">
-                   <FaMapMarkerAlt className="md:block hidden text-[16px] " />
+                 <div className="flex gap-[1px] w-full max-w-[250px] flex-row items-center">
+                   <FaLocationPin className="md:block hidden text-[16px] " />
                    <input
                      type="text"
                      placeholder="City"
@@ -113,7 +108,7 @@ const JobSearchPage = () => {
           <p>No jobs found</p>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

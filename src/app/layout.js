@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       <body className={`${unbounded.className} antialiased`}>
         <TranslateProvider>
           <Header />
-          <main className="w-screen">{children}</main>
+          <main className="w-screen flex flex-1">{children}</main>
           <Footer />
         </TranslateProvider>
       </body>

@@ -6,8 +6,8 @@ import Link from "next/link";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 
-const JobDetailsPage = ({ params }) => {
-  const { workerId } = params;
+const JobDetailsPage = async ({ params }) => {
+  const { workerId } = await params;
   const [worker, setWorker] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

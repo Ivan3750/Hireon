@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import JobCard from "@/app/components/JobCard";
+import { FaLocationPin } from "react-icons/fa6";
 
 const JobSearchPage = () => {
   const [jobs, setJobs] = useState([]);
@@ -40,8 +41,8 @@ const JobSearchPage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <div className="flex gap-[1px] w-full max-w-[250px]">
-              <FaMapMarkerAlt className="md:block hidden text-[16px] " />
+            <div className="flex gap-[1px] w-full max-w-[250px] flex-row items-center">
+              <FaLocationPin className="md:block hidden text-[16px] " />
               <input
                 type="text"
                 placeholder="City"
