@@ -18,9 +18,6 @@ const testJobs = [
   { name: "Data Scientist", by: "OpenAI" },
 ];
 const SearchBar = () => {
-  navigator.geolocation.getCurrentPosition((e) => {
-    console.log(e.coords);
-  });
   const apiID = process.env.ADZUNA_ID;
   const apiKey = process.env.ADZUNA_KEY;
   const [search, setSearch] = useState({ what: "", where: "", country: "" });
@@ -32,7 +29,7 @@ const SearchBar = () => {
           `/api/search?what=${search.what}&where=${search.where}&country=${search.country}`
         );
         const data = await res.json();
-        console.log(data.results);
+        setFound(data);
       } catch (err) {
         console.error(err);
       }
@@ -89,8 +86,8 @@ const SearchBar = () => {
           found?.length > 0 ? (
             found?.map((e, index) => (
               <div key={index} className="item p-2 font-medium">
-                <Link href={`/job/${e.name}`} className="link">
-                  {e.title
+                <Link href={`/job/${e.id}`} className="link">
+                  {e.job_title
                     .split(
                       new RegExp(`\b(?:${search.what.split("|")})\b`, "gi")
                     )
@@ -102,7 +99,7 @@ const SearchBar = () => {
                       )
                     )}{" "}
                   <span className="font-light">by</span>{" "}
-                  {e.company.display_name}
+                  {e.company || "Unknown"}
                 </Link>
               </div>
             ))

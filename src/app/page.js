@@ -10,7 +10,7 @@ import example from "./example.json";
 import { useTranslate } from "./hooks/useTranslate";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import SearchBar from "@/app/components/SearchBar";
+import SearchBar from "./components/SearchBar";
 import AOS from "aos";
 import "aos/dist/aos.css";
 export default function Home() {
