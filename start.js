@@ -4,6 +4,7 @@ const authRoutes = require("./server/routes/auth");
 const jobRoute = require("./server/routes/jobs");
 const dataUser = require("./server/routes/data");
 const search = require("./server/routes/search");
+const applyRoute = require("./server/routes/apply");
 const workertRoute = require("./server/routes/worker");
 const helmet = require('helmet');
 const cors = require('cors');
@@ -38,6 +39,7 @@ app.prepare().then(() => {
   server.use('/api/auth', authRoutes);
   server.use('/api', workertRoute);
   server.use('/api', search);
+  server.use('/api', applyRoute);
 
   server.all('*', (req, res) => {
     return handle(req, res);
