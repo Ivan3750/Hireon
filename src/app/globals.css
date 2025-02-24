@@ -342,7 +342,6 @@ body {
     rgba(255, 255, 255, 0) 70%
   );
   animation: shine 15s ease-in-out infinite;
-  
 }
 
 @keyframes shine {
@@ -360,4 +359,8 @@ body {
   100%{
 
   }
+}
+input {
+  background: transparent;
+  field-sizing: content;
 }

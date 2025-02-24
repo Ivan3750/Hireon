@@ -4,18 +4,22 @@ import Link from "next/link";
 import { MdOutlineMail } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { HiMiniMoon } from "react-icons/hi2";
-import { FaArrowUpRightFromSquare,FaPhoneAlts,FaHouse } from "react-icons/fa6";
+import {
+  FaArrowUpRightFromSquare,
+  FaPhoneAlts,
+  FaHouse,
+  FaPlus,
+} from "react-icons/fa6";
 import Pill from "@/app/components/Pill";
 import { useTranslate } from "@/app/hooks/useTranslate";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaMapMarker, FaPhone } from "react-icons/fa";
-
 export default function Settings() {
-  const { translations, loading} = useTranslate();
+  const { translations, loading } = useTranslate();
   const [userData, setUserData] = useState([]);
-  const [apiLoad, setApiLoad] = useState(true)
-
-  const [isEditable, setIsEditable] = useState(false);
+  const [apiLoad, setApiLoad] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [skills, setSkills] = useState([{text: "abc"},{text: "def"},{text: "ghi"}]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,8 +37,8 @@ export default function Settings() {
 
         const data = await response.json();
         setUserData(data);
-      } catch (err) {} 
-      finally {
+      } catch (err) {
+      } finally {
         setApiLoad(false);
       }
     };
@@ -42,12 +46,17 @@ export default function Settings() {
     fetchUserData();
   }, []);
 
-  if (loading) return null
+  if (loading) return null;
   return (
     <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-3/4">
       <div className="flex flex-col gap-4 rounded-[20px] w-full h-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col justify-between items-stretch h-full">
-          <h2 className="text-lg md:text-xl font-medium my-2">{userData.name}</h2>
+          <input
+            placeholder="Type here"
+            className="text-lg md:text-xl font-medium my-2"
+            defaultValue={userData.name}
+            disabled={isDisabled}
+          ></input>
           <div className="flex flex-col md:flex-row justify-between w-full flex-wrap-reverse gap-3">
             <div className="flex flex-col md:flex-row gap-4 font-light">
               <ul className="text-[#808080] gap-1 flex flex-col">
@@ -55,28 +64,50 @@ export default function Settings() {
                   <FaHouse className="text-lg" /> {translations.settings.city}
                 </li>
                 <li className="flex items-center gap-1">
-                  <FaMapMarker className="text-lg" /> {translations.settings.country}
+                  <FaMapMarker className="text-lg" />{" "}
+                  {translations.settings.country}
                 </li>
                 <li className="flex items-center gap-1">
-                  <MdOutlineMail className="text-lg" /> {translations.login.email}:
+                  <MdOutlineMail className="text-lg" />{" "}
+                  {translations.login.email}:
                 </li>
                 <li className="flex items-center gap-1">
                   <FaPhone className="text-lg" /> {translations.login.phone}:
                 </li>
               </ul>
-
               <ul className="text-[#808080] gap-1 flex flex-col">
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.city}
+                <li>
+                  <input
+                    placeholder="Type here"
+                    className="font-normal text-sm min-w-[200px]"
+                    disabled={isDisabled}
+                    defaultValue={userData.city}
+                  ></input>
                 </li>
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.country}
+                <li>
+                  <input
+                    placeholder="Type here"
+                    className="font-normal text-sm min-w-[200px]"
+                    disabled={isDisabled}
+                    defaultValue={userData.country}
+                  ></input>
                 </li>
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.email}
+                <li>
+                  <input
+                    placeholder="Type here"
+                    className="font-normal text-sm min-w-[200px]"
+                    disabled={isDisabled}
+                    defaultValue={userData.email}
+                  ></input>
                 </li>
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.phone}
+                <li>
+                  <input
+                    placeholder="Type here"
+                    type="tel"
+                    className="font-normal text-sm min-w-[200px]"
+                    disabled={isDisabled}
+                    defaultValue={userData.phone}
+                  ></input>
                 </li>
               </ul>
             </div>
@@ -96,15 +127,17 @@ export default function Settings() {
               <div className="flex flex-row gap-2">
                 <button
                   className={`${
-                    isEditable
-                      ? "bg-[#88e788] hover:text-[#88e788]"
-                      : "bg-[#219EBC] hover:text-[#219EBC]"
+                    isDisabled
+                      ? "bg-[#219EBC] hover:text-[#219EBC]"
+                      : "bg-[#88e788] hover:text-[#88e788]"
                   } rounded-[20px] w-1/2 xl:p-2 xl:text-sm text-[12px] p-1 hover:bg-[#11181C] transition-all`}
                   onClick={() => {
-                    setIsEditable((prev) => !prev);
+                    setIsDisabled((prev) => !prev);
                   }}
                 >
-                  {isEditable ? translations.settings.save : translations.settings.edit}
+                  {isDisabled
+                    ? translations.settings.edit
+                    : translations.settings.save}
                 </button>
                 <button className="bg-[#F47174] rounded-[20px] w-1/2 xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#F47174] hover:bg-[#11181C] transition-all">
                   {translations.settings.delete}
@@ -128,74 +161,109 @@ export default function Settings() {
           </div>
         </div>
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium">{translations.settings.statistics}</h2>
+          <h2 className="text-lg md:text-xl font-medium">
+            {translations.settings.statistics}
+          </h2>
           <div className="flex flex-row items-center gap-6">
             <div className="flex flex-col">
               <h3 className="text-lg font-light">100%</h3>
-              <h3 className="text-sm text-[#808080] font-light">{translations.settings.reputation}</h3>
+              <h3 className="text-sm text-[#808080] font-light">
+                {translations.settings.reputation}
+              </h3>
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">5</h3>
-              <h3 className="text-sm text-[#808080] font-light">{translations.settings.jobs}</h3>
+              <h3 className="text-sm text-[#808080] font-light">
+                {translations.settings.jobs}
+              </h3>
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">100%</h3>
-              <h3 className="text-sm text-[#808080] font-light">{translations.settings.positives}</h3>
+              <h3 className="text-sm text-[#808080] font-light">
+                {translations.settings.positives}
+              </h3>
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">20</h3>
-              <h3 className="text-sm text-[#808080] font-light">{translations.settings.resumes}</h3>
+              <h3 className="text-sm text-[#808080] font-light">
+                {translations.settings.resumes}
+              </h3>
             </div>
           </div>
         </div>
-
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 grid gap-4 grid-cols-1 md:grid-cols-2 h-full">
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">{translations.login.password}</h2>
-            <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
-              ••••••••••••••••
+            <h2 className="text-lg md:text-xl font-medium">
+              {translations.login.password}
             </h2>
+            <input
+              placeholder="Type here"
+              type="password"
+              className="text-sm text-[#808080]"
+              disabled={isDisabled}
+              defaultValue={"********"}
+            ></input>
           </div>
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">{translations.settings.ownLink}</h2>
-            <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
-              iamaworker
+            <h2 className="text-lg md:text-xl font-medium">
+              {translations.settings.ownLink}
             </h2>
+            <input
+              placeholder="Type here"
+              className="text-sm text-[#808080]"
+              disabled={isDisabled}
+              defaultValue={"iamaworker"}
+            ></input>
           </div>
           <div className="flex flex-col w-full">
             <Link
               href="/mfa"
               className="text-lg md:text-xl font-medium flex flex-row items-center gap-2"
             >
-              MFA<FaArrowUpRightFromSquare />
+              MFA
+              <FaArrowUpRightFromSquare />
             </Link>
           </div>
         </div>
       </div>
       <div className="flex flex-col gap-4 h-full rounded-[20px] w-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium pb-3">{translations.settings.skills}</h2>
-          <div className="flex flex-row gap-2 flex-wrap pb-3">
-            <Pill color="#FFB703" contentEditable={isEditable} text="C++" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="React" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="Vue" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="Python" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="PHP" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="MySQL" />
+          <h2 className="text-lg md:text-xl font-medium pb-3">
+            {translations.settings.skills}
+          </h2>
+          <div className="flex flex-row gap-2 flex-wrap pb-3 items-center">
+            {skills.map((e, i) => {return <Pill key={i} text={e.text} color="#FFB703" disabled={isDisabled} deletePill={() => setSkills(prev => prev.slice(0, -1))} />})}
+            {!isDisabled && <FaPlus onClick={() => {console.log(skills);setSkills(prev => [...prev, {text: ""}]);console.log(skills)}} className="cursor-pointer"></FaPlus>}
           </div>
         </div>
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium mb-2" contentEditable={isEditable}>
-            Front end Developer
-          </h2>
+          <input
+            placeholder="Type here"
+            className="text-lg md:text-xl font-medium mb-2"
+            disabled={isDisabled}
+            defaultValue={"Front end Developer"}
+          ></input>
           <div className="flex flex-row text-sm text-[#808080] gap-4 mb-2">
-            <p contentEditable={isEditable}>Full time</p>
-            <p contentEditable={isEditable}>Remote</p>
+            <input
+              placeholder="Type here"
+              disabled={isDisabled}
+              defaultValue={"Full time"}
+            ></input>
+            <input
+              placeholder="Type here"
+              disabled={isDisabled}
+              defaultValue={"Remote"}
+            ></input>
           </div>
           <div className="flex flex-col text-xs font-light">
-            <p className="break-words w-full overflow-ellipsis">
-              I am frontend developer and I know react lol also I have 100 words to type so I'm gonna do it
-            </p>
+            <input
+              placeholder="Type here"
+              className="break-words w-full overflow-ellipsis"
+              defaultValue={
+                "I am frontend developer and I know react lol also I have 100 words to type so I'm gonna do it"
+              }
+              disabled={isDisabled}
+            ></input>
           </div>
         </div>
         {/* <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col h-full">
@@ -204,28 +272,34 @@ export default function Settings() {
             <div className="flex flex-col text-xs font-light">
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Education:</p>
-                <p contentEditable={isEditable}>Higher(2)</p>
+                <p disabled={isDisabled}>Higher(2)</p>
               </div>
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Date of registration:</p>
-                <p contentEditable={isEditable}>7.02.2025</p>
+                <p disabled={isDisabled}>7.02.2025</p>
               </div>
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Degree:</p>
-                <p contentEditable={isEditable}>PhD</p>
+                <p disabled={isDisabled}>PhD</p>
               </div>
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Certification:</p>
-                <p contentEditable={isEditable}>Certificate</p>
+                <p disabled={isDisabled}>Certificate</p>
               </div>
             </div>
           </div>
         </div> */}
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col gap-3 h-full">
-          <h2 className="text-lg md:text-xl font-medium">{translations.settings.general}</h2>
+          <h2 className="text-lg md:text-xl font-medium">
+            {translations.settings.general}
+          </h2>
           <div className="text-sm flex flex-row items-center gap-2">
             <label>{translations.settings.notifications}</label>
-            <input type="checkbox" className="w-4 h-4" />
+            <input
+              placeholder="Type here"
+              type="checkbox"
+              className="w-4 h-4"
+            />
           </div>
         </div>
       </div>

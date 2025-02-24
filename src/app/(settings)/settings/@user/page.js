@@ -2,9 +2,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MdOutlineMail } from "react-icons/md";
-import { MdSunny } from "react-icons/md";
-import { HiMiniMoon } from "react-icons/hi2";
-import { FaArrowUpRightFromSquare,FaPhone,FaHouse, FaLocationPin } from "react-icons/fa6";
+import {
+  FaPhone,
+  FaHouse,
+  FaLocationPin,
+  FaPlus
+} from "react-icons/fa6";
 import Pill from "@/app/components/Pill";
 import { useTranslate } from "@/app/hooks/useTranslate";
 import { useState, useEffect } from "react";
@@ -14,8 +17,12 @@ export default function Settings() {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [isEditable, setIsEditable] = useState(false);
-
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [skills, setSkills] = useState([
+    { text: "abc" },
+    { text: "def" },
+    { text: "ghi" },
+  ]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,7 +40,7 @@ export default function Settings() {
 
         const data = await response.json();
         setUserData(data);
-        console.log(data)
+        console.log(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -43,12 +50,16 @@ export default function Settings() {
 
     fetchUserData();
   }, []);
-  if (translationsLoading || loading) return <div>Loading...</div>;
+  if (translationsLoading || loading) return null;
   return (
     <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-[75%]">
       <div className="flex flex-col gap-4 rounded-[20px] w-full h-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col justify-between items-stretch h-full">
-          <h2 className="text-lg md:text-xl font-medium my-2">{userData.name}</h2>
+          <input placeholder="Type here"
+            className="text-lg md:text-xl font-medium my-2"
+            defaultValue={userData.name}
+            disabled={isDisabled}
+          ></input>
           <div className="flex flex-col md:flex-row justify-between w-full flex-wrap-reverse gap-3">
             <div className="flex flex-col md:flex-row gap-4 font-light">
               <ul className="text-[#808080] gap-1 flex flex-col">
@@ -56,10 +67,12 @@ export default function Settings() {
                   <FaHouse className="text-lg" /> {translations.settings.city}
                 </li>
                 <li className="flex items-center gap-1">
-                  <FaLocationPin className="text-lg" /> {translations.settings.country}
+                  <FaLocationPin className="text-lg" />{" "}
+                  {translations.settings.country}
                 </li>
                 <li className="flex items-center gap-1">
-                  <MdOutlineMail className="text-lg" /> {translations.login.email}:
+                  <MdOutlineMail className="text-lg" />{" "}
+                  {translations.login.email}:
                 </li>
                 <li className="flex items-center gap-1">
                   <FaPhone className="text-lg" /> {translations.login.phone}:
@@ -67,17 +80,17 @@ export default function Settings() {
               </ul>
 
               <ul className="text-[#808080] gap-1 flex flex-col">
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.city}
+                <li className="font-normal text-sm">
+                  <input placeholder="Type here" defaultValue={userData.city} disabled={isDisabled}></input>
                 </li>
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.country}
+                <li className="font-normal text-sm">
+                  <input placeholder="Type here" defaultValue={userData.country} disabled={isDisabled}></input>
                 </li>
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.email}
+                <li className="font-normal text-sm">
+                  <input placeholder="Type here" defaultValue={userData.email} disabled={isDisabled}></input>
                 </li>
-                <li className="font-normal text-sm" contentEditable={isEditable}>
-                  {userData.phone}
+                <li className="font-normal text-sm">
+                  <input placeholder="Type here" defaultValue={userData.phone} disabled={isDisabled}></input>
                 </li>
               </ul>
             </div>
@@ -97,15 +110,17 @@ export default function Settings() {
               <div className="flex flex-row gap-2">
                 <button
                   className={`${
-                    isEditable
-                      ? "bg-[#88e788] hover:text-[#88e788]"
-                      : "bg-[#219EBC] hover:text-[#219EBC]"
+                    isDisabled
+                      ? "bg-[#219EBC] hover:text-[#219EBC]"
+                      : "bg-[#88e788] hover:text-[#88e788]"
                   } rounded-[20px] w-1/2 xl:p-2 xl:text-sm text-[12px] p-1 hover:bg-[#11181C] transition-all`}
                   onClick={() => {
-                    setIsEditable((prev) => !prev);
+                    setIsDisabled((prev) => !prev);
                   }}
                 >
-                  {isEditable ? translations.settings.save : translations.settings.edit}
+                  {isDisabled
+                    ? translations.settings.edit
+                    : translations.settings.save}
                 </button>
                 <button className="bg-[#F47174] rounded-[20px] w-1/2 xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#F47174] hover:bg-[#11181C] transition-all">
                   {translations.settings.delete}
@@ -117,7 +132,7 @@ export default function Settings() {
                 href="/cv"
                 className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
               >
-                  {translations.settings.cv}
+                {translations.settings.cv}
               </Link>
               <Link
                 href="/portfolio"
@@ -128,8 +143,10 @@ export default function Settings() {
             </div>
           </div>
         </div>
-     {/*    <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium">{translations.settings.statistics}</h2>
+        <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
+          <h2 className="text-lg md:text-xl font-medium">
+            {translations.settings.statistics}
+          </h2>
           <div className="flex flex-row items-center gap-6">
             <div className="flex flex-col">
               <h3 className="text-lg font-light">100%</h3>
@@ -148,48 +165,79 @@ export default function Settings() {
               <h3 className="text-sm text-[#808080] font-light">Clicks</h3>
             </div>
           </div>
-        </div> */}
+        </div>
 
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 grid gap-4 grid-cols-1 md:grid-cols-2 h-full">
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">{translations.login.password}</h2>
-            <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
-              ••••••••••••••••
+            <h2 className="text-lg md:text-xl font-medium">
+              {translations.login.password}
             </h2>
+            <input placeholder="Type here"
+              type="password"
+              className="text-sm text-[#808080]"
+              disabled={isDisabled}
+              defaultValue={"password"}
+            ></input>
           </div>
           <div className="flex flex-col w-full">
-            <h2 className="text-lg md:text-xl font-medium">{translations.settings.ownLink}</h2>
-            <h2 className="text-sm text-[#808080]" contentEditable={isEditable}>
-              iamaworker
+            <h2 className="text-lg md:text-xl font-medium">
+              {translations.settings.ownLink}
             </h2>
+            <input placeholder="Type here"
+              className="text-sm text-[#808080]"
+              disabled={isDisabled}
+              defaultValue={"iamaworker"}
+            ></input>
           </div>
-          
         </div>
       </div>
       <div className="flex flex-col gap-4 h-full rounded-[20px] w-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium pb-3">{translations.settings.positions}</h2>
-          <div className="flex flex-row gap-2 flex-wrap pb-3">
-            <Pill color="#FFB703" contentEditable={isEditable} text="C++" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="React" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="Vue" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="Python" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="PHP" />
-            <Pill color="#FFB703" contentEditable={isEditable} text="MySQL" />
+          <h2 className="text-lg md:text-xl font-medium pb-3">
+            {translations.settings.positions}
+          </h2>
+          <div className="flex flex-row gap-2 flex-wrap pb-3 items-center">
+            {skills.map((e, i) => {
+              return (
+                <Pill
+                  key={i}
+                  text={e.text}
+                  color="#FFB703"
+                  disabled={isDisabled}
+                  deletePill={() => setSkills((prev) => prev.slice(0, -1))}
+                />
+              );
+            })}
+            {!isDisabled && (
+              <FaPlus
+                onClick={() => {
+                  console.log(skills);
+                  setSkills((prev) => [...prev, { text: "" }]);
+                  console.log(skills);
+                }}
+                className="cursor-pointer"
+              ></FaPlus>
+            )}
           </div>
         </div>
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
-          <h2 className="text-lg md:text-xl font-medium mb-2" contentEditable={isEditable}>
-            Front end Developer
-          </h2>
+          <input placeholder="Type here"
+            className="text-lg md:text-xl font-medium mb-2"
+            disabled={isDisabled}
+            defaultValue={"Front end Developer"}
+          ></input>
           <div className="flex flex-row text-sm text-[#808080] gap-4 mb-2">
-            <p contentEditable={isEditable}>Full time</p>
-            <p contentEditable={isEditable}>Remote</p>
+            <input placeholder="Type here" disabled={isDisabled} defaultValue={"Full time"}></input>
+            <input placeholder="Type here" disabled={isDisabled} defaultValue={"Remote"}></input>
           </div>
           <div className="flex flex-col text-xs font-light">
-            <p className="break-words w-full overflow-ellipsis">
-              I am frontend developer and I know react lol also I have 100 words to type so I'm gonna do it
-            </p>
+            <textarea
+              className="break-words w-full overflow-ellipsis"
+              disabled={isDisabled}
+              defaultValue={
+                "I am frontend developer and I know react lol also I have 100 words to type so I'm gonna do it"
+              }
+            ></textarea>
           </div>
         </div>
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col h-full">
@@ -198,24 +246,23 @@ export default function Settings() {
             <div className="flex flex-col text-xs font-light">
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Education:</p>
-                <p contentEditable={isEditable}>Higher(2)</p>
+                <p disabled={isDisabled}>Higher(2)</p>
               </div>
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Date of registration:</p>
-                <p contentEditable={isEditable}>7.02.2025</p>
+                <p>7.02.2025</p>
               </div>
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Degree:</p>
-                <p contentEditable={isEditable}>PhD</p>
+                <p disabled={isDisabled}>PhD</p>
               </div>
               <div className="flex flex-row gap-1">
                 <p className="text-[#808080]">Certification:</p>
-                <p contentEditable={isEditable}>Certificate</p>
+                <p disabled={isDisabled}>Certificate</p>
               </div>
             </div>
           </div>
         </div>
-       
       </div>
     </div>
   );

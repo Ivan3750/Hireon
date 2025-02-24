@@ -1,9 +1,5 @@
-
 "use client";
-
-
 export const dynamic = 'force-dynamic';
-
 import { useState, useEffect, useContext, createContext } from "react";
 const TranslateContext = createContext(null);
 export function TranslateProvider({ children }) {
