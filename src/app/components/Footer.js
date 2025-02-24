@@ -30,27 +30,19 @@ const Footer = () => {
               <li>
                 <Link href="/job">Job</Link>
               </li>
-
-              <li>
-                <Link href="/settings">Settings</Link>
-              </li>
             </ul>
           </li>
 
-          <li className="nav__item nav__item--extra">
+          <li className="nav__item nav__item">
             <h2 className="nav__title">Company</h2>
 
-            <ul className="nav__ul nav__ul--extra">
+            <ul className="nav__ul">
               <li>
                 <Link href="/worker">Worker</Link>
               </li>
 
               <li>
                 <Link href="/vacancy">Vacancy</Link>
-              </li>
-
-              <li>
-                <Link href="/settings">Settings</Link>
               </li>
             </ul>
           </li>
