@@ -32,12 +32,17 @@ export default function SettingsLayout({ company, user }) {
   }, []);
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center">
+    <div className="w-full  flex flex-col justify-center items-center">
     <style jsx global>
         {"input:enabled {border-bottom: 1px solid #11181C;}"}
       </style>
-      <Link href="" onClick={() => history.back()} className="flex h-[12.5%] absolute items-center flex-nowrap gap-[5px] text-[25px] top-0 left-[50px]"><FaArrowLeft></FaArrowLeft>Back</Link>
-      <h1 className="flex h-[12.5%] absolute items-center flex-nowrap gap-[5px] text-[40px] top-0 left-[50%] translate-x-[-50%]">Settings</h1>
+      <div className=' items-center justify-between w-full p-4  shadow-lg hidden sm:flex'>
+      <Link href='' onClick={() => history.back()} className='flex items-center text-[25px] text-gray-700 hover:text-black transition'>
+        <FaArrowLeft className='mr-2' /> Back
+      </Link>
+      <h1 className='text-[40px] font-semibold text-gray-900'>Settings</h1>
+      <div className='w-[50px]'></div>
+    </div>
       {accountType === 'applicant' && (
         user
       )}

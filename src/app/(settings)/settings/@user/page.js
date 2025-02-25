@@ -52,7 +52,7 @@ export default function Settings() {
   }, []);
   if (translationsLoading || loading) return null;
   return (
-    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 h-[75%]">
+    <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 ">
       <div className="flex flex-col gap-4 rounded-[20px] w-full h-full">
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col justify-between items-stretch h-full">
           <input placeholder="Type here"
@@ -133,12 +133,6 @@ export default function Settings() {
                 className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
               >
                 {translations.settings.cv}
-              </Link>
-              <Link
-                href="/portfolio"
-                className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
-              >
-                {translations.settings.portfolio}
               </Link>
             </div>
           </div>

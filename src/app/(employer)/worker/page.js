@@ -56,21 +56,21 @@ const JobSearchPage = () => {
              <div className="my-2 p-2 w-full flex justify-center gap-5 max-[500px]:flex-wrap max-[500px]:gap-1">
                <input
                  type="text"
-                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none"
+                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
                  placeholder="Type of employment"
                  value={employmentType}
                  onChange={(e) => setEmploymentType(e.target.value)}
                />
                <input
                  type="text"
-                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none"
+                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
                  placeholder="Professional areas"
                  value={professionalArea}
                  onChange={(e) => setProfessionalArea(e.target.value)}
                />
                <input
                  type="number"
-                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none"
+                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
                  min={0}
                  max={50000}
                  placeholder="Salary from"
@@ -79,7 +79,7 @@ const JobSearchPage = () => {
                />
                <input
                  type="number"
-                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none"
+                 className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
                  min={0}
                  max={50}
                  placeholder="Experience"

@@ -60,7 +60,7 @@ const VacancyPage = () => {
           <label className="label">Job</label>
           <input
             type="text"
-            className="border p-2 rounded-2xl"
+            className="border p-2 rounded-2xl input"
             placeholder="Front end"
             value={jobTitle}
             onChange={(e) => setJobTitle(e.target.value)}
@@ -68,7 +68,7 @@ const VacancyPage = () => {
           <label className="label">Salary</label>
           <input
             type="text"
-            className="border p-2 rounded-2xl"
+            className="border p-2 rounded-2xl input"
             placeholder="2 000"
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
@@ -76,7 +76,7 @@ const VacancyPage = () => {
           <label className="label">Address</label>
           <input
             type="text"
-            className="border p-2 rounded-2xl"
+            className="border p-2 rounded-2xl input"
             placeholder="Hireon street 1"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
@@ -84,7 +84,7 @@ const VacancyPage = () => {
           <label className="label">Contact</label>
           <input
             type="text"
-            className="border p-2 rounded-2xl"
+            className="border p-2 rounded-2xl input"
             placeholder="+38 067 320 70 22"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
@@ -92,7 +92,7 @@ const VacancyPage = () => {
           <label className="label">Email</label>
           <input
             type="email"
-            className="border p-2 rounded-2xl"
+            className="border p-2 rounded-2xl input"
             placeholder="hireon@gmail.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
