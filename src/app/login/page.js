@@ -90,7 +90,7 @@ export default function Auth() {
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="John Petersen"
                     required
-                    className="w-full p-2.5 border border-gray-300 rounded-[20px] focus:outline-none placeholder:text-[15px]"
+                    className="w-full p-2.5 border border-[#F0F8FF] rounded-[20px] focus:outline-none placeholder:text-[15px]"
                   />
                 </div>
               )}
@@ -105,7 +105,7 @@ export default function Auth() {
                     onChange={(e) => setCompanyName(e.target.value)}
                     placeholder="Tech Solutions"
                     required
-                    className="w-full p-2.5 border border-gray-300 rounded-[20px] focus:outline-none placeholder:text-[15px]"
+                    className="w-full p-2.5 border border-[#F0F8FF] rounded-[20px] focus:outline-none placeholder:text-[15px]"
                   />
                 </div>
               )}
@@ -119,7 +119,7 @@ export default function Auth() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="email@example.com"
                   required
-                  className="w-full p-2.5 border border-gray-300 rounded-[20px] focus:outline-none placeholder:text-[15px]"
+                  className="w-full p-2.5 border border-[#F0F8FF] rounded-[20px] focus:outline-none placeholder:text-[15px]"
                 />
               </div>
               <div className="mb-4">
@@ -132,7 +132,7 @@ export default function Auth() {
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+380 67 000 00 00"
                   required
-                  className="w-full p-2.5 border border-gray-300 rounded-[20px] focus:outline-none placeholder:text-[15px]"
+                  className="w-full p-2.5 border border-[#F0F8FF] rounded-[20px] focus:outline-none placeholder:text-[15px]"
                 />
               </div>
               <div className="mb-4">
@@ -145,7 +145,7 @@ export default function Auth() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="********"
                   required
-                  className="w-full p-2.5 border border-gray-300 rounded-[20px] focus:outline-none placeholder:text-[15px]"
+                  className="w-full p-2.5 border border-[#F0F8FF] rounded-[20px] focus:outline-none placeholder:text-[15px]"
                 />
               </div>
               <button

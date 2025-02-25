@@ -144,20 +144,6 @@ export default function Settings() {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col text-sm gap-2 md:w-fit w-full">
-              <Link
-                href="/cv"
-                className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
-              >
-                {translations.settings.cv}
-              </Link>
-              <Link
-                href="/portfolio"
-                className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
-              >
-                {translations.settings.portfolio}
-              </Link>
-            </div>
           </div>
         </div>
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 h-full">
@@ -266,29 +252,6 @@ export default function Settings() {
             ></input>
           </div>
         </div>
-        {/* <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col h-full">
-          <h2 className="text-lg md:text-xl font-medium mb-2">Education</h2>
-          <div className="flex flex-row gap-4 items-center">
-            <div className="flex flex-col text-xs font-light">
-              <div className="flex flex-row gap-1">
-                <p className="text-[#808080]">Education:</p>
-                <p disabled={isDisabled}>Higher(2)</p>
-              </div>
-              <div className="flex flex-row gap-1">
-                <p className="text-[#808080]">Date of registration:</p>
-                <p disabled={isDisabled}>7.02.2025</p>
-              </div>
-              <div className="flex flex-row gap-1">
-                <p className="text-[#808080]">Degree:</p>
-                <p disabled={isDisabled}>PhD</p>
-              </div>
-              <div className="flex flex-row gap-1">
-                <p className="text-[#808080]">Certification:</p>
-                <p disabled={isDisabled}>Certificate</p>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col gap-3 h-full">
           <h2 className="text-lg md:text-xl font-medium">
             {translations.settings.general}

@@ -6,7 +6,8 @@ import {
   FaPhone,
   FaHouse,
   FaLocationPin,
-  FaPlus
+  FaPlus,
+  FaArrowUpRightFromSquare
 } from "react-icons/fa6";
 import Pill from "@/app/components/Pill";
 import { useTranslate } from "@/app/hooks/useTranslate";
@@ -27,10 +28,9 @@ export default function Settings() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const token = localStorage.getItem("token");
         const response = await fetch("/api/user/data", {
           headers: {
-            Authorization: `Bearer ${token}`,
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
           },
         });
 
@@ -57,12 +57,12 @@ export default function Settings() {
         <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col justify-between items-stretch h-full">
           <input placeholder="Type here"
             className="text-lg md:text-xl font-medium my-2"
-            defaultValue={userData.name}
+            defaultValue={userData.user.full_name}
             disabled={isDisabled}
           ></input>
-          <div className="flex flex-col md:flex-row justify-between w-full flex-wrap-reverse gap-3">
-            <div className="flex flex-col md:flex-row gap-4 font-light">
-              <ul className="text-[#808080] gap-1 flex flex-col">
+          <div className="flex flex-col md:flex-row justify-between w-full flex-wrap-reverse gap-3 items-center">
+            <div className="flex flex-col md:flex-row gap-4 font-light items-center">
+              <ul className="text-[#808080] gap-1 flex flex-col h-full">
                 <li className="flex items-center gap-1">
                   <FaHouse className="text-lg" /> {translations.settings.city}
                 </li>
@@ -79,18 +79,18 @@ export default function Settings() {
                 </li>
               </ul>
 
-              <ul className="text-[#808080] gap-1 flex flex-col">
+              <ul className="text-[#808080] gap-1 flex flex-col h-full justify-between">
                 <li className="font-normal text-sm">
-                  <input placeholder="Type here" defaultValue={userData.city} disabled={isDisabled}></input>
+                  <input placeholder="Type here" defaultValue={userData.user.city} disabled={isDisabled}></input>
                 </li>
                 <li className="font-normal text-sm">
-                  <input placeholder="Type here" defaultValue={userData.country} disabled={isDisabled}></input>
+                  <input placeholder="Type here" defaultValue={userData.user.country} disabled={isDisabled}></input>
                 </li>
                 <li className="font-normal text-sm">
-                  <input placeholder="Type here" defaultValue={userData.email} disabled={isDisabled}></input>
+                  <input placeholder="Type here" defaultValue={userData.user.email} disabled={isDisabled}></input>
                 </li>
                 <li className="font-normal text-sm">
-                  <input placeholder="Type here" defaultValue={userData.phone} disabled={isDisabled}></input>
+                  <input placeholder="Type here" defaultValue={userData.user.phone} disabled={isDisabled}></input>
                 </li>
               </ul>
             </div>
@@ -130,9 +130,16 @@ export default function Settings() {
             <div className="flex flex-col text-sm gap-2 md:w-fit w-full">
               <Link
                 href="/cv"
-                className="bg-[#FFB703] rounded-[20px] w-full xl:p-2 xl:text-sm text-[12px] p-1 hover:text-[#FFB703] hover:bg-[#11181C] transition-all text-center"
+                className="w-full xl:p-2 xl:text-sm text-[12px] p-1 transition-all text-center link flex flex-row flex-nowrap gap-[5px]"
               >
                 {translations.settings.cv}
+              </Link>
+              <Link
+                href="/portfolio"
+                className="w-full xl:p-2 xl:text-sm text-[12px] p-1 transition-all text-center link flex flex-row flex-nowrap gap-[5px]"
+              >
+                {translations.settings.portfolio}
+                <FaArrowUpRightFromSquare></FaArrowUpRightFromSquare>
               </Link>
             </div>
           </div>
@@ -156,7 +163,7 @@ export default function Settings() {
             </div>
             <div className="flex flex-col">
               <h3 className="text-lg font-light">20</h3>
-              <h3 className="text-sm text-[#808080] font-light">Clicks</h3>
+              <h3 className="text-sm text-[#808080] font-light">Friends</h3>
             </div>
           </div>
         </div>
@@ -170,7 +177,7 @@ export default function Settings() {
               type="password"
               className="text-sm text-[#808080]"
               disabled={isDisabled}
-              defaultValue={"password"}
+              defaultValue={userData.user}
             ></input>
           </div>
           <div className="flex flex-col w-full">
@@ -180,7 +187,7 @@ export default function Settings() {
             <input placeholder="Type here"
               className="text-sm text-[#808080]"
               disabled={isDisabled}
-              defaultValue={"iamaworker"}
+              defaultValue={userData.user}
             ></input>
           </div>
         </div>
@@ -198,7 +205,7 @@ export default function Settings() {
                   text={e.text}
                   color="#FFB703"
                   disabled={isDisabled}
-                  deletePill={() => setSkills((prev) => prev.slice(0, -1))}
+                  deletePill={() => setSkills((prev) => prev.filter(item => item !== e.text))}
                 />
               );
             })}
@@ -233,8 +240,6 @@ export default function Settings() {
               }
             ></textarea>
           </div>
-        </div>
-        <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col h-full">
           <h2 className="text-lg md:text-xl font-medium mb-2">Education</h2>
           <div className="flex flex-row gap-4 items-center">
             <div className="flex flex-col text-xs font-light">
@@ -255,6 +260,19 @@ export default function Settings() {
                 <p disabled={isDisabled}>Certificate</p>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="bg-[#F8F8FF] w-full rounded-[20px] p-4 flex flex-col gap-3 h-full">
+          <h2 className="text-lg md:text-xl font-medium">
+            {translations.settings.general}
+          </h2>
+          <div className="text-sm flex flex-row items-center gap-2">
+            <label>{translations.settings.notifications}</label>
+            <input
+              placeholder="Type here"
+              type="checkbox"
+              className="w-4 h-4"
+            />
           </div>
         </div>
       </div>

@@ -215,7 +215,7 @@ const CvPage = () => {
                 <div>{modalContent}</div>
                 <div className="mt-5 flex justify-end gap-5">
                     <button className="button-disable" onClick={handleCloseModal}>Cancel</button>
-                    <button className="button">Save Modal Date</button>
+                    <button className="button">Save</button>
                 </div>
             </Modal>
 

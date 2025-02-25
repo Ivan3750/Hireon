@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../db');
 const { token } = require('morgan');
+const { stat } = require('original-fs');
 require('dotenv').config();
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_TOKEN; 
@@ -31,7 +32,7 @@ router.get('/user/data', authenticateToken, async (req, res) => {
 
     try {
         const query = `
-          SELECT users.id AS user_id, users.email, users.phone, users.age, users.city, users.country, users.salary, users.job, users.additionalInfo, users.created_at, users.full_name,
+          SELECT users.id AS user_id, users.email, users.phone, users.age, users.city, users.country, users.salary, users.job, users.additionalInfo, users.created_at, users.full_name, users.aboutme, users.statistics, users.skills,
                  education.id AS education_id, education.education_level, education.high_school, education.education_place, 
                  education.started, education.ended, education.more_info,
                  languages.id AS language_id, languages.language_name, languages.proficiency_level,
@@ -60,7 +61,10 @@ router.get('/user/data', authenticateToken, async (req, res) => {
             full_name: results[0].full_name,
             job: results[0].job,
             additionalInfo: results[0].additionalInfo,
-            salary: results[0].salary
+            salary: results[0].salary,
+            statistics: results[0].statistics,
+            aboutme: results[0].aboutme,
+            skills: results[0].skills
         };
 
         const education = {
@@ -84,7 +88,7 @@ router.get('/user/data', authenticateToken, async (req, res) => {
             skill_name: row.skill_name,
         }));
 
-        res.json({ user, education, languages, skills });
+        res.status(200).json({user: user, education: education, languages: languages, skills: skills});
     } catch (err) {
         console.error('Error executing query: ', err);
         res.status(500).send('Server error');
@@ -148,10 +152,6 @@ router.put('/user/data', authenticateToken, async (req, res) => {
         if (userUpdateResult.affectedRows === 0) {
             return res.status(404).send('User not found');
         }
-
-        
-        
-
         res.send('User CV updated successfully');
     } catch (err) {
         console.error('Error executing query: ', err);
@@ -285,6 +285,4 @@ router.put('/user/education', authenticateToken ,async (req, res) => {
         res.status(500).send('Server error');
     }
 });
-
-
 module.exports = router;

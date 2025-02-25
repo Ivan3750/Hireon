@@ -4,7 +4,7 @@ import "@/app/globals.css";
 import { FaArrowLeft } from "react-icons/fa6";
 import Link from "next/link";
 export default function SettingsLayout({ company, user }) {
-  const [accountType, setAccountType] = useState('employer');
+  const [accountType, setAccountType] = useState('applicant');
 
   useEffect(() => {
     const fetchAccountType = async () => {
@@ -17,7 +17,7 @@ export default function SettingsLayout({ company, user }) {
           }
         });
 
-        if (response.ok) {
+        if (!response.ok) {
           const data = await response.json();
           setAccountType(data.userType);
         } else {
