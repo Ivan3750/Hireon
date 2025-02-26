@@ -21,9 +21,10 @@ const authenticateToken = (req, res, next) => {
 
 router.get('/user/data', authenticateToken, async (req, res) => {
     const userId = req.user.id; // Отримуємо ID користувача з токена
-    console.log(userId)
+    console.log(userId);
+
     if (!userId) {
-        return res.status(400).send('User ID is required', userId);
+        return res.status(400).send('User ID is required');
     }
 
     if (isNaN(userId)) {
@@ -36,11 +37,14 @@ router.get('/user/data', authenticateToken, async (req, res) => {
                  education.id AS education_id, education.education_level, education.high_school, education.education_place, 
                  education.started, education.ended, education.more_info,
                  languages.id AS language_id, languages.language_name, languages.proficiency_level,
-                 skills.id AS skill_id, skills.skill_name
+                 skills.id AS skill_id, skills.skill_name,
+                        work_experience.id AS work_exp_id, work_experience.job_title, work_experience.company_name, work_experience.city AS work_exp_city, work_experience.started AS work_exp_started, work_experience.ended AS work_exp_ended, work_experience.more_info AS work_exp_more_info
+
           FROM users
           LEFT JOIN education ON users.id = education.user_id
           LEFT JOIN languages ON users.id = languages.user_id
           LEFT JOIN skills ON users.id = skills.user_id
+          LEFT JOIN work_experience ON users.id = work_experience.user_id
           WHERE users.id = ?;
         `;
 
@@ -64,18 +68,19 @@ router.get('/user/data', authenticateToken, async (req, res) => {
             salary: results[0].salary,
             statistics: results[0].statistics,
             aboutme: results[0].aboutme,
-            skills: results[0].skills
+            skills: results[0].skills,
+            
         };
 
-        const education = {
-            id: results[0].education_id,
-            education_level: results[0].education_level,
-            high_school: results[0].high_school,
-            education_place: results[0].education_place,
-            started: results[0].started,
-            ended: results[0].ended,
-            more_info: results[0].more_info,
-        };
+        const education = results.map(row => ({
+            id: row.education_id,
+            education_level: row.education_level,
+            high_school: row.high_school,
+            education_place: row.education_place,
+            started: row.started,
+            ended: row.ended,
+            more_info: row.more_info,
+        }));
 
         const languages = results.map(row => ({
             id: row.language_id,
@@ -88,12 +93,24 @@ router.get('/user/data', authenticateToken, async (req, res) => {
             skill_name: row.skill_name,
         }));
 
-        res.status(200).json({user: user, education: education, languages: languages, skills: skills});
+        const work_experience = results.map(row=> ({
+            id: row.id,
+            job: row.job_title,
+            company: row.company_name, 
+            city: row.city,
+            started: row.started,
+            ended: row.ended,
+            more_info: row.more_info
+        }))
+
+        // Return the response with the user and their data
+        res.status(200).json({user, education, languages, skills, work_experience});
     } catch (err) {
         console.error('Error executing query: ', err);
         res.status(500).send('Server error');
     }
 });
+
 router.get('/user/language', authenticateToken, async (req, res) => {
     const userId = req.user.id; 
     
@@ -264,25 +281,43 @@ router.put('/user/education', authenticateToken ,async (req, res) => {
         const query = `SELECT id FROM education WHERE user_id = ?`;
         const [existingEducation] = await db.execute(query, [userId]);
 
-        if (existingEducation.length > 0) {
-            const updateQuery = `
-                UPDATE education 
-                SET education_level = ?, education_place = ?, started = ?, ended = ?, more_info = ?
-                WHERE user_id = ?;
-            `;
-            await db.execute(updateQuery, [education_level, education_place, started, ended, more_info, userId]);
-            res.send('Education updated successfully');
-        } else {
             const insertQuery = `
                 INSERT INTO education (user_id, education_level,  education_place, started, ended, more_info)
                 VALUES (?, ?, ?, ?, ?, ?, ?);
             `;
             await db.execute(insertQuery, [userId, education_level, education_place, started, ended, more_info]);
             res.send('Education added successfully');
-        }
+  
     } catch (err) {
         console.error('Error updating education: ', err);
         res.status(500).send('Server error');
     }
 });
+
+router.delete('/user/education', authenticateToken, async (req, res) => {
+    const userId = req.user.id;
+    const { education_id } = req.body;
+
+    if (!userId || !education_id) {
+        return res.status(400).send('User ID and Education ID are required');
+    }
+
+    try {
+        const query = `SELECT id FROM education WHERE user_id = ? AND id = ?`;
+        const [existingEducation] = await db.execute(query, [userId, education_id]);
+
+        if (!existingEducation) {
+            return res.status(404).send('Education record not found');
+        }
+
+        const deleteQuery = `DELETE FROM education WHERE id = ?`;
+        await db.execute(deleteQuery, [education_id]);
+
+        res.send('Education record deleted successfully');
+    } catch (err) {
+        console.error('Error deleting education: ', err);
+        res.status(500).send('Server error');
+    }
+});
+
 module.exports = router;

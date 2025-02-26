@@ -19,6 +19,8 @@ const CvPage = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
+  const [Education, setEducation] = useState([]);
+  const [WorkEx, setWorkEx] = useState([]);
   const [pageLoading, setPageLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
@@ -36,7 +38,6 @@ const CvPage = () => {
         },
       });
       const { skills: userSkills, user } = response.data;
-      console.log(response.data);
       setUserData(response.data);
       setSkills(userSkills.map((skill) => skill.skill_name));
       setJob(user.job || "");
@@ -45,6 +46,9 @@ const CvPage = () => {
       setPhone(user.phone || "");
       setEmail(user.email || "");
       setAdditionalInfo(user.additionalInfo || "");
+      setEducation(response.data.education || []);
+      setWorkEx(response.data.work_experience || []);
+      console.log(response.data);
     } catch (error) {
       setError("Error fetching user data.");
       console.error("Error fetching user data:", error);
@@ -106,6 +110,15 @@ const CvPage = () => {
     setIsModalOpen(false);
     setModalContent("");
   };
+
+  const formatDate = (date) => {
+    if (!date) return "N/A"; // If there's no date, return "N/A"
+    const formattedDate = new Date(date);
+    return `${
+      formattedDate.getMonth() + 1
+    }/${formattedDate.getDate()}/${formattedDate.getFullYear()}`;
+  };
+
   if (loading) return null;
   return (
     <>
@@ -173,18 +186,21 @@ const CvPage = () => {
             <h3 className="max-[500px]:text-[14px]">
               {translations.settings.education.slice(0, -1)}
             </h3>
-            {userData.education.map((ed) => (
-  <div key={ed.id} className="bg-[#F8F8FF] p-5 rounded-3xl flex justify-between">
-    <div>
-      <h4 className="text-[#141313] text-[16px] max-[500px]:text-[14px]">
-        {ed.education_level || "High School"}
-      </h4>
-      <p className="text-[10px] max-[500px]:text-[8px]">
-        {ed.started} - {ed.ended}
-      </p>
-    </div>
-  </div>
-))}
+            {Education.map((ed) => (
+              <div
+                key={ed.id}
+                className="bg-[#F8F8FF] p-5 rounded-3xl flex justify-between mb-4"
+              >
+                <div>
+                  <h4 className="text-[#141313] text-[16px] max-[500px]:text-[14px]">
+                    {ed.education_level || "High School"}
+                  </h4>
+                  <p className="text-[10px] max-[500px]:text-[8px]">
+                    {formatDate(ed.started)} - {formatDate(ed.ended)}
+                  </p>
+                </div>
+              </div>
+            ))}
 
             <button
               className="button"
@@ -199,39 +215,42 @@ const CvPage = () => {
             <h3 className="max-[500px]:text-[14px]">
               {translations.cv.knowledges}
             </h3>
-          <div className="flex flex-col gap-2 w-full">
-            <h2 className="max-[500px]:text-[14px]">Work experience</h2>
-            <div className="bg-[#F8F8FF] p-5 rounded-3xl">
-              <div className="flex justify-between">
-                <div>
-                  <h3 className="text-[#141313] font-semibold max-[500px]:text-[12px]">
-                    SharkIT
-                  </h3>
-                  <p className="text-[#59585A] font-medium text-[14px] max-[500px]:text-[10px]">
-                    Full Stack Dev
-                  </p>
-                  <p className="text-[#4A4A4D] font-normal text-[12px] max-[500px]:text-[8px]">
-                    02.2022 - 03.2025
-                  </p>
-                </div>
-                <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer">
-                  <FaTrash color="#F94861" size={20} />
-                </div>
-              </div>
-              <div>
-                <p className="text-[#706F72] text-[12px] max-[500px]:text-[8px]">
-                  Text text text...
-                </p>
-              </div>
-            </div>
+            <div className="flex flex-col gap-2 w-full">
+              <h2 className="max-[500px]:text-[14px]">Work experience</h2>
 
-            <button
-              className="button"
-              onClick={() => handleOpenModal(<WorkContent />)}
-            >
-              Add work experience
-            </button>
-          </div>
+              {WorkEx.map((w) => (
+                <div className="bg-[#F8F8FF] p-5 rounded-3xl">
+                  <div className="flex justify-between">
+                    <div>
+                      <h3 className="text-[#141313] font-semibold max-[500px]:text-[12px]">
+                        {w.company}
+                      </h3>
+                      <p className="text-[#59585A] font-medium text-[14px] max-[500px]:text-[10px]">
+                        {w.job} in {w.city}
+                      </p>
+                      <p className="text-[#4A4A4D] font-normal text-[12px] max-[500px]:text-[8px]">
+                        {formatDate(w.started)} - {formatDate(w.ended)}
+                      </p>
+                    </div>
+                    <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer">
+                      <FaTrash color="#F94861" size={20} />
+                    </div>
+                  </div>
+                  <div>
+                    <p className="text-[#706F72] text-[12px] max-[500px]:text-[8px]">
+                      {w.more_info}
+                    </p>
+                  </div>
+                </div>
+              ))}
+              <button
+                className="button"
+                onClick={() => handleOpenModal(<WorkContent />)}
+              >
+                Add work experience
+              </button>
+            </div>
+           
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ const EducationContent = () => {
 
           <label className="label">Started</label>
           <input
-            type="text"
+            type="date"
             name="started"
             className="input"
             placeholder="02-2020"
@@ -64,7 +64,7 @@ const EducationContent = () => {
 
           <label className="label">Ended</label>
           <input
-            type="text"
+            type="date"
             name="ended"
             className="input"
             placeholder="02-2025"
