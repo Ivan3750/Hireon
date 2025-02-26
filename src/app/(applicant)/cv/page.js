@@ -126,7 +126,7 @@ const CvPage = () => {
             <input
               type="text"
               className="input"
-              placeholder={translations.cv.city}
+              placeholder={translations.home.city}
               value={city}
               onChange={handleChange}
               name="city"

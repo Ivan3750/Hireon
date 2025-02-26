@@ -20,10 +20,10 @@ export default function RootLayout({ children }) {
         <head>
         <link rel="icon" href="/favicon.png" sizes="any" />
       </head>
-      <body className={`${unbounded.className} antialiased`}>
+      <body className={`${unbounded.className} antialiased w-screen`}>
         <TranslateProvider>
           <Header />
-          <main className="w-screen flex-1">{children}</main>
+          <main className="w-screen flex-1 h-screen">{children}</main>
           <Footer />
         </TranslateProvider>
       </body>

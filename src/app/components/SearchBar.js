@@ -45,7 +45,7 @@ const SearchBar = () => {
     <div className="mt-3 w-full max-w-[800px] relative">
       <div className="flex w-full relative z-50">
         <div className="bg-[#F8F8FF] ps-3 rounded-s-[20px] flex items-center">
-          <FaMagnifyingGlass size={20} color="#808080" />
+          <FaMagnifyingGlass size={52} color="#808080" />
         </div>
         <input
           placeholder={translations.home.findJob}

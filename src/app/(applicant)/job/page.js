@@ -5,8 +5,10 @@ import { CiSearch } from "react-icons/ci";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import JobCard from "@/app/components/JobCard";
 import { FaLocationPin } from "react-icons/fa6";
+import { useTranslate } from "@/app/hooks/useTranslate";
 
 const JobSearchPage = () => {
+    const { translations, loading } = useTranslate();
   const [jobs, setJobs] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [city, setCity] = useState("");
@@ -19,7 +21,7 @@ const JobSearchPage = () => {
   const handleSearch = async () => {
     try {
       const response = await fetch(
-        `api/jobs?title=${searchQuery}&city=${city}&employment=${employmentType}&area=${professionalArea}&salary=${salary}&experience=${experience}`
+        `/api/jobs?title=${searchQuery}&city=${city}&employment=${employmentType}&area=${professionalArea}&salary=${salary}&experience=${experience}`
       );
       const data = await response.json();
       setJobs(data);
@@ -28,6 +30,7 @@ const JobSearchPage = () => {
       console.error("Error searching jobs:", error);
     }
   };
+  if (loading) return null
   return (
     <>
       <div className="max-w-[1200px] m-auto my-0">
@@ -36,7 +39,7 @@ const JobSearchPage = () => {
             <input
               type="text"
               className="w-full pl-2 focus:outline-none bg-transparent"
-              placeholder="Enter job"
+              placeholder={translations.job.enter}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -44,7 +47,7 @@ const JobSearchPage = () => {
               <FaLocationPin className="md:block hidden text-[16px] " />
               <input
                 type="text"
-                placeholder="City"
+                placeholder={translations.home.city}
                 className=" pl-2 focus:outline-none bg-transparent"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
@@ -63,14 +66,14 @@ const JobSearchPage = () => {
           <input
             type="text"
             className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
-            placeholder="Type of employment"
+            placeholder={translations.job.type}
             value={employmentType}
             onChange={(e) => setEmploymentType(e.target.value)}
           />
           <input
             type="text"
             className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
-            placeholder="Professional areas"
+            placeholder={translations.job.areas}
             value={professionalArea}
             onChange={(e) => setProfessionalArea(e.target.value)}
           />
@@ -79,7 +82,7 @@ const JobSearchPage = () => {
             className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
             min={0}
             max={50000}
-            placeholder="Salary from"
+            placeholder={translations.job.salary}
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
           />
@@ -88,7 +91,7 @@ const JobSearchPage = () => {
             className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
             min={0}
             max={50}
-            placeholder="Experience"
+            placeholder={translations.job.experience}
             value={experience}
             onChange={(e) => setExperience(e.target.value)}
           />
@@ -96,7 +99,7 @@ const JobSearchPage = () => {
       </div>
       <div className="bg-[#E3E3ED] w-full flex justify-start p-5 flex-col gap-5 items-center min-h-[100vh]">
         {firstVisit && jobs.length === 0 ? (
-          <p>No jobs found, let's start searching</p>
+          <p>{translations.job.notFound}</p>
         ) : jobs.length > 0 ? (
           jobs.map((job) => (
             <JobCard
@@ -110,11 +113,10 @@ const JobSearchPage = () => {
             />
           ))
         ) : (
-          <p>No jobs found</p>
+          <p>{translations.job.notFound}</p>
         )}
       </div>
     </>
   );
 };
-
 export default JobSearchPage;
