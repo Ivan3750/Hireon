@@ -42,7 +42,14 @@
     "haveAccount": "Already have an account?",
     "dontHaveAccount": "Dont have an account?"
   },
-  "job": {},
+  "job": {
+    "enter": "Enter job",
+    "type": "Type of employment",
+    "areas": "Professional areas",
+    "salary": "Minimum salary",
+    "experience": "Experience",
+    "notFound": "No jobs found"
+  },
   "jobid": {},
   "worker": {},
   "workerid": {},
