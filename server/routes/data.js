@@ -254,8 +254,8 @@ router.put('/user/profile',authenticateToken, async (req, res) => {
 });
 router.put('/user/education', authenticateToken ,async (req, res) => {
     const userId = req.user.id;
-    const { education_level, high_school, education_place, started, ended, more_info } = req.body;
-
+    const { education_level, education_place, started, ended, more_info } = req.body;
+    console.log(req)
     if (!userId) {
         return res.status(400).send('User ID is required');
     }
@@ -267,17 +267,17 @@ router.put('/user/education', authenticateToken ,async (req, res) => {
         if (existingEducation.length > 0) {
             const updateQuery = `
                 UPDATE education 
-                SET education_level = ?, high_school = ?, education_place = ?, started = ?, ended = ?, more_info = ?
+                SET education_level = ?, education_place = ?, started = ?, ended = ?, more_info = ?
                 WHERE user_id = ?;
             `;
-            await db.execute(updateQuery, [education_level, high_school, education_place, started, ended, more_info, userId]);
+            await db.execute(updateQuery, [education_level, education_place, started, ended, more_info, userId]);
             res.send('Education updated successfully');
         } else {
             const insertQuery = `
-                INSERT INTO education (user_id, education_level, high_school, education_place, started, ended, more_info)
+                INSERT INTO education (user_id, education_level,  education_place, started, ended, more_info)
                 VALUES (?, ?, ?, ?, ?, ?, ?);
             `;
-            await db.execute(insertQuery, [userId, education_level, high_school, education_place, started, ended, more_info]);
+            await db.execute(insertQuery, [userId, education_level, education_place, started, ended, more_info]);
             res.send('Education added successfully');
         }
     } catch (err) {

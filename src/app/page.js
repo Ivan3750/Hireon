@@ -73,19 +73,18 @@ export default function Home() {
               {translations.home.bestOffers}
             </h2>
             <div className="flex flex-col gap-5 md:gap-4 justify-between">
-              {[...Array(3)].map((_, index) => (
-                <div
-                  key={index}
+            <div
+                  key="1069348"
                   className="flex  md:flex-row justify-between gap-3"
                 >
                   <div className="flex flex-col gap-[10px]">
                     <p className="text-[16px] md:text-[18px]">
-                      Software developer
+                    Senior Full stack Developer
                     </p>
                     <div className="flex flex-row gap-[10px]">
                       <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
                         <FaGlobe />
-                        London
+                        Spain
                       </small>
                       <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
                         <FaHouse />
@@ -96,14 +95,71 @@ export default function Home() {
                   <div className="flex flex-col gap-[10px] items-center">
                     <p className="text-[12px] md:text-[18px] font-medium flex flex-row gap-[10px]">
                       <FaMoneyBill size={20} />
-                      €999
+                      €80.000
                     </p>
-                    <button className="rounded-full bg-[#FFB703] px-[15px] py-[5px] text-[12px] md:text-[16px] font-light hover:bg-[#11181C] hover:text-[#FFB703] transition-all a-btn">
+                    <Link href="/job/1069348" className="rounded-full bg-[#FFB703] px-[15px] py-[5px] text-[12px] md:text-[16px] font-light hover:bg-[#11181C] hover:text-[#FFB703] transition-all a-btn">
                       {translations.home.review}
-                    </button>
+                    </Link>
                   </div>
                 </div>
-              ))}
+                <div
+            
+                  className="flex  md:flex-row justify-between gap-3"
+                >
+                  <div className="flex flex-col gap-[10px]">
+                    <p className="text-[16px] md:text-[18px]">
+                    React JS Developer
+                    </p>
+                    <div className="flex flex-row gap-[10px]">
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
+                        <FaGlobe />
+                        Lagos
+                      </small>
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
+                        <FaHouse />
+                        Remote
+                      </small>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[10px] items-center">
+                    <p className="text-[12px] md:text-[18px] font-medium flex flex-row gap-[10px]">
+                      <FaMoneyBill size={20} />
+                      €88.750
+                    </p>
+                    <Link href="/job/1071058" className="rounded-full bg-[#FFB703] px-[15px] py-[5px] text-[12px] md:text-[16px] font-light hover:bg-[#11181C] hover:text-[#FFB703] transition-all a-btn">
+                      {translations.home.review}
+                    </Link>
+                  </div>
+                </div>
+                <div
+        
+                  className="flex  md:flex-row justify-between gap-3"
+                >
+                  <div className="flex flex-col gap-[10px]">
+                    <p className="text-[16px] md:text-[18px]">
+                    Transcriber English
+                    </p>
+                    <div className="flex flex-row gap-[10px]">
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
+                        <FaGlobe />
+                        Rom
+                      </small>
+                      <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
+                        <FaHouse />
+                        Remote
+                      </small>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-[10px] items-center">
+                    <p className="text-[12px] md:text-[18px] font-medium flex flex-row gap-[10px]">
+                      <FaMoneyBill size={20} />
+                      €41.150
+                    </p>
+                    <Link href="/job/1075885" className="rounded-full bg-[#FFB703] px-[15px] py-[5px] text-[12px] md:text-[16px] font-light hover:bg-[#11181C] hover:text-[#FFB703] transition-all a-btn">
+                      {translations.home.review}
+                    </Link>
+                  </div>
+                </div>
             </div>
           </div>
         </div>

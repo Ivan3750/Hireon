@@ -17,9 +17,10 @@ export default function SettingsLayout({ company, user }) {
           }
         });
 
-        if (!response.ok) {
+        if (response.ok) {
           const data = await response.json();
           setAccountType(data.userType);
+          console.log("type:" + data.userType)
         } else {
           console.error('Failed to fetch account type.');
         }

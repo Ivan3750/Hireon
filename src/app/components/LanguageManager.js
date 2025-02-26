@@ -71,7 +71,6 @@ const LanguageItem = ({ language, index, updateLanguage, saveLanguage, removeLan
 
 const LanguageManager = () => {
   const [languages, setLanguages] = useState([]);
-  const userId = 8;
 
   useEffect(() => {
     const fetchLanguages = async () => {
@@ -90,7 +89,7 @@ const LanguageManager = () => {
       }
     };
     fetchLanguages();
-  }, [userId]);
+  }, []);
 
   const addLanguage = () => {
     setLanguages([...languages, { language_name: "", proficiency_level: "", isNew: true }]);
@@ -107,9 +106,12 @@ const LanguageManager = () => {
     if (!newLanguage.language_name || !newLanguage.proficiency_level) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/user/${userId}/language`, {
+      const response = await fetch(`/api/user/language`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.token}`
+
+         },
         body: JSON.stringify(newLanguage),
       });
 
@@ -127,7 +129,7 @@ const LanguageManager = () => {
   const removeLanguage = async (index, language) => {
     if (!language.isNew) {
       try {
-        await fetch(`http://localhost:5000/api/user/language`, {
+        await fetch(`/api/user/language`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.token}`

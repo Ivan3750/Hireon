@@ -64,16 +64,24 @@ const CvPage = () => {
 
     try {
       setPageLoading(true);
-      await axios.put("/api/user/8/data", {
-        user: {
-          job: name === "job" ? value : job,
-          city: name === "city" ? value : city,
-          salary: name === "salary" ? value : salary,
-          phone: name === "phone" ? value : phone,
-          email: name === "email" ? value : email,
-          additionalInfo: name === "additionalInfo" ? value : additionalInfo,
+      await axios.put(
+        "/api/user/data",
+        {
+          user: {
+            job: name === "job" ? value : job,
+            city: name === "city" ? value : city,
+            salary: name === "salary" ? value : salary,
+            phone: name === "phone" ? value : phone,
+            email: name === "email" ? value : email,
+            additionalInfo: name === "additionalInfo" ? value : additionalInfo,
+          },
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+          },
+        }
+      );
       console.log("Data updated successfully!");
     } catch (error) {
       setError("Error updating data.");
@@ -103,7 +111,7 @@ const CvPage = () => {
     <>
       <div className="flex bg-[#E3E3ED] w-full lg:flex-nowrap flex-wrap lg:p-12 p-2 flex-col items-center">
         <h1 className="text-[40px]">Create CV</h1>
-        <div className="flex flex-row justify-between gap-[70px] w-full">
+        <div className="flex flex-col justify-between gap-[70px] w-full md:flex-row ">
           <div className="flex flex-col gap-2 w-full p-4">
             <label className="label">{translations.cv.job}</label>
             <input
@@ -165,21 +173,19 @@ const CvPage = () => {
             <h3 className="max-[500px]:text-[14px]">
               {translations.settings.education.slice(0, -1)}
             </h3>
-            <div className="bg-[#F8F8FF] p-5 rounded-3xl flex justify-between">
-              <div>
-                <h4 className="text-[#141313] text-[16px] max-[500px]:text-[14px]">
-                  High Name
-                </h4>
-                <p className="text-[10px] max-[500px]:text-[8px]">
-                  2020 - 2025
-                </p>
-              </div>
-              <div>
-                <div className="rounded-full bg-[#FAD7DC] h-10 w-10 flex justify-center items-center hover:scale-[0.95] cursor-pointer">
-                  <FaTrash color="#F94861" size={20} />
-                </div>
-              </div>
-            </div>
+            {userData.education.map((ed) => (
+  <div key={ed.id} className="bg-[#F8F8FF] p-5 rounded-3xl flex justify-between">
+    <div>
+      <h4 className="text-[#141313] text-[16px] max-[500px]:text-[14px]">
+        {ed.education_level || "High School"}
+      </h4>
+      <p className="text-[10px] max-[500px]:text-[8px]">
+        {ed.started} - {ed.ended}
+      </p>
+    </div>
+  </div>
+))}
+
             <button
               className="button"
               onClick={() => handleOpenModal(<EducationContent />)}
@@ -193,30 +199,7 @@ const CvPage = () => {
             <h3 className="max-[500px]:text-[14px]">
               {translations.cv.knowledges}
             </h3>
-            <div className="bg-[#F8F8FF] p-5 rounded-3xl">
-              <div className="flex flex-wrap justify-start gap-2 py-2 ">
-                {skills.map((skill, index) => (
-                  <p
-                    key={index}
-                    className="bg-[#E4E4E4] p-2 w-max rounded-xl font-normal max-[500px]:text-[12px]"
-                  >
-                    {skill}
-                  </p>
-                ))}
-              </div>
-              <button
-                className="button"
-                onClick={() =>
-                  handleOpenModal(
-                    <SkillsContent onAddSkill={addSkill} skills={skills} />
-                  )
-                }
-              >
-                Edit
-              </button>
-            </div>
-          </div>
-          <div className="flex flex-col gap-2 w-full p-4">
+          <div className="flex flex-col gap-2 w-full">
             <h2 className="max-[500px]:text-[14px]">Work experience</h2>
             <div className="bg-[#F8F8FF] p-5 rounded-3xl">
               <div className="flex justify-between">
@@ -249,8 +232,8 @@ const CvPage = () => {
               Add work experience
             </button>
           </div>
+          </div>
         </div>
-        <button className="flex flex-row p-3 bg-[#219EBC] rounded-[20px] text-[24px] hover:text-[#219EBC] hover:bg-[#11181C] transition-all">Create</button>
       </div>
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
