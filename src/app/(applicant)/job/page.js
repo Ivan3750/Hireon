@@ -28,7 +28,6 @@ const JobSearchPage = () => {
       console.error("Error searching jobs:", error);
     }
   };
-
   return (
     <>
       <div className="max-w-[1200px] m-auto my-0">
@@ -54,7 +53,7 @@ const JobSearchPage = () => {
           </div>
           <button
             onClick={handleSearch}
-            className="bg-[#FB8500] a-btn text-[#F8F8FF] rounded-2xl w-[120px] max-[768px]:w-[50px] max-[768px]:flex max-[768px]:justify-center max-[768px]:items-center"
+            className="bg-[#FB8500] a-btn text-[#F8F8FF] rounded-2xl w-[120px] max-[768px]:w-[50px] max-[768px]:flex max-[768px]:justify-center max-[768px]:items-center hover:bg-[#11181C] transition-all hover:text-[#FB8500]"
           >
             <p className="max-[768px]:hidden">Search</p>
             <CiSearch className="max-[768px]:block hidden w-[20px] h-[20px]" width={20} height={20} />

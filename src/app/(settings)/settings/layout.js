@@ -36,7 +36,7 @@ export default function SettingsLayout({ company, user }) {
     <style jsx global>
         {"input:enabled {border-bottom: 1px solid #11181C;}"}
       </style>
-      <div className=' items-center justify-between w-full p-4  shadow-lg hidden sm:flex'>
+      <div className='items-center justify-between w-full p-4 shadow-lg hidden sm:flex'>
       <Link href='' onClick={() => history.back()} className='flex items-center text-[25px] text-gray-700 hover:text-black transition'>
         <FaArrowLeft className='mr-2' /> Back
       </Link>

@@ -23,9 +23,6 @@ export default function Auth() {
       }
     }
   }, []);
-  
-  
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const url = isSignup ? "/api/auth/registration" : "/api/auth/login";

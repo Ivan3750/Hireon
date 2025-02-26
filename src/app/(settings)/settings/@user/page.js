@@ -50,7 +50,7 @@ export default function Settings() {
 
     fetchUserData();
   }, []);
-  if (translationsLoading || loading) return null;
+  if (translationsLoading || loading || !userData.length) return null;
   return (
     <div className="bg-[#dcdcdc] w-full flex flex-col md:flex-row gap-4 p-4 md:p-6 ">
       <div className="flex flex-col gap-4 rounded-[20px] w-full h-full">

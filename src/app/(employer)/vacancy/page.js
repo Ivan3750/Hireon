@@ -101,7 +101,7 @@ const VacancyPage = () => {
         <div className="flex flex-col w-full">
           <label className="label">About this job</label>
           <textarea
-            className="border p-2 min-h-[400px] bg-white rounded-2xl text-[12px]"
+            className="border p-2 min-h-[400px] rounded-2xl text-[12px] bg-[#F8F8FF]"
             placeholder="Tell about this job"
             onChange={(e) => setAbout(e.target.value)}
           />
