@@ -61,12 +61,20 @@
     "job": "Job",
     "ready": "Ready to work in",
     "city": "City",
-    "salary": "Salary from",
+    "salary": "Minimum salary",
     "additional": "Add additional information",
     "aboutYou": "Tell about yourself",
     "addInst": "Add educational institution"
   },
-  "vacancy": {},
+  "vacancy": {
+    "create": "Create a job",
+    "salary": "Salary",
+    "address": "Address",
+    "contact": "Contact",
+    "about": "About this job",
+    "tell": "Tell about this job",
+    "cancel": "Cancel"
+  },
   "settings": {
     "age": "Age:",
     "founded": "Founding date:",

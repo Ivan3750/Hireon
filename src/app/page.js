@@ -92,7 +92,7 @@ export default function Home() {
                       </small>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-[10px] items-center">
+                  <div className="flex flex-col gap-[10px] items-end">
                     <p className="text-[12px] md:text-[18px] font-medium flex flex-row gap-[10px]">
                       <FaMoneyBill size={20} />
                       €80.000
@@ -121,7 +121,7 @@ export default function Home() {
                       </small>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-[10px] items-center">
+                  <div className="flex flex-col gap-[10px] items-end">
                     <p className="text-[12px] md:text-[18px] font-medium flex flex-row gap-[10px]">
                       <FaMoneyBill size={20} />
                       €88.750
@@ -137,12 +137,12 @@ export default function Home() {
                 >
                   <div className="flex flex-col gap-[10px]">
                     <p className="text-[16px] md:text-[18px]">
-                    Transcriber English
+                    English translator
                     </p>
                     <div className="flex flex-row gap-[10px]">
                       <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
                         <FaGlobe />
-                        Rom
+                        Rome
                       </small>
                       <small className="flex flex-row items-center gap-[5px] font-light text-[12px] md:text-[16px]">
                         <FaHouse />
@@ -150,7 +150,7 @@ export default function Home() {
                       </small>
                     </div>
                   </div>
-                  <div className="flex flex-col gap-[10px] items-center">
+                  <div className="flex flex-col gap-[10px] items-end">
                     <p className="text-[12px] md:text-[18px] font-medium flex flex-row gap-[10px]">
                       <FaMoneyBill size={20} />
                       €41.150

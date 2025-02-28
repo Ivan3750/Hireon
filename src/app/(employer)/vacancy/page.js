@@ -1,7 +1,6 @@
 "use client";
-
 import { useState, useEffect, useRef } from "react";
-
+import { useTranslate } from "@/app/hooks/useTranslate";
 const VacancyPage = () => {
   const [jobTitle, setJobTitle] = useState("");
   const [salary, setSalary] = useState("");
@@ -9,7 +8,7 @@ const VacancyPage = () => {
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
   const [about, setAbout] = useState("");
-
+  const {translations, loading} = useTranslate()
   useEffect(() => {
     fetch("/api/myvacancy")
       .then((res) => res.json())
@@ -25,7 +24,6 @@ const VacancyPage = () => {
       })
       .catch((err) => console.error("Error fetching job:", err));
   }, []);
-
   const handleSave = async () => {
     const jobData = {
       job_title: jobTitle,
@@ -35,7 +33,6 @@ const VacancyPage = () => {
       email: email,
       about: about,
     };
-
     try {
       const response = await fetch("/api/new/job", {
         method: "POST",
@@ -51,13 +48,13 @@ const VacancyPage = () => {
       console.error("Error saving job:", error);
     }
   };
-
+  if (loading) return null
   return (
     <div className="w-full bg-[#E5E5E5] p-4 md:p-10 flex flex-col">
-      <h1 className="text-[40px] mb-[20px] self-center">Create a job</h1>
+      <h1 className="text-[40px] mb-[20px] self-center">{translations.vacancy.create}</h1>
       <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-14">
         <div className="flex flex-col w-full md:w-[70%] space-y-3">
-          <label className="label">Job</label>
+          <label className="label">{translations.cv.job}</label>
           <input
             type="text"
             className="border p-2 rounded-2xl input"
@@ -65,7 +62,7 @@ const VacancyPage = () => {
             value={jobTitle}
             onChange={(e) => setJobTitle(e.target.value)}
           />
-          <label className="label">Salary</label>
+          <label className="label">{translations.vacancy.salary}</label>
           <input
             type="text"
             className="border p-2 rounded-2xl input"
@@ -73,7 +70,7 @@ const VacancyPage = () => {
             value={salary}
             onChange={(e) => setSalary(e.target.value)}
           />
-          <label className="label">Address</label>
+          <label className="label">{translations.vacancy.address}</label>
           <input
             type="text"
             className="border p-2 rounded-2xl input"
@@ -81,7 +78,7 @@ const VacancyPage = () => {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
           />
-          <label className="label">Contact</label>
+          <label className="label">{translations.vacancy.contact}</label>
           <input
             type="text"
             className="border p-2 rounded-2xl input"
@@ -89,7 +86,7 @@ const VacancyPage = () => {
             value={contact}
             onChange={(e) => setContact(e.target.value)}
           />
-          <label className="label">Email</label>
+          <label className="label">{translations.login.email}</label>
           <input
             type="email"
             className="border p-2 rounded-2xl input"
@@ -99,18 +96,18 @@ const VacancyPage = () => {
           />
         </div>
         <div className="flex flex-col w-full">
-          <label className="label">About this job</label>
+          <label className="label">{translations.vacancy.about}</label>
           <textarea
             className="border p-2 min-h-[400px] rounded-2xl text-[12px] bg-[#F8F8FF] resize-none"
-            placeholder="Tell about this job"
+            placeholder={translations.vacancy.tell}
             onChange={(e) => setAbout(e.target.value)}
           />
         </div>
       </div>
       <div className="my-5">
-        <button className="button-disable">Cancel</button>
+        <button className="button-disable">{translations.vacancy.cancel}</button>
         <button className="button" onClick={handleSave}>
-          Save
+        {translations.settings.save}
         </button>
       </div>
     </div>

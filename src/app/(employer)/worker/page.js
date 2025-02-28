@@ -3,6 +3,7 @@ import { CiSearch } from "react-icons/ci";
 import { FaLocationPin } from "react-icons/fa6";
 import WorkerCard from "@/app/components/WorkerCard";
 import React, { useState, useEffect } from "react";
+import { useTranslate } from "@/app/hooks/useTranslate";
 const JobSearchPage = () => {
   const [jobs, setJobs] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -11,6 +12,7 @@ const JobSearchPage = () => {
   const [professionalArea, setProfessionalArea] = useState("");
   const [salary, setSalary] = useState("");
   const [experience, setExperience] = useState("");
+  const {translations, loading} = useTranslate()
   const handleSearch = async () => {
     try {
       const response = await fetch(
@@ -22,15 +24,16 @@ const JobSearchPage = () => {
       console.error("Error searching jobs:", error);
     }
   };
+  if (loading) return null
   return (
-    <div className="flex flex-col w-full">
-       <div className="w-1/2 m-auto my-0">
+    <>
+       <div className="max-w-[1200px] m-auto my-0">
              <div className="w-full flex justify-center gap-5 p-2 max-[500px]:gap-2">
                <div className=" bg-[#F0F8FF] rounded-2xl h-10 flex items-center p-2 w-full">
                  <input
                    type="text"
                    className="w-full pl-2 focus:outline-none bg-transparent"
-                   placeholder="Enter job"
+                   placeholder={translations.job.enter}
                    value={searchQuery}
                    onChange={(e) => setSearchQuery(e.target.value)}
                  />
@@ -38,7 +41,7 @@ const JobSearchPage = () => {
                    <FaLocationPin className="md:block hidden text-[16px] " />
                    <input
                      type="text"
-                     placeholder="City"
+                     placeholder={translations.home.city}
                      className=" pl-2 focus:outline-none bg-transparent"
                      value={city}
                      onChange={(e) => setCity(e.target.value)}
@@ -49,7 +52,7 @@ const JobSearchPage = () => {
                  onClick={handleSearch}
                  className="bg-[#FB8500] a-btn text-[#F8F8FF] rounded-2xl w-[120px] max-[768px]:w-[50px] max-[768px]:flex max-[768px]:justify-center max-[768px]:items-center hover:bg-[#11181C] transition-all hover:text-[#FB8500]"
                >
-                 <p className="max-[768px]:hidden">Search</p>
+                 <p className="max-[768px]:hidden">{translations.home.search}</p>
                  <CiSearch className="max-[768px]:block hidden w-[20px] h-[20px]" width={20} height={20} />
                </button>
              </div>
@@ -57,14 +60,14 @@ const JobSearchPage = () => {
                <input
                  type="text"
                  className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
-                 placeholder="Type of employment"
+                 placeholder={translations.job.type}
                  value={employmentType}
                  onChange={(e) => setEmploymentType(e.target.value)}
                />
                <input
                  type="text"
                  className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
-                 placeholder="Professional areas"
+                 placeholder={translations.job.areas}
                  value={professionalArea}
                  onChange={(e) => setProfessionalArea(e.target.value)}
                />
@@ -73,7 +76,7 @@ const JobSearchPage = () => {
                  className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
                  min={0}
                  max={50000}
-                 placeholder="Salary from"
+                 placeholder={translations.job.salary}
                  value={salary}
                  onChange={(e) => setSalary(e.target.value)}
                />
@@ -82,13 +85,12 @@ const JobSearchPage = () => {
                  className="rounded-2xl text-center h-[50px] max-[500px]:h-[45px] max-[500px]:text-[12px] w-full focus:outline-none input"
                  min={0}
                  max={50}
-                 placeholder="Experience"
+                 placeholder={translations.job.experience}
                  value={experience}
                  onChange={(e) => setExperience(e.target.value)}
                />
              </div>
            </div>
-
       <div className="bg-[#E3E3ED] w-full flex justify-center p-5 flex-row flex-wrap gap-5 items-start min-h-[100vh]">
         {jobs.length > 0 ? (
           jobs.map((job) => (
@@ -105,10 +107,10 @@ const JobSearchPage = () => {
             />
           ))
         ) : (
-          <p>No jobs found</p>
+          <p>{translations.job.notFound}</p>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
