@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hireon
 
-## Getting Started
+Hireon is a job search website prototype created as a concept project for a fictional startup company. The main idea behind the project is to demonstrate the structure and user flow of a modern job-finding platform.
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The platform is designed to help users explore job opportunities, view job listings, and navigate a multilingual interface. The website includes language translation features, allowing users to switch between different languages for better accessibility.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+However, the project does not currently have a fully working API. Most of the data is static or partially implemented, and backend integration is incomplete.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Current State
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Multilingual interface is implemented
+- Job search and listing features are presented on the UI level
+- Backend API is not fully functional
+- Some features work only as mockups or placeholders
+- The overall design requires improvement and refinement
 
-## Learn More
+## Purpose
 
-To learn more about Next.js, take a look at the following resources:
+Hireon was created as a learning and demonstration project to:
+- Practice frontend development
+- Experiment with multilingual support
+- Explore the structure of a job search platform
+- Simulate a startup-style product concept
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Notes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Hireon is not a production-ready application. The company, brand, and concept are fictional, and the project is intended solely for educational and portfolio purposes.
